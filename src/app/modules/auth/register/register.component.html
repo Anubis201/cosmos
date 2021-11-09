@@ -1,0 +1,33 @@
+<div class="box">
+  <form [formGroup]="form">
+    <i class="pi pi-user first"></i>
+
+    <span class="p-input-icon-left">
+    <i class="pi pi-user"></i>
+    <input formControlName="email" type="email" pInputText placeholder="Email">
+  </span>
+
+    <span class="p-input-icon-left">
+    <i class="pi pi-user"></i>
+    <input formControlName="displayName" type="text" pInputText placeholder="Display name">
+  </span>
+
+    <span class="p-input-icon-left">
+    <i class="pi pi-lock"></i>
+    <input formControlName="password" type="password" pInputText placeholder="Password">
+  </span>
+
+    <button
+      pButton
+      type="button"
+      class="p-button-rounded"
+      [loading]="isSaving"
+      [disabled]="form.invalid"
+      (click)="register()"
+    >Registers
+    </button>
+
+    <i (click)="goToLogin()" class="pi pi-chevron-circle-left left" pTooltip="Login"></i>
+  </form>
+  <p-toast></p-toast>
+</div>

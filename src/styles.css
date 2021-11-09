@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  font-family: 'Noto Sans JP', sans-serif;
+  background-image: url("/assets/img/dd.jpg");
+  margin: 0;
+  padding: 0;
+}
