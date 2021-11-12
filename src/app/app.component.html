@@ -1,3 +1,5 @@
 <app-menu-bar @barAnimation *ngIf="isAuth" (logout)="logout()"></app-menu-bar>
 
-<router-outlet></router-outlet>
+<div [class.content]="isAuth">
+  <router-outlet></router-outlet>
+</div>
