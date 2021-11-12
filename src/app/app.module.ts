@@ -5,8 +5,7 @@ import { InputTextModule } from 'primeng/inputtext'
 import { TooltipModule } from 'primeng/tooltip'
 
 import { AppComponent } from './app.component'
-import { LoginComponent } from './modules/auth/login/login.component'
-import { RegisterComponent } from './modules/auth/register/register.component'
+import { AuthComponent } from './modules/auth/auth.component'
 import { AppRoutingModule } from './app-routing.module'
 import { environment } from '../environments/environment'
 import { AngularFireModule } from '@angular/fire/compat'
@@ -21,9 +20,8 @@ import { MenuBarComponent } from './modules/others/menu-bar/menu-bar.component'
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
     MenuBarComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
