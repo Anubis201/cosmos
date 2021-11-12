@@ -1,3 +1,17 @@
 <p-menubar [model]="items">
-  <button type="button" pButton pTooltip="Logout" icon="pi pi-power-off" (click)="logout.emit()"></button>
+  <button
+    class="nick"
+    type="button"
+    pButton
+    [routerLink]="['/account']"
+  >{{ displayName }}</button>
+
+  <button
+    tooltipPosition="bottom"
+    type="button"
+    pButton
+    pTooltip="Logout"
+    icon="pi pi-power-off"
+    (click)="logout.emit()"
+  ></button>
 </p-menubar>

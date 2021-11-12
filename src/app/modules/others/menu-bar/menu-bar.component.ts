@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { MenuItem } from 'primeng/api'
 
 @Component({
@@ -7,9 +7,11 @@ import { MenuItem } from 'primeng/api'
   styleUrls: ['./menu-bar.component.css']
 })
 export class MenuBarComponent implements OnInit {
-  items: MenuItem[]
+  @Input() displayName: string | null | undefined
 
   @Output() logout = new EventEmitter<void>()
+
+  items: MenuItem[]
 
   ngOnInit() {
     this.items = [
@@ -27,13 +29,6 @@ export class MenuBarComponent implements OnInit {
           {label: 'Quit'}
         ]
       },
-      {
-        label: 'Settings',
-        icon: 'pi pi-fw pi-cog',
-        items: [
-          {label: 'Account', icon: 'pi pi-fw pi-user', routerLink: 'account'},
-        ]
-      }
     ]
   }
 }

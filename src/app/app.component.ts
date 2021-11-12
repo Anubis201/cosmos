@@ -27,6 +27,10 @@ export class AppComponent implements OnInit {
     return !!this.authService.user
   }
 
+  get name() {
+    return this.authService.user?.displayName || this.authService.user?.email
+  }
+
   ngOnInit() {
     this.authService.checkAuthState()
   }
