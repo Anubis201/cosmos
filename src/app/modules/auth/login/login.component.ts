@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms'
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { MessageService } from 'primeng/api'
 import { Router } from '@angular/router'
+import { AuthService } from 'src/app/services/auth.service'
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private toast: MessageService,
     private router: Router,
+    private authService: AuthService,
   ) { }
 
   login() {
@@ -33,16 +35,16 @@ export class LoginComponent {
     )
       .then(() => {
         this.toast.add({ severity: 'success', summary: 'Success' })
+        this.router.navigateByUrl('dashboard')
+        this.isSaving = false
       })
       .catch((err) => {
         this.toast.add({ severity: 'error', summary: err.message })
-      })
-      .finally(() => {
         this.isSaving = false
       })
   }
 
-  goToRegister() {
-    this.router.navigateByUrl('register')
+  toRegister() {
+    this.authService.goToRegister()
   }
 }

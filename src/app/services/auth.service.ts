@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
-import {AngularFireAuth} from '@angular/fire/compat/auth'
+import { AngularFireAuth } from '@angular/fire/compat/auth'
 import firebase from 'firebase/compat'
-import {Router} from '@angular/router'
+import { Router } from '@angular/router'
 import User = firebase.User
 
 @Injectable({
@@ -19,21 +19,22 @@ export class AuthService {
     this.fireAuth.authState
       .subscribe((auth) => {
         this.user = auth
-
-        if (this.user === null) {
-
-          this.router.navigateByUrl('login')
-
-        } else {
-
-          if (window.location.pathname !== '/dashboard') return
-
-          this.router.navigateByUrl('dashboard')
-        }
       })
   }
 
   logout() {
     this.fireAuth.signOut()
+
+    setTimeout(() => {
+      this.router.navigateByUrl('login')
+    })
+  }
+
+  goToLogin() {
+    this.router.navigateByUrl('login')
+  }
+
+  goToRegister() {
+    this.router.navigateByUrl('register')
   }
 }

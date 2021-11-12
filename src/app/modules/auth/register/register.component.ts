@@ -2,7 +2,8 @@ import { Component } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { FormBuilder, Validators } from '@angular/forms'
 import { MessageService } from 'primeng/api'
-import {Router} from '@angular/router'
+import { Router } from '@angular/router'
+import { AuthService } from 'src/app/services/auth.service'
 
 @Component({
   selector: 'app-register',
@@ -23,6 +24,7 @@ export class RegisterComponent {
     private fb: FormBuilder,
     private toast: MessageService,
     private router: Router,
+    private authService: AuthService,
   ) { }
 
   register() {
@@ -33,6 +35,7 @@ export class RegisterComponent {
     )
       .then((res) => {
         this.toast.add({ severity: 'success', summary: 'Created user' })
+        this.router.navigateByUrl('dashboard')
         return res.user?.updateProfile({
           displayName: this.form.get('displayName')!.value,
           photoURL: 'user',
@@ -46,7 +49,7 @@ export class RegisterComponent {
       })
   }
 
-  goToLogin() {
-   this.router.navigateByUrl('login')
+  toLogin() {
+    this.authService.goToLogin()
   }
 }
