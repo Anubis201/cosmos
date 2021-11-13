@@ -1,3 +1,16 @@
 .account {
-  color: white
+  color: white;
+}
+
+.additional {
+  margin-top: 20px;
+}
+
+.items {
+  display: flex;
+  justify-content: space-around;
+}
+
+.items .item h2 {
+  font-size: 21px;
 }

@@ -1,12 +1,17 @@
 <p-menubar [model]="items">
   <button
-    class="nick"
+    class="nick p-button-text"
     type="button"
+    pTooltip="Info"
+    tooltipPosition="bottom"
     pButton
     [routerLink]="['/account']"
-  >{{ displayName }}</button>
+  >
+    {{ displayName }}
+  </button>
 
   <button
+    class="p-button-outlined"
     tooltipPosition="bottom"
     type="button"
     pButton
