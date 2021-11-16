@@ -1,0 +1,32 @@
+<h4>{{ label }}</h4>
+<div
+  *ngIf="control.value === null; else replace"
+  [appEditElement]="saved"
+  (click)="control.patchValue(saved)"
+>{{ saved }}</div>
+<ng-template #replace>
+  <div class="p-inputgroup">
+    <input
+      [type]="isPasswordInput ? 'password' : 'text'"
+      pInputText
+      [formControl]="control"
+      (keyup.enter)="enter.emit()"
+    >
+    <button
+      type="button"
+      pButton
+      pRipple
+      class="p-button-danger"
+      icon="pi pi-times"
+      (click)="control.patchValue(null)"
+    ></button>
+    <button
+      type="button"
+      pButton
+      pRipple
+      icon="pi pi-check"
+      class="p-button-success"
+      (click)="enter.emit()"
+    ></button>
+  </div>
+</ng-template>

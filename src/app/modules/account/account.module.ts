@@ -8,12 +8,14 @@ import { FieldsetModule } from 'primeng/fieldset'
 import { ImageModule } from 'primeng/image'
 import { EditElementDirective } from 'src/app/services/directives/edit-element/edit-element.directive'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { ToastModule } from 'primeng/toast'
+import { ToastModule } from 'primeng/toast';
+import { EditableItemComponent } from './components/editable-item/editable-item.component'
 
 @NgModule({
   declarations: [
     AccountComponent,
-    EditElementDirective
+    EditElementDirective,
+    EditableItemComponent
   ],
   imports: [
     CommonModule,

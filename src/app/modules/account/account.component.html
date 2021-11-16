@@ -7,9 +7,8 @@
       class="items"
       [formGroup]="form"
     >
-
-      <div class="item">
-        <h2 class="center">Avatar</h2>
+      <div class="center">
+        <h4>Profile picture</h4>
         <p-image
           src="/assets/img/defualt.png"
           alt="Image"
@@ -19,97 +18,33 @@
       </div>
 
       <div class="item">
-        <h2>Name</h2>
-        <div
-          *ngIf="!form.get('displayName')?.value; else nameInput"
-          [appEditElement]="user?.displayName"
-          (click)="form.get('displayName')?.patchValue(user?.displayName)"
-        >{{ user?.displayName }}</div>
-        <ng-template #nameInput>
-          <div class="p-inputgroup">
-            <input
-              type="text"
-              pInputText
-              formControlName="displayName"
-              (keyup.enter)="changeName()"
-            >
-            <button
-              type="button"
-              pButton
-              pRipple
-              icon="pi pi-check"
-              class="p-button-success"
-              (click)="changeName()"
-            ></button>
-          </div>
-        </ng-template>
+        <app-editable-item
+          labelText="Name"
+          [savedValue]="user?.displayName"
+          [control]="form.get('displayName')"
+          (onEnter)="changeName()"
+        ></app-editable-item>
       </div>
 
       <div class="item">
-        <h2>Email</h2>
-        <div
-          *ngIf="!form.get('email')?.value; else emailInput"
-          [appEditElement]="user?.email"
-          (click)="form.get('email')?.patchValue(user?.email)"
-        >{{ user?.email }}</div>
-        <ng-template #emailInput>
-          <div class="p-inputgroup">
-            <input
-              type="text"
-              pInputText
-              formControlName="email"
-              (keyup.enter)="changeEmail()"
-            >
-            <button
-              type="button"
-              class="p-button-success"
-              pButton
-              pRipple
-              icon="pi pi-check"
-              [disabled]="form.get('email')?.invalid"
-              (click)="changeEmail()"
-            ></button>
-          </div>
-        </ng-template>
+        <app-editable-item
+          labelText="Email"
+          [savedValue]="user?.email"
+          [control]="form.get('email')"
+          (onEnter)="changeEmail()"
+        ></app-editable-item>
       </div>
 
       <div class="item">
-        <h2>Password</h2>
-        <div
-          *ngIf="!form.get('password')?.value; else passwordInput"
-          [appEditElement]="'*******'"
-          (click)="form.get('password')?.patchValue('*******')"
-        >*******</div>
-        <ng-template #passwordInput>
-          <div class="p-inputgroup">
-            <input
-              type="password"
-              pInputText
-              formControlName="password"
-              (keyup.enter)="changePassword()"
-            >
-            <button
-              type="button"
-              pButton
-              pRipple
-              class="p-button-success"
-              icon="pi pi-check"
-              (click)="changePassword()"
-            ></button>
-          </div>
-        </ng-template>
+        <app-editable-item
+          labelText="Password"
+          [savedValue]="'*******'"
+          [control]="form.get('password')"
+          [isPasswordInput]="true"
+          (onEnter)="changePassword()"
+        ></app-editable-item>
       </div>
-
     </div>
   </p-fieldset>
 </div>
-
-<!-- <div class="additional">
-  <p-fieldset
-    legend="Additional info"
-    [toggleable]="true"
-    [collapsed]="true"
-  >
-  </p-fieldset>
-</div> -->
 <p-toast></p-toast>

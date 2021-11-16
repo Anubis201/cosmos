@@ -16,9 +16,9 @@ export class AccountComponent implements OnInit {
   user: User | null
 
   form = this.fb.group({
-    email: ['', [Validators.email]],
-    displayName: '',
-    password: '',
+    email: [null, [Validators.email]],
+    displayName: null,
+    password: null,
   })
 
   constructor(
@@ -35,7 +35,7 @@ export class AccountComponent implements OnInit {
   changeName() {
     this.fireAuth.user.subscribe(user => {
       user?.updateProfile({ displayName: this.form.get('displayName')?.value }).then(() => {
-        this.form.get('displayName')?.patchValue('')
+        this.form.get('displayName')?.patchValue(null)
         this.toast.add({ severity: 'success', summary: 'Name changed' })
       })
     })
@@ -45,7 +45,7 @@ export class AccountComponent implements OnInit {
     this.fireAuth.user.subscribe(user => {
       user?.updateEmail(this.form.get('email')?.value)
         .then(() => {
-          this.form.get('email')?.patchValue('')
+          this.form.get('email')?.patchValue(null)
           this.toast.add({ severity: 'success', summary: 'Email changed' })
         })
         .catch(e => {
@@ -58,7 +58,7 @@ export class AccountComponent implements OnInit {
     this.fireAuth.user.subscribe(user => {
       user?.updatePassword(this.form.get('password')?.value)
         .then(() => {
-          this.form.get('password')?.patchValue('')
+          this.form.get('password')?.patchValue(null)
           this.toast.add({ severity: 'success', summary: 'Password changed' })
         })
         .catch(e => {
