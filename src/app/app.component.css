@@ -1,4 +1,4 @@
-div {
+.main {
   height: 100%;
 }
 
@@ -7,4 +7,21 @@ div {
   height: inherit;
   display: flex;
   justify-content: center;
+  flex: 2 1 auto;
+}
+
+.apliaction {
+  display: flex;
+}
+
+.aside {
+  height: 92vh;
+  background-color: #1e1e1e;
+  margin-top: 8vh;
+  width: 260px;
+}
+
+.auth {
+  justify-content: center;
+  height: 100%;
 }

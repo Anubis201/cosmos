@@ -9,11 +9,20 @@ import { AuthService } from './services/auth.service'
   animations: [
     trigger('barAnimation', [
       transition(':enter', [
-        style({ opacity: 0 }),
-        animate('200ms', style({ opacity: 1 }))
+        style({ transform: 'translateY(-80px)' }),
+        animate('400ms', style({ transform: 'translateY(0px)' }))
       ]),
       transition(':leave', [
-        animate('200ms', style({ opacity: 0 }))
+        animate('400ms', style({ transform: 'translateY(-80px)' }))
+      ])
+    ]),
+    trigger('asideAnimation', [
+      transition(':enter', [
+        style({ transform: 'translateX(-400px)' }),
+        animate('400ms', style({ transform: 'translateX(0px)' }))
+      ]),
+      transition(':leave', [
+        animate('400ms', style({ transform: 'translateX(-400px)' }))
       ])
     ])
   ]

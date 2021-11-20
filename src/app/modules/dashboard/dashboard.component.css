@@ -1,0 +1,9 @@
+:host {
+  display: flex;
+  width: 100%;
+  padding: 0px 40px;
+}
+
+.list {
+  max-height: 200px;
+}

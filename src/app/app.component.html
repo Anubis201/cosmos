@@ -1,5 +1,21 @@
 <app-menu-bar @barAnimation *ngIf="isAuth" [displayName]="name" (logout)="logout()"></app-menu-bar>
 
-<div [class.content]="isAuth">
-  <router-outlet></router-outlet>
+<div
+  class="apliaction"
+  [class.auth]="!isAuth"
+>
+  <div
+    *ngIf="isAuth"
+    @asideAnimation
+    class="aside"
+  >
+    <app-left-aside></app-left-aside>
+  </div>
+
+  <div
+    class="main"
+    [class.content]="isAuth"
+  >
+    <router-outlet></router-outlet>
+  </div>
 </div>
