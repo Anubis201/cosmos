@@ -24,7 +24,16 @@ import { AuthService } from './services/auth.service'
       transition(':leave', [
         animate('400ms', style({ transform: 'translateX(-400px)' }))
       ])
-    ])
+    ]),
+    trigger('mainAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('500ms 600ms', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('500ms 600ms', style({ opacity: 0 }))
+      ]),
+    ]),
   ]
 })
 export class AppComponent implements OnInit {
