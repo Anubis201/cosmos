@@ -10,6 +10,10 @@ import { EditElementDirective } from 'src/app/services/directives/edit-element/e
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { ToastModule } from 'primeng/toast';
 import { EditableItemComponent } from './components/editable-item/editable-item.component'
+import { FileUploadModule } from 'primeng/fileupload'
+import { HttpClientModule } from '@angular/common/http'
+import { ProgressSpinnerModule } from 'primeng/progressspinner'
+import { ProgressBarModule } from 'primeng/progressbar'
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { EditableItemComponent } from './components/editable-item/editable-item.
     ImageModule,
     ToastModule,
     FormsModule,
-    ReactiveFormsModule
+    FileUploadModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    ProgressSpinnerModule,
+    ProgressBarModule,
   ]
 })
 export class AccountModule { }

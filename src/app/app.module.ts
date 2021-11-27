@@ -17,6 +17,8 @@ import { TableModule } from 'primeng/table'
 import { MenubarModule } from 'primeng/menubar'
 import { MenuBarComponent } from './modules/others/menu-bar/menu-bar.component'
 import { LeftAsideComponent } from './modules/left-aside/left-aside.component'
+import { AccComponent } from './modules/left-aside/acc/acc.component'
+import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage'
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { LeftAsideComponent } from './modules/left-aside/left-aside.component'
     MenuBarComponent,
     AuthComponent,
     LeftAsideComponent,
+    AccComponent
   ],
   imports: [
     BrowserModule,
@@ -38,8 +41,11 @@ import { LeftAsideComponent } from './modules/left-aside/left-aside.component'
     TooltipModule,
     TableModule,
     MenubarModule,
+    AngularFireStorageModule,
+    AngularFireModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

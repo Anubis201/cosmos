@@ -4,17 +4,44 @@
     [toggleable]="true"
   >
     <div
+      *ngIf="!isLoading"
       class="items"
       [formGroup]="form"
     >
       <div class="center">
+        <i
+          *ngIf="showEditInput"
+          class="pi pi-times times-icon"
+          (click)="showEditInput = false"
+        ></i>
         <h4>Profile picture</h4>
         <p-image
-          src="/assets/img/defualt.png"
+          *ngIf="!showEditInput"
           alt="Image"
-          width="80"
-          [preview]="true"
+          width="70"
+          height="60"
+          [src]="avatar"
+          (mouseenter)="editImage = true"
+          (mouseleave)="editImage = false"
+          (click)="showEditInput = true"
         ></p-image>
+        <i
+          *ngIf="editImage && !showEditInput"
+          class="pi pi-pencil icon"
+        ></i>
+        <p-fileUpload
+          *ngIf="showEditInput"
+          name="myfile[]"
+          accept="image/*"
+          [customUpload]="true"
+          [maxFileSize]="5000000"
+          (uploadHandler)="upload($event)"
+        ></p-fileUpload>
+        <p-progressBar
+          *ngIf="showEditInput"
+          [value]="percentage"
+          [showValue]="false"
+        ></p-progressBar>
       </div>
 
       <div class="item">
@@ -44,6 +71,13 @@
           (onEnter)="changePassword()"
         ></app-editable-item>
       </div>
+    </div>
+
+    <div
+      *ngIf="isLoading"
+      class="loading"
+    >
+      <p-progressSpinner></p-progressSpinner>
     </div>
   </p-fieldset>
 </div>

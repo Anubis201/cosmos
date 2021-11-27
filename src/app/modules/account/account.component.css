@@ -1,5 +1,6 @@
 :host {
-  width: 45%;
+  max-width: 90%;
+  min-width: 45%;
 }
 
 .account {
@@ -33,7 +34,8 @@ h4 {
 
 @media only screen and (max-width: 1000px) {
   :host {
-    width: 65%;
+    max-width: 90%;
+    min-width: 70%;
   }
 
   .items {
@@ -43,6 +45,36 @@ h4 {
 
 @media only screen and (max-width: 650px) {
   :host {
-    width: 80%;
+    max-width: 95%;
+    min-width: 80%;
   }
+}
+
+p-image {
+  cursor: pointer;
+}
+
+.icon {
+  margin-left: 10px;
+  position: absolute;
+}
+
+.loading {
+  height: 51vh;
+}
+
+.center {
+  position: relative;
+}
+
+.times-icon {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  top: 16px;
+}
+
+.times-icon:hover {
+  color: red;
+
 }

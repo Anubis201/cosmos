@@ -13,3 +13,13 @@ html, body {
 .center {
   text-align: center;
 }
+
+.loading {
+  display: flex;
+  text-align: center;
+}
+
+.loading p-progressspinner {
+  align-self: center;
+  flex: 1;
+}

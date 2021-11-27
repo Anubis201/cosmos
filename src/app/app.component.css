@@ -7,7 +7,7 @@
   height: inherit;
   display: flex;
   justify-content: center;
-  flex: 2 1 auto;
+  width: 70%;
 }
 
 .apliaction {
@@ -18,7 +18,7 @@
   height: 92vh;
   background-color: #1e1e1e;
   margin-top: 8vh;
-  width: 260px;
+  width: 30%;
 }
 
 .auth {
