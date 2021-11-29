@@ -28,7 +28,7 @@ const routes: Routes = [
   },
   {
     path: 'about',
-    loadChildren: () => import('./modules/about/about.module').then(m => m.AboutdModule),
+    loadChildren: () => import('./modules/about/about.module').then(m => m.AboutModule),
   },
   {
     path: '',

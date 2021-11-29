@@ -1,20 +1,15 @@
 import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common'
 import { AboutRoutingModule } from './about-routing.module'
-import { TableModule } from 'primeng/table'
 import { AboutComponent } from './about.component'
-import { TabViewModule } from 'primeng/tabview'
-import { CardModule } from 'primeng/card'
+import { SharedModule } from '../shared/shared.module'
 
 @NgModule({
   declarations: [
     AboutComponent
   ],
   imports: [
-    CommonModule,
     AboutRoutingModule,
-    TableModule,
-    TabViewModule,
+    SharedModule,
   ]
 })
-export class AboutdModule { }
+export class AboutModule { }
