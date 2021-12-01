@@ -4,20 +4,42 @@
 
     <span class="p-input-icon-left">
       <i class="pi pi-user"></i>
-      <input formControlName="email" type="email" pInputText placeholder="Email">
+      <input
+        i18n-placeholder
+        pInputText
+        formControlName="email"
+        type="email"
+        placeholder="Email"
+      >
     </span>
 
-    <span *ngIf="!isLoginPage" class="p-input-icon-left">
+    <span
+      *ngIf="!isLoginPage"
+      class="p-input-icon-left"
+    >
       <i class="pi pi-user"></i>
-      <input formControlName="displayName" type="text" pInputText placeholder="Display name">
+      <input
+        i18n-placeholder
+        pInputText
+        formControlName="displayName"
+        type="text"
+        placeholder="Display name"
+      >
     </span>
 
     <span class="p-input-icon-left">
       <i class="pi pi-lock"></i>
-      <input formControlName="password" type="password" pInputText placeholder="Password">
+      <input
+        i18n-placeholder
+        pInputText
+        formControlName="password"
+        type="password"
+        placeholder="Password"
+      >
     </span>
 
     <button
+      i18n
       pButton
       type="submit"
       class="p-button-rounded"
@@ -26,9 +48,21 @@
       (click)="isLoginPage ? login() : register()"
     >{{ isLoginPage ? 'Login' : 'Register' }}</button>
 
-    <i *ngIf="!isLoginPage" class="pi pi-chevron-circle-left left" pTooltip="Login" (click)="toLogin()"></i>
+    <i
+      *ngIf="!isLoginPage"
+      i18n-pTooltip
+      class="pi pi-chevron-circle-left left"
+      pTooltip="Login"
+      (click)="toLogin()"
+    ></i>
 
-    <i *ngIf="isLoginPage" class="pi pi-chevron-circle-right right" pTooltip="Register" (click)="toRegister()"></i>
+    <i
+      *ngIf="isLoginPage"
+      i18n-pTooltip
+      class="pi pi-chevron-circle-right right"
+      pTooltip="Register"
+      (click)="toRegister()"
+    ></i>
   </form>
   <p-toast></p-toast>
 </div>

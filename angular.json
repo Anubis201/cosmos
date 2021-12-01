@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "spaceOpera": {
+      "i18n": {
+        "locales": {
+          "en": "src/assets/locales/messages.en.xlf",
+          "pl": "src/assets/locales/messages.pl.xlf"
+        }
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -63,6 +69,12 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "en": {
+              "localize": ["en"]
+            },
+            "pl": {
+              "localize": ["pl"]
             }
           },
           "defaultConfiguration": "production"
@@ -72,6 +84,12 @@
           "configurations": {
             "production": {
               "browserTarget": "spaceOpera:build:production"
+            },
+            "en": {
+              "browserTarget": "spaceOpera:build:en"
+            },
+            "pl": {
+              "browserTarget": "spaceOpera:build:pl"
             },
             "development": {
               "browserTarget": "spaceOpera:build:development"

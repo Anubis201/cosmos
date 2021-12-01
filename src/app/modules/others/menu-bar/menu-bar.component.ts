@@ -16,11 +16,11 @@ export class MenuBarComponent implements OnInit {
   ngOnInit() {
     this.items = [
       {
-        label: 'Dashboard',
+        label: $localize `Dashboard`,
         routerLink: '/dashboard'
       },
       {
-        label: 'About',
+        label: $localize `About`,
         routerLink: '/about',
       },
     ]

@@ -17,6 +17,7 @@
         <h4>Profile picture</h4>
         <p-image
           *ngIf="!showEditInput"
+          i18n-alt
           alt="Image"
           width="100"
           height="90"
@@ -31,7 +32,6 @@
         ></i>
         <p-fileUpload
           *ngIf="showEditInput"
-          name="myfile[]"
           accept="image/*"
           [customUpload]="true"
           [maxFileSize]="5000000"
@@ -46,6 +46,7 @@
 
       <div class="item">
         <app-editable-item
+          i18n-labelText
           labelText="Name"
           [savedValue]="user?.displayName"
           [control]="form.get('displayName')"
@@ -55,6 +56,7 @@
 
       <div class="item">
         <app-editable-item
+          i18n-labelText
           labelText="Email"
           [savedValue]="user?.email"
           [control]="form.get('email')"
@@ -64,6 +66,7 @@
 
       <div class="item">
         <app-editable-item
+          i18n-labelText
           labelText="Password"
           [savedValue]="'*******'"
           [control]="form.get('password')"

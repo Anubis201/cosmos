@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="7806416699195259046" datatype="html">
+        <source>World</source>
+        <target>World</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/about/about.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2190848281985863672" datatype="html">
+        <source> W 2222 roku kończyła się ostatnia wojna. Ludzkość zrozumiała, że kolejnego konfliktu nie przetrwa. W czasie rozmów pokojowych ocalałe państwa postanowiły stworzyć grę, która miało wybrać państwo, aby powiodło resztę w nową erę. Rozgrywka będzie trwała 60 lat, a jej celem jest rozwinięcie ludzkości. Państwo które najbardziej przysłuży się ziemi, wygra. Może to być technologia, odkrycie, nowa broń itd. Rozpoczęło się 60 lat złotej ery...</source>
+        <target> W 2222 roku kończyła się ostatnia wojna. Ludzkość zrozumiała, że kolejnego konfliktu nie przetrwa. W czasie rozmów pokojowych ocalałe państwa postanowiły stworzyć grę, która miało wybrać państwo, aby powiodło resztę w nową erę. Rozgrywka będzie trwała 60 lat, a jej celem jest rozwinięcie ludzkości. Państwo które najbardziej przysłuży się ziemi, wygra. Może to być technologia, odkrycie, nowa broń itd. Rozpoczęło się 60 lat złotej ery...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/about/about.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2732064897754286464" datatype="html">
+        <source>How to play?</source>
+        <target>How to play?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/about/about.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8552336103914790340" datatype="html">
+        <source> Content 2 </source>
+        <target> Content 2 </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/about/about.component.html</context>
+          <context context-type="linenumber">13,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7156797854368699223" datatype="html">
+        <source>Me</source>
+        <target>Me</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/about/about.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2224324196652680962" datatype="html">
+        <source> Content 3 </source>
+        <target> Content 3 </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/about/about.component.html</context>
+          <context context-type="linenumber">20,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3012906865384504293" datatype="html">
+        <source>Image</source>
+        <target>Image</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/account.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8953033926734869941" datatype="html">
+        <source>Name</source>
+        <target>Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/account.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4768749765465246664" datatype="html">
+        <source>Email</source>
+        <target>Email</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/account.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/auth.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1431416938026210429" datatype="html">
+        <source>Password</source>
+        <target>Password</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/account.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/auth.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5572227538338043691" datatype="html">
+        <source>Picture changed</source>
+        <target>Picture changed</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/account.component.ts</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="828189398853536511" datatype="html">
+        <source>Failed to change picture</source>
+        <target>Failed to change picture</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/account.component.ts</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8627787523756560810" datatype="html">
+        <source>Name changed</source>
+        <target>Name changed</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/account.component.ts</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4059015727942258418" datatype="html">
+        <source>Email changed</source>
+        <target>Email changed</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/account.component.ts</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5108418000757845610" datatype="html">
+        <source>Password changed</source>
+        <target>Password changed</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/account/account.component.ts</context>
+          <context context-type="linenumber">94</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2409672154570643758" datatype="html">
+        <source>Display name</source>
+        <target>Display name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/auth.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="187187500641108332" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ isLoginPage ? &apos;Login&apos; : &apos;Register&apos; }}"/></source>
+        <target><x id="INTERPOLATION" equiv-text="{{ isLoginPage ? &apos;Login&apos; : &apos;Register&apos; }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/auth.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2454050363478003966" datatype="html">
+        <source>Login</source>
+        <target>Dashboard</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/auth.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3301086086650990787" datatype="html">
+        <source>Register</source>
+        <target>Dashboard</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/auth.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7492995538517068080" datatype="html">
+        <source>Created user</source>
+        <target>Dashboard</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/auth.component.ts</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4648900870671159218" datatype="html">
+        <source>Success</source>
+        <target>Dashboard</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/auth.component.ts</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="314315645942131479" datatype="html">
+        <source>Info</source>
+        <target>Dashboard</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/others/menu-bar/menu-bar.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3797778920049399855" datatype="html">
+        <source>Logout</source>
+        <target>Dashboard</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/others/menu-bar/menu-bar.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6570363013146073520" datatype="html">
+        <source>Dashboard</source>
+        <target>Dashboard</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/others/menu-bar/menu-bar.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1726363342938046830" datatype="html">
+        <source>About</source>
+        <target>About</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/others/menu-bar/menu-bar.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -7,23 +7,23 @@
 <ng-template #replace>
   <div class="p-inputgroup">
     <input
-      [type]="isPasswordInput ? 'password' : 'text'"
       pInputText
+      [type]="isPasswordInput ? 'password' : 'text'"
       [formControl]="control"
       (keyup.enter)="enter.emit()"
     >
     <button
-      type="button"
       pButton
       pRipple
+      type="button"
       class="p-button-danger"
       icon="pi pi-times"
       (click)="control.patchValue(null)"
     ></button>
     <button
-      type="button"
       pButton
       pRipple
+      type="button"
       icon="pi pi-check"
       class="p-button-success"
       (click)="enter.emit()"

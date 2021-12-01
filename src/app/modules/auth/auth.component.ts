@@ -47,7 +47,7 @@ export class AuthComponent {
       this.form.get('password')?.value,
     )
       .then((res) => {
-        this.toast.add({ severity: 'success', summary: 'Created user' })
+        this.toast.add({ severity: 'success', summary: $localize `Created user` })
         this.router.navigateByUrl('dashboard')
         this.isSaving = false
         return res.user?.updateProfile({
@@ -68,7 +68,7 @@ export class AuthComponent {
       this.form.get('password')?.value,
     )
       .then(() => {
-        this.toast.add({ severity: 'success', summary: 'Success' })
+        this.toast.add({ severity: 'success', summary: $localize `Success` })
         this.router.navigateByUrl('dashboard')
         this.isSaving = false
       })

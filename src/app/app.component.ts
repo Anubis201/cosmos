@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations'
 import { Component, OnInit } from '@angular/core'
+import { MenuItem } from 'primeng/api'
 import { AuthService } from './services/auth.service'
 
 @Component({
@@ -37,6 +38,8 @@ import { AuthService } from './services/auth.service'
   ]
 })
 export class AppComponent implements OnInit {
+  items: MenuItem[]
+
   constructor(
     private authService: AuthService,
   ) {}
@@ -51,6 +54,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.authService.checkAuthState()
+
+    this.items = [
+    {
+      label: 'English',
+    },
+    {
+      label: 'Polski',
+    }
+   ]
   }
 
   logout() {

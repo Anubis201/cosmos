@@ -8,7 +8,6 @@ import { AngularFireModule } from '@angular/fire/compat'
 import { AngularFireAuthModule } from '@angular/fire/compat/auth'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { MenubarModule } from 'primeng/menubar'
 import { MenuBarComponent } from './modules/others/menu-bar/menu-bar.component'
 import { LeftAsideComponent } from './modules/left-aside/left-aside.component'
 import { AngularFireStorageModule } from '@angular/fire/compat/storage'
@@ -28,7 +27,6 @@ import { SharedModule } from './modules/shared/shared.module'
     AngularFireAuthModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MenubarModule,
     AngularFireStorageModule,
     AngularFireModule,
     SharedModule,

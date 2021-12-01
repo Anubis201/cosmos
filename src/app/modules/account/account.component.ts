@@ -53,13 +53,13 @@ export class AccountComponent implements OnInit {
         this.percentage = Math.round(percentage as number)
         if (this.percentage === 100) {
           this.showEditInput = false
-          this.toast.add({ severity: 'success', summary: 'Picture changed' })
+          this.toast.add({ severity: 'success', summary: $localize `Picture changed` })
           this.getAvatar()
         }
       },
       error => {
         this.showEditInput = false
-        this.toast.add({ severity: 'error', summary: 'Failed to change picture' })
+        this.toast.add({ severity: 'error', summary: $localize `Failed to change picture` })
       }
     )
   }
@@ -68,7 +68,7 @@ export class AccountComponent implements OnInit {
     this.fireAuth.user.subscribe(user => {
       user?.updateProfile({ displayName: this.form.get('displayName')?.value }).then(() => {
         this.form.get('displayName')?.patchValue(null)
-        this.toast.add({ severity: 'success', summary: 'Name changed' })
+        this.toast.add({ severity: 'success', summary: $localize `Name changed` })
       })
     })
   }
@@ -78,7 +78,7 @@ export class AccountComponent implements OnInit {
       user?.updateEmail(this.form.get('email')?.value)
         .then(() => {
           this.form.get('email')?.patchValue(null)
-          this.toast.add({ severity: 'success', summary: 'Email changed' })
+          this.toast.add({ severity: 'success', summary: $localize `Email changed` })
         })
         .catch(e => {
           this.toast.add({ severity: 'error', summary: e })
@@ -91,7 +91,7 @@ export class AccountComponent implements OnInit {
       user?.updatePassword(this.form.get('password')?.value)
         .then(() => {
           this.form.get('password')?.patchValue(null)
-          this.toast.add({ severity: 'success', summary: 'Password changed' })
+          this.toast.add({ severity: 'success', summary: $localize `Password changed` })
         })
         .catch(e => {
           this.toast.add({ severity: 'error', summary: e })

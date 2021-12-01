@@ -1,5 +1,6 @@
 <p-menubar [model]="items">
   <button
+    i18n-pTooltip
     class="nick p-button-text"
     type="button"
     pTooltip="Info"
@@ -11,10 +12,11 @@
   </button>
 
   <button
+    i18n-pTooltip
+    pButton
     class="p-button-outlined"
     tooltipPosition="bottom"
     type="button"
-    pButton
     pTooltip="Logout"
     icon="pi pi-power-off"
     (click)="logout.emit()"

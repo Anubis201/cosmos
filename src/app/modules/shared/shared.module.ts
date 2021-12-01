@@ -13,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { FileUploadModule } from 'primeng/fileupload'
 import { ImageModule } from 'primeng/image'
 import { TabViewModule } from 'primeng/tabview'
+import { MenubarModule } from 'primeng/menubar'
+import { MenuModule } from 'primeng/menu'
 
 const imports = [
   CommonModule,
@@ -30,6 +32,8 @@ const imports = [
   FileUploadModule,
   TabViewModule,
   ReactiveFormsModule,
+  MenubarModule,
+  MenuModule,
 ]
 
 @NgModule({
