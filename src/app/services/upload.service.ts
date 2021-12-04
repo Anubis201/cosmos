@@ -34,7 +34,7 @@ export class UploadService {
   }
 
   getAvatar() {
-    const ref = this.storage.ref('/avatars').child(this.authService.user?.email as string)
+    const ref = this.storage.ref('/avatars').child(this.authService.user?.uid as string)
     return ref.getDownloadURL()
   }
 

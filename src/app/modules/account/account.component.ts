@@ -45,7 +45,7 @@ export class AccountComponent implements OnInit {
 
   upload(event: any) {
     const file = event.files[0] as File
-    const changedFile = new File([file], `${this.auth.user?.email}`, { type: file.type })
+    const changedFile = new File([file], `${this.auth.user?.uid}`, { type: file.type })
     this.currentFileUpload = new FileUpload(changedFile)
 
     this.uploadService.uploadFile(this.currentFileUpload).subscribe(
@@ -101,9 +101,15 @@ export class AccountComponent implements OnInit {
 
   getAvatar() {
     this.isLoading = true
-    this.uploadService.getAvatar().subscribe(url => {
-      this.isLoading = false
-      this.avatar = url
+    this.uploadService.getAvatar().subscribe({
+      next: url => {
+        this.avatar = url
+        this.isLoading = false
+      },
+      error: () => {
+        this.isLoading = false
+        this.avatar = '/assets/img/defualt.png'
+      }
     })
   }
 }

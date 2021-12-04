@@ -1,20 +1,19 @@
 <p-menubar [model]="items">
   <button
     i18n-pTooltip
+    pButton
     class="nick p-button-text"
     type="button"
     pTooltip="Info"
     tooltipPosition="bottom"
-    pButton
     [routerLink]="['/account']"
-  >
-    {{ displayName }}
-  </button>
+  >Settings</button>
 
   <button
     i18n-pTooltip
     pButton
-    class="p-button-outlined"
+    pRipple
+    class="p-button-rounded p-button-text"
     tooltipPosition="bottom"
     type="button"
     pTooltip="Logout"

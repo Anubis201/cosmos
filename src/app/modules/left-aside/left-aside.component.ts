@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-left-aside',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeftAsideComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
+
+  get name() {
+    return this.authService.user?.email
+  }
 
   ngOnInit(): void {
   }
-
 }
