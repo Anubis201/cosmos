@@ -1,14 +1,18 @@
 <div class="title truncate">{{ name }}</div>
 
-<div class="subtitle">User action</div>
+<div i18n class="subtitle">User action</div>
 
 <div class="work">
-  <span>Diligence: 1.00</span>
-  <button
-    pButton
-    pRipple
-    type="button"
-    label="Work"
-    class="p-button-raised p-button-text"
-  ></button>
+  <p-skeleton *ngIf="isLoadingUserData; else workText"></p-skeleton>
+  <ng-template #workText>
+    <span i18n>Diligence: {{ userData?.work }}</span>
+    <button
+      pButton
+      pRipple
+      type="button"
+      label="Work"
+      class="p-button-raised p-button-text"
+      (click)="updateWork()"
+    ></button>
+  </ng-template>
 </div>

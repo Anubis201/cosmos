@@ -15,6 +15,8 @@ import { ImageModule } from 'primeng/image'
 import { TabViewModule } from 'primeng/tabview'
 import { MenubarModule } from 'primeng/menubar'
 import { MenuModule } from 'primeng/menu'
+import { MessageService } from 'primeng/api'
+import { SkeletonModule } from 'primeng/skeleton'
 
 const imports = [
   CommonModule,
@@ -34,6 +36,11 @@ const imports = [
   ReactiveFormsModule,
   MenubarModule,
   MenuModule,
+  SkeletonModule,
+]
+
+const providers = [
+  MessageService,
 ]
 
 @NgModule({
@@ -41,6 +48,7 @@ const imports = [
 
   ],
   imports,
+  providers,
   exports: [
     ...imports,
   ]

@@ -12,15 +12,15 @@ import User = firebase.User
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css'],
-  providers: [MessageService]
 })
 export class AccountComponent implements OnInit {
   editImage = false
   showEditInput = false
+  percentage: number | undefined = 0
+
   user: User | null
   selectedFiles: FileList
   currentFileUpload: FileUpload
-  percentage: number | undefined = 0
   avatar: string
   isLoading: boolean
 
