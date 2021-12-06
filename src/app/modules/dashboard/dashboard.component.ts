@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { PlanetsService } from '../../services/collections/planets.service'
 import { PlanetModel } from '../../models/planets/planet.model'
+import { firstArraksisMap } from 'src/app/levels/firstArraksis'
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,7 @@ import { PlanetModel } from '../../models/planets/planet.model'
 })
 export class DashboardComponent implements OnInit {
   planets: PlanetModel[] = []
-  cols: any[]
+  table: any[][] = [] // 5x7
 
   constructor(
     private planetsService: PlanetsService,
@@ -17,10 +18,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getPlanets()
-
-    this.cols = [
-      { field: 'name', header: 'Name' }
-    ]
+    this.setPosition(firstArraksisMap)
   }
 
   getPlanets() {
@@ -30,5 +28,13 @@ export class DashboardComponent implements OnInit {
           this.planets = res.docs.map(doc => doc.data()) as PlanetModel[]
         }
       })
+  }
+
+  findPlanet(name: string) {
+    return this.planets.find((planet) => planet.name === name) as PlanetModel
+  }
+
+  private setPosition(map: any[][]) {
+    this.table = map
   }
 }

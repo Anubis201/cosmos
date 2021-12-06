@@ -4,6 +4,28 @@
   padding: 0px 40px;
 }
 
-.list {
-  max-height: 200px;
+.planets {
+  width: 100%;
+}
+
+.planets .planet {
+  height: 70px;
+}
+
+td {
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+table {
+  width: 100%;
+}
+
+::ng-deep .p-chip.custom-chip {
+  background: black;
+  color: #CE93D8;
+  height: 20px;
+  margin-bottom: 5px;
 }

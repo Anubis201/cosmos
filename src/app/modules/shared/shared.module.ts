@@ -17,12 +17,14 @@ import { MenubarModule } from 'primeng/menubar'
 import { MenuModule } from 'primeng/menu'
 import { MessageService } from 'primeng/api'
 import { SkeletonModule } from 'primeng/skeleton'
+import { ChipModule } from 'primeng/chip'
 
 const imports = [
   CommonModule,
   ToastModule,
   TooltipModule,
   TableModule,
+  ChipModule,
   ButtonModule,
   InputTextModule,
   ProgressSpinnerModule,
