@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { PlanetsService } from '../../services/collections/planets.service'
 import { PlanetModel } from '../../models/planets/planet.model'
-import { firstArraksisMap } from 'src/app/levels/firstArraksis'
 import { MessageService } from 'primeng/api'
 
 @Component({
@@ -11,8 +10,7 @@ import { MessageService } from 'primeng/api'
 })
 export class DashboardComponent implements OnInit {
   planets: PlanetModel[] = []
-  table: any[][] = [] // 8x8
-
+  table: string[][] = [] // 8x8
   isloading = false
 
   constructor(
@@ -22,7 +20,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getPlanets()
-    // this.setPosition(firstArraksisMap)
   }
 
   getPlanets() {
@@ -46,20 +43,32 @@ export class DashboardComponent implements OnInit {
   }
 
   private createTable() {
-    this.table = new Array(8).fill(null).map(element => (new Array(8).fill(null)))
+    this.table = new Array(8).fill(null).map(() => (new Array(8).fill(null)))
   }
 
   private randomMap() {
     this.createTable()
-    console.log(this.getRandomInt(0, 63))
-
-    // this.table = this.table.map(() => {
-    //   return []
-    // })
+    this.planets.forEach(planet => this.assingElement(planet.name))
   }
 
   private getRandomInt(min: number, max: number) {
     min = Math.ceil(min)
     return Math.floor(Math.random() * (Math.floor(max) - min + 1)) + min
+  }
+
+  private assingElement(planetName: string) {
+    const findIndex = this.getRandomInt(0, 63)
+    const firstIndex = Math.floor(findIndex / 8)
+    const secondIndex = findIndex % 8
+
+    // TODO 1. Element nie może być w sądziedztwie innego elementu
+    // TODO 2. Dodać elementy blokujące na mapie min.skały, może nebule
+    if (this.table[firstIndex][secondIndex]) {
+      // When in this cell is element will draw the number again
+      this.assingElement(planetName)
+    } else {
+      // Assign element
+      this.table[firstIndex][secondIndex] = planetName
+    }
   }
 }
