@@ -14,13 +14,13 @@
         >
           <div>{{ area }}</div>
           <img
-            *ngIf="findPlanet(area).type === 'Planet'"
+            *ngIf="findPlanet(area)?.type === 'Planet'"
             src="/assets/img/mars.png"
             alt="planet"
             class="planet"
           >
           <img
-            *ngIf="findPlanet(area).type === 'Station'"
+            *ngIf="findPlanet(area)?.type === 'Station'"
             src="/assets/img/station1.png"
             alt="space station"
             class="station"

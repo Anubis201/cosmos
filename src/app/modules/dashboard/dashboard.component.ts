@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getPlanets()
-    this.setPosition(firstArraksisMap)
+    // this.setPosition(firstArraksisMap)
   }
 
   getPlanets() {
@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
       .subscribe({
         next: res => {
           this.planets = res.docs.map(doc => doc.data()) as PlanetModel[]
+          this.randomMap()
           this.isloading = false
         },
         error: () => {
@@ -44,7 +45,21 @@ export class DashboardComponent implements OnInit {
     return this.planets.find((planet) => planet.name === name) as PlanetModel
   }
 
-  private setPosition(map: any[][]) {
-    this.table = map
+  private createTable() {
+    this.table = new Array(8).fill(null).map(element => (new Array(8).fill(null)))
+  }
+
+  private randomMap() {
+    this.createTable()
+    console.log(this.getRandomInt(0, 63))
+
+    // this.table = this.table.map(() => {
+    //   return []
+    // })
+  }
+
+  private getRandomInt(min: number, max: number) {
+    min = Math.ceil(min)
+    return Math.floor(Math.random() * (Math.floor(max) - min + 1)) + min
   }
 }
