@@ -1,19 +1,31 @@
 <div class="planets">
-  <table>
+  <div
+    *ngIf="isloading"
+    class="loading"
+  >
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+  <table *ngIf="!isloading">
     <tr *ngFor="let tr of table">
       <td *ngFor="let area of tr">
-        <!-- findPlanet(area).name -->
-        <p-chip
+        <div
           *ngIf="area"
-          styleClass="custom-chip"
-          [label]="area"
-        ></p-chip>
-        <img
-          *ngIf="findPlanet(area)?.type === 'Planet'"
-          src="/assets/img/mars.png"
-          alt="planet"
-          class="planet"
+          class="object"
         >
+          <div>{{ area }}</div>
+          <img
+            *ngIf="findPlanet(area).type === 'Planet'"
+            src="/assets/img/mars.png"
+            alt="planet"
+            class="planet"
+          >
+          <img
+            *ngIf="findPlanet(area).type === 'Station'"
+            src="/assets/img/station1.png"
+            alt="space station"
+            class="station"
+          >
+        </div>
       </td>
     </tr>
   </table>
