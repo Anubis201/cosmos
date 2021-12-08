@@ -1,7 +1,10 @@
 import { animate, style, transition, trigger } from '@angular/animations'
 import { Component, OnInit } from '@angular/core'
-import { MenuItem } from 'primeng/api'
+import { MenuItem, MessageService } from 'primeng/api'
+import { PlanetModel } from './models/planets/planet.model'
 import { AuthService } from './services/auth.service'
+import { PlanetsService } from './services/collections/planets.service'
+import { MapService } from './services/global/map.service'
 
 @Component({
   selector: 'app-root',
@@ -42,6 +45,9 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private mapService: MapService,
+    private planetsService: PlanetsService,
+    private toast: MessageService,
   ) {}
 
   get isAuth() {
@@ -65,5 +71,17 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.authService.logout()
+  }
+
+  resetMap() {
+    this.planetsService.getPlanets()
+      .subscribe({
+        next: res => {
+          this.mapService.createRandomMap(res.docs.map(doc => doc.data()) as PlanetModel[])
+        },
+        error: () => {
+          this.toast.add({ severity: 'error', summary: $localize `Failed to get planets` })
+        }
+      })
   }
 }

@@ -1,96 +1,66 @@
 import { Injectable } from '@angular/core'
+import { PlanetModel } from 'src/app/models/planets/planet.model'
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapService {
-  // planets: PlanetModel[] = []
-  // table: string[][] = []
-  // isloading = false
+  table: string[][] = []
 
-  // private readonly tr = 7
-  // private readonly td = 8
-  // private readonly maxRandom = this.tr * this.td - 1
+  private readonly tr = 7
+  private readonly td = 8
+  private readonly maxRandom = this.tr * this.td - 1
 
-  // constructor(
-  //   private planetsService: PlanetsService,
-  //   private toast: MessageService,
-  // ) { }
+  createRandomMap(planets: PlanetModel[]) {
+    this.createEmptyTable(this.tr, this.td)
+    planets.forEach(planet => this.assingElement(planet.name))
+  }
 
-  // ngOnInit() {
-  //   this.getPlanets()
-  // }
+  private createEmptyTable(firstSizeArray: number, secondSizeArray: number) {
+    this.table = new Array(firstSizeArray).fill(null).map(() => (new Array(secondSizeArray).fill(null)))
+  }
 
-  // getPlanets() {
-  //   this.isloading = false
-  //   this.planetsService.getPlanets()
-  //     .subscribe({
-  //       next: res => {
-  //         this.planets = res.docs.map(doc => doc.data()) as PlanetModel[]
-  //         this.createRandomMap()
-  //         this.isloading = false
-  //       },
-  //       error: () => {
-  //         this.isloading = false
-  //         this.toast.add({ severity: 'error', summary: $localize `Failed to get planets` })
-  //       }
-  //     })
-  // }
+  private getRandomInt(min: number, max: number) {
+    min = Math.ceil(min)
+    return Math.floor(Math.random() * (Math.floor(max) - min + 1)) + min
+  }
 
-  // findPlanet(name: string) {
-  //   return this.planets.find((planet) => planet.name === name) as PlanetModel
-  // }
+  private assingElement(planetName: string) {
+    const randomIndex = this.getRandomInt(0, this.maxRandom)
+    const firstIndex = Math.floor(randomIndex / this.td)
+    const secondIndex = randomIndex % this.td
 
-  // private createEmptyTable(firstSizeArray: number, secondSizeArray: number) {
-  //   this.table = new Array(firstSizeArray).fill(null).map(() => (new Array(secondSizeArray).fill(null)))
-  // }
+    if (this.checkNeigh(firstIndex, secondIndex) || this.table[firstIndex][secondIndex]) {
+      // When in this cell is element will draw the number again
+      this.assingElement(planetName)
+    } else {
+      // Assign element
+      this.table[firstIndex][secondIndex] = planetName
+    }
+  }
 
-  // private createRandomMap() {
-  //   this.createEmptyTable(this.tr, this.td)
-  //   this.planets.forEach(planet => this.assingElement(planet.name))
-  // }
+  private checkNeigh(firstIndex: number, secondIndex: number) {
+    // upper
+    if (firstIndex !== 0 && this.table[firstIndex - 1][secondIndex]) {
+      return true
+    }
 
-  // private getRandomInt(min: number, max: number) {
-  //   min = Math.ceil(min)
-  //   return Math.floor(Math.random() * (Math.floor(max) - min + 1)) + min
-  // }
+    // bottom
+    if (firstIndex !== this.tr - 1 && this.table[firstIndex + 1][secondIndex]) {
+      console.log('botom')
+      return true
+    }
 
-  // private assingElement(planetName: string) {
-  //   const randomIndex = this.getRandomInt(0, this.maxRandom)
-  //   const firstIndex = Math.floor(randomIndex / this.td)
-  //   const secondIndex = randomIndex % this.td
+    // right
+    if (secondIndex !== this.td - 1 && this.table[firstIndex][secondIndex + 1]) {
+      return true
+    }
 
-  //   if (this.checkNeigh(firstIndex, secondIndex) || this.table[firstIndex][secondIndex]) {
-  //     // When in this cell is element will draw the number again
-  //     this.assingElement(planetName)
-  //   } else {
-  //     // Assign element
-  //     this.table[firstIndex][secondIndex] = planetName
-  //   }
-  // }
+    // left
+    if (secondIndex !== 0 && this.table[firstIndex][secondIndex - 1]) {
+      return true
+    }
 
-  // private checkNeigh(firstIndex: number, secondIndex: number) {
-  //   // upper
-  //   if (firstIndex !== 0 && this.table[firstIndex - 1][secondIndex]) {
-  //     return true
-  //   }
-
-  //   // bottom
-  //   if (firstIndex !== this.tr - 1 && this.table[firstIndex + 1][secondIndex]) {
-  //     console.log('botom')
-  //     return true
-  //   }
-
-  //   // right
-  //   if (secondIndex !== this.td - 1 && this.table[firstIndex][secondIndex + 1]) {
-  //     return true
-  //   }
-
-  //   // left
-  //   if (secondIndex !== 0 && this.table[firstIndex][secondIndex - 1]) {
-  //     return true
-  //   }
-
-  //   return false
-  // }
+    return false
+  }
 }

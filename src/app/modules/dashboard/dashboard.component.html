@@ -6,7 +6,7 @@
     <p-progressSpinner></p-progressSpinner>
   </div>
   <table *ngIf="!isloading">
-    <tr *ngFor="let tr of table">
+    <tr *ngFor="let tr of map">
       <td *ngFor="let area of tr">
         <div
           *ngIf="area"
