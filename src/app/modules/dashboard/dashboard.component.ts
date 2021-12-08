@@ -10,8 +10,12 @@ import { MessageService } from 'primeng/api'
 })
 export class DashboardComponent implements OnInit {
   planets: PlanetModel[] = []
-  table: string[][] = [] // 8x8
+  table: string[][] = []
   isloading = false
+
+  private readonly tr = 7
+  private readonly td = 8
+  private readonly maxRandom = this.tr * this.td - 1
 
   constructor(
     private planetsService: PlanetsService,
@@ -23,7 +27,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getPlanets() {
-    this.isloading = true
+    this.isloading = false
     this.planetsService.getPlanets()
       .subscribe({
         next: res => {
@@ -47,7 +51,7 @@ export class DashboardComponent implements OnInit {
   }
 
   private createRandomMap() {
-    this.createEmptyTable(8, 8)
+    this.createEmptyTable(this.tr, this.td)
     this.planets.forEach(planet => this.assingElement(planet.name))
   }
 
@@ -57,11 +61,11 @@ export class DashboardComponent implements OnInit {
   }
 
   private assingElement(planetName: string) {
-    const findIndex = this.getRandomInt(0, 63)
-    const firstIndex = Math.floor(findIndex / 8)
-    const secondIndex = findIndex % 8
-
-    if (this.checkNeigh(firstIndex, secondIndex) && this.table[firstIndex][secondIndex]) {
+    const randomIndex = this.getRandomInt(0, this.maxRandom)
+    const firstIndex = Math.floor(randomIndex / this.td)
+    const secondIndex = randomIndex % this.td
+    console.log(this.checkNeigh(firstIndex, secondIndex, planetName))
+    if (this.table[firstIndex][secondIndex]) {
       // When in this cell is element will draw the number again
       this.assingElement(planetName)
     } else {
@@ -70,24 +74,32 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  private checkNeigh(firstIndex: number, secondIndex: number) {
+  private checkNeigh(firstIndex: number, secondIndex: number, planetName: string) {
+    console.log('name: ' + planetName)
+    console.log('nafirstIndexme: ' + firstIndex)
+    console.log('secondIndex: ' + secondIndex)
     // upper
     if (firstIndex !== 0 && this.table[firstIndex - 1][secondIndex]) {
+      console.log('uppera')
       return true
     }
 
+
     // bottom
-    if (firstIndex !== this.table.length - 1 && this.table[firstIndex + 1][secondIndex]) {
+    if (firstIndex !== this.tr - 1 && this.table[firstIndex + 1][secondIndex]) {
+      console.log('botom')
       return true
     }
 
     // right
-    if (secondIndex !== this.table[0].length - 1 && this.table[firstIndex][secondIndex + 1]) {
+    if (secondIndex !== this.td - 1 && this.table[firstIndex][secondIndex + 1]) {
+      console.log('prawo')
       return true
     }
 
     // left
     if (secondIndex !== 0 && this.table[firstIndex][secondIndex - 1]) {
+      console.log('lkewo')
       return true
     }
 
