@@ -64,8 +64,8 @@ export class DashboardComponent implements OnInit {
     const randomIndex = this.getRandomInt(0, this.maxRandom)
     const firstIndex = Math.floor(randomIndex / this.td)
     const secondIndex = randomIndex % this.td
-    console.log(this.checkNeigh(firstIndex, secondIndex, planetName))
-    if (this.table[firstIndex][secondIndex]) {
+
+    if (this.checkNeigh(firstIndex, secondIndex) || this.table[firstIndex][secondIndex]) {
       // When in this cell is element will draw the number again
       this.assingElement(planetName)
     } else {
@@ -74,16 +74,11 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  private checkNeigh(firstIndex: number, secondIndex: number, planetName: string) {
-    console.log('name: ' + planetName)
-    console.log('nafirstIndexme: ' + firstIndex)
-    console.log('secondIndex: ' + secondIndex)
+  private checkNeigh(firstIndex: number, secondIndex: number) {
     // upper
     if (firstIndex !== 0 && this.table[firstIndex - 1][secondIndex]) {
-      console.log('uppera')
       return true
     }
-
 
     // bottom
     if (firstIndex !== this.tr - 1 && this.table[firstIndex + 1][secondIndex]) {
@@ -93,13 +88,11 @@ export class DashboardComponent implements OnInit {
 
     // right
     if (secondIndex !== this.td - 1 && this.table[firstIndex][secondIndex + 1]) {
-      console.log('prawo')
       return true
     }
 
     // left
     if (secondIndex !== 0 && this.table[firstIndex][secondIndex - 1]) {
-      console.log('lkewo')
       return true
     }
 
