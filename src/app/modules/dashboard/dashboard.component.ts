@@ -63,12 +63,36 @@ export class DashboardComponent implements OnInit {
 
     // TODO 1. Element nie może być w sądziedztwie innego elementu
     // TODO 2. Dodać elementy blokujące na mapie min.skały, może nebule
-    if (this.table[firstIndex][secondIndex]) {
+    if (this.table[firstIndex][secondIndex] && this.checkNeigh(firstIndex, secondIndex)) {
       // When in this cell is element will draw the number again
       this.assingElement(planetName)
     } else {
       // Assign element
       this.table[firstIndex][secondIndex] = planetName
     }
+  }
+
+  private checkNeigh(firstIndex: number, secondIndex: number) {
+    // upper
+    if (this.table[firstIndex - 1][secondIndex]) {
+      return true
+    }
+
+    // bottom
+    if (this.table[firstIndex + 1][secondIndex]) {
+      return true
+    }
+
+    // right
+    if (this.table[firstIndex][secondIndex + 1]) {
+      return true
+    }
+
+    // left
+    if (this.table[firstIndex + 1][secondIndex - 1]) {
+      return true
+    }
+
+    return false
   }
 }
