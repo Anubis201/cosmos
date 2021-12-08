@@ -8,13 +8,13 @@
   class="apliaction"
   [class.auth]="!isAuth"
 >
-  <div
+  <!-- <div
     *ngIf="isAuth"
     @asideAnimation
     class="aside"
   >
     <app-left-aside></app-left-aside>
-  </div>
+  </div> -->
 
   <div
     @mainAnimation
@@ -38,12 +38,12 @@
   iconPos="left"
   (click)="selectLang.toggle($event)"
 ></button>
-<!-- <button
+<button
   i18n-pTooltip
   pButton
   class="turn"
-  icon="pi pi-forward"
+  icon="pi pi-refresh"
   iconPos="left"
-  pTooltip="Next turn"
-></button> -->
+  label="Reset map"
+></button>
 

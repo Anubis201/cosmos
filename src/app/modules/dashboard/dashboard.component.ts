@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
       .subscribe({
         next: res => {
           this.planets = res.docs.map(doc => doc.data()) as PlanetModel[]
-          this.randomMap()
+          this.createRandomMap()
           this.isloading = false
         },
         error: () => {
@@ -42,12 +42,12 @@ export class DashboardComponent implements OnInit {
     return this.planets.find((planet) => planet.name === name) as PlanetModel
   }
 
-  private createTable() {
-    this.table = new Array(8).fill(null).map(() => (new Array(8).fill(null)))
+  private createEmptyTable(firstSizeArray: number, secondSizeArray: number) {
+    this.table = new Array(firstSizeArray).fill(null).map(() => (new Array(secondSizeArray).fill(null)))
   }
 
-  private randomMap() {
-    this.createTable()
+  private createRandomMap() {
+    this.createEmptyTable(8, 8)
     this.planets.forEach(planet => this.assingElement(planet.name))
   }
 
@@ -61,9 +61,7 @@ export class DashboardComponent implements OnInit {
     const firstIndex = Math.floor(findIndex / 8)
     const secondIndex = findIndex % 8
 
-    // TODO 1. Element nie może być w sądziedztwie innego elementu
-    // TODO 2. Dodać elementy blokujące na mapie min.skały, może nebule
-    if (this.table[firstIndex][secondIndex] && this.checkNeigh(firstIndex, secondIndex)) {
+    if (this.checkNeigh(firstIndex, secondIndex) && this.table[firstIndex][secondIndex]) {
       // When in this cell is element will draw the number again
       this.assingElement(planetName)
     } else {
@@ -74,22 +72,22 @@ export class DashboardComponent implements OnInit {
 
   private checkNeigh(firstIndex: number, secondIndex: number) {
     // upper
-    if (this.table[firstIndex - 1][secondIndex]) {
+    if (firstIndex !== 0 && this.table[firstIndex - 1][secondIndex]) {
       return true
     }
 
     // bottom
-    if (this.table[firstIndex + 1][secondIndex]) {
+    if (firstIndex !== this.table.length - 1 && this.table[firstIndex + 1][secondIndex]) {
       return true
     }
 
     // right
-    if (this.table[firstIndex][secondIndex + 1]) {
+    if (secondIndex !== this.table[0].length - 1 && this.table[firstIndex][secondIndex + 1]) {
       return true
     }
 
     // left
-    if (this.table[firstIndex + 1][secondIndex - 1]) {
+    if (secondIndex !== 0 && this.table[firstIndex][secondIndex - 1]) {
       return true
     }
 
