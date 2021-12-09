@@ -44,3 +44,11 @@ table {
 .loading {
   height: 100%;
 }
+
+.hello {
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

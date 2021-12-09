@@ -11,6 +11,7 @@ import { MapService } from 'src/app/services/global/map.service'
 })
 export class DashboardComponent implements OnInit {
   isloading = false
+  showHello = true
   planets: PlanetModel[] = []
 
   constructor(

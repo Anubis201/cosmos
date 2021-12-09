@@ -1,11 +1,21 @@
 <div class="planets">
   <div
-    *ngIf="isloading"
+    *ngIf="showHello"
+    class="hello"
+  >
+    <app-hello
+      (hideHello)="showHello = false"
+    ></app-hello>
+  </div>
+
+  <div
+    *ngIf="isloading && !showHello"
     class="loading"
   >
     <p-progressSpinner></p-progressSpinner>
   </div>
-  <table *ngIf="!isloading">
+
+  <table *ngIf="!isloading && !showHello">
     <tr *ngFor="let tr of map">
       <td *ngFor="let area of tr">
         <div

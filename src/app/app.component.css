@@ -4,7 +4,7 @@
 
 .content {
   margin-top: 100px;
-  height: inherit;
+  height: 80vh;
   display: flex;
   justify-content: center;
   flex: 1
