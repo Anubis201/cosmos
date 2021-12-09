@@ -20,7 +20,7 @@
       <td
         *ngFor="let area of tr; let tdIndex = index; let tdLast = last"
         [class.green-place]="!isShipPlaced && trIndex === 0 || trLast || tdIndex === 0 || tdLast"
-        [pDroppable]="'shipPlace'"
+        pDroppable="'shipPlace'"
       >
         <div
           *ngIf="area"
