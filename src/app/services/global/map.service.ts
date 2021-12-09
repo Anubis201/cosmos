@@ -6,6 +6,7 @@ import { PlanetModel } from 'src/app/models/planets/planet.model'
 })
 export class MapService {
   table: string[][] = []
+  isShipPlaced = false
 
   // TODO inject this value
   private readonly tr = 7

@@ -25,6 +25,13 @@
   </div>
 </div>
 
+<img
+  *ngIf="!isShipPlaced"
+  class="ship"
+  src="/assets/img/transporter.png"
+  alt="ship"
+>
+
 <p-menu
   #selectLang
   [popup]="true"
@@ -39,6 +46,7 @@
   (click)="selectLang.toggle($event)"
 ></button>
 <button
+  *ngIf="isShipPlaced"
   i18n-pTooltip
   pButton
   class="turn"

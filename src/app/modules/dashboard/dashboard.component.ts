@@ -12,7 +12,6 @@ import { MapService } from 'src/app/services/global/map.service'
 export class DashboardComponent implements OnInit {
   isloading = false
   showHello = true
-  isShipPlaced = false
   planets: PlanetModel[] = []
 
   constructor(
@@ -23,6 +22,10 @@ export class DashboardComponent implements OnInit {
 
   get map() {
     return this.mapService.table
+  }
+
+  get isShipPlaced() {
+    return this.mapService.isShipPlaced
   }
 
   ngOnInit() {

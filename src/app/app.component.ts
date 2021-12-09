@@ -54,6 +54,10 @@ export class AppComponent implements OnInit {
     return !!this.authService.user
   }
 
+  get isShipPlaced() {
+    return this.mapService.isShipPlaced
+  }
+
   ngOnInit() {
     this.authService.checkAuthState()
 
