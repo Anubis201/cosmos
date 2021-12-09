@@ -52,3 +52,12 @@ table {
   flex-direction: column;
   justify-content: center;
 }
+
+.green-place {
+  cursor: pointer;
+  background-color: rgba(0, 160, 0, 0.151);
+}
+
+.green-place:hover {
+  background-color: rgba(2, 94, 2, 0.151);
+}

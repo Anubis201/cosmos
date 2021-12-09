@@ -4,7 +4,7 @@
     class="hello"
   >
     <app-hello
-      (hideHello)="showHello = false"
+      (hideHello)="handleHideHello()"
     ></app-hello>
   </div>
 
@@ -16,8 +16,11 @@
   </div>
 
   <table *ngIf="!isloading && !showHello">
-    <tr *ngFor="let tr of map">
-      <td *ngFor="let area of tr">
+    <tr *ngFor="let tr of map; let trIndex = index; let trLast = last">
+      <td
+        *ngFor="let area of tr; let tdIndex = index; let tdLast = last"
+        [class.green-place]="!isShipPlaced && trIndex === 0 || trLast || tdIndex === 0 || tdLast"
+      >
         <div
           *ngIf="area"
           class="object"

@@ -7,17 +7,17 @@ import { PlanetModel } from 'src/app/models/planets/planet.model'
 export class MapService {
   table: string[][] = []
 
+  // TODO inject this value
   private readonly tr = 7
   private readonly td = 8
   private readonly maxRandom = this.tr * this.td - 1
 
   createRandomMap(planets: PlanetModel[]) {
-    this.createEmptyTable(this.tr, this.td)
     planets.forEach(planet => this.assingElement(planet.name))
   }
 
-  private createEmptyTable(firstSizeArray: number, secondSizeArray: number) {
-    this.table = new Array(firstSizeArray).fill(null).map(() => (new Array(secondSizeArray).fill(null)))
+  createEmptyTable() {
+    this.table = new Array(this.tr).fill(null).map(() => (new Array(this.td).fill(null)))
   }
 
   private getRandomInt(min: number, max: number) {
@@ -47,7 +47,6 @@ export class MapService {
 
     // bottom
     if (firstIndex !== this.tr - 1 && this.table[firstIndex + 1][secondIndex]) {
-      console.log('botom')
       return true
     }
 

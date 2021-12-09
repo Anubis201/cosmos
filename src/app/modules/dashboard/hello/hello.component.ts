@@ -10,10 +10,10 @@ import { AnimationEvent } from "@angular/animations"
     trigger('text', [
       transition('void => open', [
         style({ opacity: 0 }),
-        animate('2000ms', style({ opacity: 1 }))
+        animate('100ms', style({ opacity: 1 })) // 1500ms
       ]),
       transition(':leave', [
-        animate('2000ms', style({ opacity: 0 }))
+        animate('100ms', style({ opacity: 0 })) // 1500ms
       ]),
     ]),
   ]
@@ -27,7 +27,7 @@ export class HelloComponent {
     if (event.toState === 'open') {
       this.isOpen = false
     }
-    console.log(event)
+
     if (event.toState === 'void') {
       this.hideHello.emit()
     }
