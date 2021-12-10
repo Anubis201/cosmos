@@ -35,9 +35,12 @@ export class DashboardComponent implements OnInit {
   findPlanet(name: string) {
     return this.planets.find((planet) => planet.name === name) as PlanetModel
   }
-  // TODo robic
-  canShipMoved() {
-    return
+
+  canShipMove(trIndex: number, tdIndex: number) {
+    return  (trIndex === this.whereIsShip?.firstIndex - 1 && tdIndex === this.whereIsShip?.secondIndex) ||
+            (trIndex === this.whereIsShip?.firstIndex + 1 && tdIndex === this.whereIsShip?.secondIndex) ||
+            (trIndex === this.whereIsShip?.firstIndex && tdIndex === this.whereIsShip?.secondIndex - 1) ||
+            (trIndex === this.whereIsShip?.firstIndex && tdIndex === this.whereIsShip?.secondIndex + 1)
   }
 
   handleHideHello() {
@@ -46,8 +49,16 @@ export class DashboardComponent implements OnInit {
   }
 
   drop(firstIndex: number, secondIndex: number) {
-    this.mapService.whereIsShip = { firstIndex, secondIndex }
-    if (!this.planets.length) this.getPlanets()
+    // this.mapService.whereIsShip is null when user use reset button
+    if (!this.planets.length || this.mapService.whereIsShip === null) {
+      this.getPlanets()
+      this.mapService.whereIsShip = { firstIndex, secondIndex }
+      return
+    }
+
+    if (this.canShipMove(firstIndex, secondIndex)) {
+      this.mapService.whereIsShip = { firstIndex, secondIndex }
+    }
   }
 
   isShipHere(trIndex: number, tdIndex: number) {

@@ -19,7 +19,7 @@
     <tr *ngFor="let tr of map; let trIndex = index; let trLast = last">
       <td
         *ngFor="let area of tr; let tdIndex = index; let tdLast = last"
-        [class.green-place]="!whereIsShip || trIndex === whereIsShip.firstIndex - 1"
+        [class.green-place]="!whereIsShip || canShipMove(trIndex, tdIndex)"
         pDroppable="shipPlace"
         (onDrop)="drop(trIndex, tdIndex)"
       >
