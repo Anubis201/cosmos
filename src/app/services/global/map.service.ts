@@ -6,7 +6,7 @@ import { PlanetModel } from 'src/app/models/planets/planet.model'
 })
 export class MapService {
   table: string[][] = []
-  isShipPlaced = false
+  whereIsShip: { firstIndex: number, secondIndex: number }
 
   // TODO inject this value
   private readonly tr = 7
@@ -21,6 +21,10 @@ export class MapService {
     this.table = new Array(this.tr).fill(null).map(() => (new Array(this.td).fill(null)))
   }
 
+  isShipHere(trIndex: number, tdIndex: number) {
+    return trIndex === this.whereIsShip?.firstIndex && tdIndex === this.whereIsShip?.secondIndex
+  }
+
   private getRandomInt(min: number, max: number) {
     min = Math.ceil(min)
     return Math.floor(Math.random() * (Math.floor(max) - min + 1)) + min
@@ -31,7 +35,7 @@ export class MapService {
     const firstIndex = Math.floor(randomIndex / this.td)
     const secondIndex = randomIndex % this.td
 
-    if (this.checkNeigh(firstIndex, secondIndex) || this.table[firstIndex][secondIndex]) {
+    if (this.checkNeigh(firstIndex, secondIndex) || this.table[firstIndex][secondIndex] || this.isShipHere(firstIndex, secondIndex)) {
       // When in this cell is element will draw the number again
       this.assingElement(planetName)
     } else {

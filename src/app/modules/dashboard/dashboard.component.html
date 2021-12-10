@@ -19,11 +19,12 @@
     <tr *ngFor="let tr of map; let trIndex = index; let trLast = last">
       <td
         *ngFor="let area of tr; let tdIndex = index; let tdLast = last"
-        [class.green-place]="!isShipPlaced && trIndex === 0 || trLast || tdIndex === 0 || tdLast"
-        pDroppable="'shipPlace'"
+        [class.green-place]="!whereIsShip && (trIndex === 0 || trLast || tdIndex === 0 || tdLast)"
+        pDroppable="shipPlace"
+        (onDrop)="drop(trIndex, tdIndex)"
       >
         <div
-          *ngIf="area"
+          *ngIf="area && !isShipHere(trIndex, tdIndex)"
           class="object"
         >
           <div>{{ area }}</div>
@@ -40,6 +41,13 @@
             class="station"
           >
         </div>
+        <img
+          *ngIf="isShipHere(trIndex, tdIndex)"
+          class="ship"
+          src="/assets/img/transporter.png"
+          alt="ship"
+        >
+        <!--           pDraggable="shipPlace" -->
       </td>
     </tr>
   </table>

@@ -24,12 +24,12 @@ export class DashboardComponent implements OnInit {
     return this.mapService.table
   }
 
-  get isShipPlaced() {
-    return this.mapService.isShipPlaced
+  get whereIsShip() {
+    return this.mapService.whereIsShip
   }
 
   ngOnInit() {
-    // this.getPlanets()
+
   }
 
   findPlanet(name: string) {
@@ -39,6 +39,15 @@ export class DashboardComponent implements OnInit {
   handleHideHello() {
     this.mapService.createEmptyTable()
     this.showHello = false
+  }
+
+  drop(firstIndex: number, secondIndex: number) {
+    this.mapService.whereIsShip = { firstIndex, secondIndex }
+    this.getPlanets()
+  }
+
+  isShipHere(trIndex: number, tdIndex: number) {
+    return this.mapService.isShipHere(trIndex, tdIndex)
   }
 
   private getPlanets() {

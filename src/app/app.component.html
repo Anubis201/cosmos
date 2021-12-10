@@ -26,9 +26,10 @@
 </div>
 
 <img
-  *ngIf="!isShipPlaced"
+  *ngIf="!whereIsShip"
   class="ship"
   src="/assets/img/transporter.png"
+  pDraggable="shipPlace"
   alt="ship"
 >
 
@@ -46,10 +47,9 @@
   (click)="selectLang.toggle($event)"
 ></button>
 <button
-  *ngIf="isShipPlaced"
+  *ngIf="whereIsShip"
   i18n-pTooltip
   pButton
-  pDraggable="shipPlace"
   class="turn"
   icon="pi pi-refresh"
   iconPos="left"

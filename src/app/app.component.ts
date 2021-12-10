@@ -54,8 +54,8 @@ export class AppComponent implements OnInit {
     return !!this.authService.user
   }
 
-  get isShipPlaced() {
-    return this.mapService.isShipPlaced
+  get whereIsShip() {
+    return this.mapService.whereIsShip
   }
 
   ngOnInit() {
