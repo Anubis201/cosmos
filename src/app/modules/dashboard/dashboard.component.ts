@@ -35,6 +35,10 @@ export class DashboardComponent implements OnInit {
   findPlanet(name: string) {
     return this.planets.find((planet) => planet.name === name) as PlanetModel
   }
+  // TODo robic
+  canShipMoved() {
+    return
+  }
 
   handleHideHello() {
     this.mapService.createEmptyTable()
@@ -43,7 +47,7 @@ export class DashboardComponent implements OnInit {
 
   drop(firstIndex: number, secondIndex: number) {
     this.mapService.whereIsShip = { firstIndex, secondIndex }
-    this.getPlanets()
+    if (!this.planets.length) this.getPlanets()
   }
 
   isShipHere(trIndex: number, tdIndex: number) {
