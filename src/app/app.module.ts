@@ -12,6 +12,7 @@ import { MenuBarComponent } from './modules/others/menu-bar/menu-bar.component'
 import { LeftAsideComponent } from './modules/left-aside/left-aside.component'
 import { AngularFireStorageModule } from '@angular/fire/compat/storage'
 import { SharedModule } from './modules/shared/shared.module'
+import { mapSizeToken } from './services/tokens/map-size.token'
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { SharedModule } from './modules/shared/shared.module'
     SharedModule,
   ],
   providers: [
+    ...mapSizeToken
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core'
+import { Inject, Injectable } from '@angular/core'
 import { PlanetModel } from 'src/app/models/planets/planet.model'
+import { TD_SIZE, TR_SIZE } from '../tokens/map-size.token'
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +9,12 @@ export class MapService {
   table: string[][] = []
   whereIsShip: { firstIndex: number, secondIndex: number }
 
-  // TODO inject this value
-  private readonly tr = 7
-  private readonly td = 8
   private readonly maxRandom = this.tr * this.td - 1
+
+  constructor(
+    @Inject(TR_SIZE) private readonly tr: number,
+    @Inject(TD_SIZE) private readonly td: number,
+  ) {}
 
   createRandomMap(planets: PlanetModel[]) {
     planets.forEach(planet => this.assingElement(planet.name))
