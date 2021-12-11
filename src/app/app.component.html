@@ -36,8 +36,10 @@
 <div
   *ngIf="whereIsShip"
   class="spice"
+  i18n-pTooltip
+  pTooltip="Spice"
 >
-  <div>100</div>
+  <div>{{ spice }}</div>
   <img
     src="/assets/img/spice.png"
     alt="spice"
@@ -59,7 +61,6 @@
 ></button>
 <button
   *ngIf="whereIsShip"
-  i18n-pTooltip
   pButton
   class="turn"
   icon="pi pi-refresh"

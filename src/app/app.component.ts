@@ -54,6 +54,10 @@ export class AppComponent implements OnInit {
     return this.mapService.whereIsShip
   }
 
+  get spice() {
+    return this.mapService.spice
+  }
+
   ngOnInit() {
     this.authService.checkAuthState()
 
@@ -74,8 +78,6 @@ export class AppComponent implements OnInit {
   }
 
   resetMap() {
-    this.mapService.whereIsShip = null as any
-    this.mapService.table = []
-    this.mapService.createEmptyTable()
+    this.mapService.resetMap()
   }
 }

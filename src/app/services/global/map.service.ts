@@ -8,6 +8,7 @@ import { TD_SIZE, TR_SIZE } from '../tokens/map-size.token'
 export class MapService {
   table: string[][] = []
   whereIsShip: { firstIndex: number, secondIndex: number }
+  spice = 100
 
   private readonly maxRandom = this.tr * this.td - 1
 
@@ -26,6 +27,16 @@ export class MapService {
 
   isShipHere(trIndex: number, tdIndex: number) {
     return trIndex === this.whereIsShip?.firstIndex && tdIndex === this.whereIsShip?.secondIndex
+  }
+
+  resetMap() {
+    this.whereIsShip = null as any
+    this.table = []
+    this.createEmptyTable()
+  }
+
+  moveShip(firstIndex: number, secondIndex: number) {
+    this.whereIsShip = { firstIndex, secondIndex }
   }
 
   private getRandomInt(min: number, max: number) {

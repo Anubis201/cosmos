@@ -52,17 +52,37 @@ export class DashboardComponent implements OnInit {
     // this.mapService.whereIsShip is null when user use reset button
     if (!this.planets.length || this.mapService.whereIsShip === null) {
       this.getPlanets()
-      this.mapService.whereIsShip = { firstIndex, secondIndex }
+      this.mapService.moveShip(firstIndex, secondIndex)
       return
     }
 
     if (this.canShipMove(firstIndex, secondIndex)) {
-      this.mapService.whereIsShip = { firstIndex, secondIndex }
+      this.mapService.moveShip(firstIndex, secondIndex)
+
+      switch(this.findPlanet(this.mapService.table[firstIndex][secondIndex])?.type) {
+        case 'Station':
+          this.station(firstIndex, secondIndex)
+          break
+        case 'Planet':
+          this.planet()
+          break
+        default:
+          break
+      }
     }
   }
 
   isShipHere(trIndex: number, tdIndex: number) {
     return this.mapService.isShipHere(trIndex, tdIndex)
+  }
+
+  private station(firstIndex: number, secondIndex: number) {
+    this.mapService.spice += 50
+    this.mapService.table[firstIndex][secondIndex] = null as any
+  }
+
+  private planet() {
+    alert('WIN')
   }
 
   private getPlanets() {
