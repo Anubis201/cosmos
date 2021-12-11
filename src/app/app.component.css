@@ -46,3 +46,21 @@
   margin-left: 45vw;
   cursor: move;
 }
+
+.spice {
+  color: white;
+  position: absolute;
+  left: 50vw;
+  bottom: 8px;
+  text-align: center;
+}
+
+.spice img {
+  height: 55px;
+}
+
+.spice div {
+  margin-bottom: 5px;
+  font-style: italic;
+  font-family: fantasy;
+}

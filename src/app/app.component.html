@@ -33,6 +33,17 @@
   alt="ship"
 >
 
+<div
+  *ngIf="whereIsShip"
+  class="spice"
+>
+  <div>100</div>
+  <img
+    src="/assets/img/spice.png"
+    alt="spice"
+  >
+</div>
+
 <p-menu
   #selectLang
   [popup]="true"
