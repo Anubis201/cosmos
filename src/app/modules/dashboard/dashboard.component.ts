@@ -32,10 +32,6 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  findPlanet(name: string) {
-    return this.planets.find((planet) => planet.name === name) as PlanetModel
-  }
-
   canShipMove(trIndex: number, tdIndex: number) {
     return  (trIndex === this.whereIsShip?.firstIndex - 1 && tdIndex === this.whereIsShip?.secondIndex) ||
             (trIndex === this.whereIsShip?.firstIndex + 1 && tdIndex === this.whereIsShip?.secondIndex) ||
@@ -59,7 +55,7 @@ export class DashboardComponent implements OnInit {
     if (this.canShipMove(firstIndex, secondIndex)) {
       this.mapService.moveShip(firstIndex, secondIndex)
 
-      switch(this.findPlanet(this.mapService.table[firstIndex][secondIndex])?.type) {
+      switch(this.mapService.table[firstIndex][secondIndex]?.type) {
         case 'Station':
           this.station(firstIndex, secondIndex)
           break

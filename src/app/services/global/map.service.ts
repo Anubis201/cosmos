@@ -6,7 +6,7 @@ import { TD_SIZE, TR_SIZE } from '../tokens/map-size.token'
   providedIn: 'root'
 })
 export class MapService {
-  table: string[][] = []
+  table: PlanetModel[][] = []
   whereIsShip: { firstIndex: number, secondIndex: number }
   spice = 100
 
@@ -18,7 +18,7 @@ export class MapService {
   ) {}
 
   createRandomMap(planets: PlanetModel[]) {
-    planets.forEach(planet => this.assingElement(planet.name))
+    planets.forEach(planet => this.assingElement(planet))
   }
 
   createEmptyTable() {
@@ -44,17 +44,17 @@ export class MapService {
     return Math.floor(Math.random() * (Math.floor(max) - min + 1)) + min
   }
 
-  private assingElement(planetName: string) {
+  private assingElement(planet: PlanetModel) {
     const randomIndex = this.getRandomInt(0, this.maxRandom)
     const firstIndex = Math.floor(randomIndex / this.td)
     const secondIndex = randomIndex % this.td
 
     if (this.checkNeigh(firstIndex, secondIndex) || this.table[firstIndex][secondIndex] || this.isShipHere(firstIndex, secondIndex)) {
       // When in this cell is element will draw the number again
-      this.assingElement(planetName)
+      this.assingElement(planet)
     } else {
       // Assign element
-      this.table[firstIndex][secondIndex] = planetName
+      this.table[firstIndex][secondIndex] = planet
     }
   }
 

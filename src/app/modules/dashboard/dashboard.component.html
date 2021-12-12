@@ -24,10 +24,10 @@
         (onDrop)="drop(trIndex, tdIndex)"
       >
         <div
-          [ngSwitch]="findPlanet(area)?.type"
+          [ngSwitch]="area?.type"
           class="object"
         >
-          <div>{{ area }}</div>
+          <div>{{ area?.name }}</div>
           <img
             *ngSwitchCase="'Planet'"
             src="/assets/img/mars.png"
