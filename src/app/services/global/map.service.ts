@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@angular/core'
+import { TableModeType } from 'src/app/models/map/table-mode.type'
 import { PlanetModel } from 'src/app/models/planets/planet.model'
 import { TD_SIZE, TR_SIZE } from '../tokens/map-size.token'
 
@@ -9,6 +10,7 @@ export class MapService {
   table: PlanetModel[][] = []
   whereIsShip: { firstIndex: number, secondIndex: number }
   spice = 100
+  tableMode: TableModeType = 'hello'
 
   private readonly maxRandom = this.tr * this.td - 1
 
@@ -34,6 +36,8 @@ export class MapService {
   resetMap() {
     this.whereIsShip = null as any
     this.table = []
+    this.tableMode = null
+    this.spice = 100
     this.createEmptyTable()
   }
 

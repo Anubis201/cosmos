@@ -1,21 +1,23 @@
 <div class="planets">
   <div
-    *ngIf="showHello"
+    *ngIf="tableMode"
     class="hello"
   >
-    <app-hello
+    <app-message
+      [mode]="tableMode"
       (hideHello)="handleHideHello()"
-    ></app-hello>
+      (tryAgain)="handleTryAgain()"
+    ></app-message>
   </div>
 
   <div
-    *ngIf="isloading && !showHello"
+    *ngIf="isloading && !tableMode"
     class="loading"
   >
     <p-progressSpinner></p-progressSpinner>
   </div>
 
-  <table *ngIf="!isloading && !showHello">
+  <table *ngIf="!isloading && !tableMode">
     <tr *ngFor="let tr of map; let trIndex = index; let trLast = last">
       <td
         *ngFor="let area of tr; let tdIndex = index; let tdLast = last"
@@ -65,3 +67,4 @@
     </tr>
   </table>
 </div>
+<p-toast></p-toast>

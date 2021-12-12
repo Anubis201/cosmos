@@ -1,0 +1,17 @@
+.message {
+  color: white;
+  font-size: 45px;
+}
+
+.lose {
+  color: red;
+}
+
+.win {
+  color: green;
+}
+
+button {
+  margin-left: 35px;
+  margin-bottom: 6px;
+}

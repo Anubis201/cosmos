@@ -58,6 +58,10 @@ export class AppComponent implements OnInit {
     return this.mapService.spice
   }
 
+  get tableMode() {
+    return  this.mapService.tableMode
+  }
+
   ngOnInit() {
     this.authService.checkAuthState()
 

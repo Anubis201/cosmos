@@ -26,7 +26,7 @@
 </div>
 
 <img
-  *ngIf="!whereIsShip"
+  *ngIf="!whereIsShip && !tableMode"
   class="ship"
   src="/assets/img/transporter.png"
   pDraggable="shipPlace"
@@ -34,7 +34,7 @@
 >
 
 <div
-  *ngIf="whereIsShip"
+  *ngIf="whereIsShip && !tableMode"
   class="spice"
   i18n-pTooltip
   pTooltip="Spice"
@@ -51,16 +51,18 @@
   [popup]="true"
   [model]="items"
 ></p-menu>
-<button
+
+<!-- <button
   pButton
   class="lang"
   label="Language"
   icon="pi pi-bars"
   iconPos="left"
   (click)="selectLang.toggle($event)"
-></button>
+></button> -->
+
 <button
-  *ngIf="whereIsShip"
+  *ngIf="whereIsShip && !tableMode"
   pButton
   class="turn"
   icon="pi pi-refresh"

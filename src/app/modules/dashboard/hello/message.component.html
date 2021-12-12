@@ -1,0 +1,41 @@
+<div
+  *ngIf="isOpen"
+  class="message"
+  [@text]="helloAnimation"
+  (@text.done)="onAnimationEvent($event)"
+  [ngSwitch]="mode"
+>
+  <div *ngSwitchCase="'hello'">
+    <span i18n>Choose a location for your ship...</span>
+  </div>
+  <div
+    *ngSwitchCase="'lose'"
+    class="lose"
+  >
+    <span i18n>You lose! (ㆆ_ㆆ)</span>
+    <button
+      pButton
+      i18n-label
+      class="p-button-outlined p-button-danger"
+      icon="pi pi-refresh"
+      iconPos="left"
+      label="Try again"
+      (click)="tryAgain.emit()"
+    ></button>
+  </div>
+  <div
+    *ngSwitchCase="'win'"
+    class="win"
+  >
+    <span i18n>You win! (👍≖‿‿≖)👍</span>
+    <button
+      pButton
+      i18n-label
+      class="p-button-outlined p-button-success"
+      icon="pi pi-refresh"
+      iconPos="left"
+      label="Try again"
+      (click)="tryAgain.emit()"
+    ></button>
+  </div>
+</div>
