@@ -22,7 +22,9 @@ export class MapService {
   }
 
   createEmptyTable() {
-    this.table = new Array(this.tr).fill(null).map(() => (new Array(this.td).fill(null)))
+    this.table = new Array(this.tr).fill(null).map(() =>
+      (new Array(this.td).fill(null).map(() =>
+      (this.getRandomInt(0, 1) ? { name: '', type: 'Death' } : { name: '', type: 'Asteroids' }))))
   }
 
   isShipHere(trIndex: number, tdIndex: number) {
@@ -49,7 +51,7 @@ export class MapService {
     const firstIndex = Math.floor(randomIndex / this.td)
     const secondIndex = randomIndex % this.td
 
-    if (this.checkNeigh(firstIndex, secondIndex) || this.table[firstIndex][secondIndex] || this.isShipHere(firstIndex, secondIndex)) {
+    if ((this.checkNeigh(firstIndex, secondIndex) || this.table[firstIndex][secondIndex].name.length || this.isShipHere(firstIndex, secondIndex))) {
       // When in this cell is element will draw the number again
       this.assingElement(planet)
     } else {
@@ -60,22 +62,22 @@ export class MapService {
 
   private checkNeigh(firstIndex: number, secondIndex: number) {
     // upper
-    if (firstIndex !== 0 && this.table[firstIndex - 1][secondIndex]) {
+    if (firstIndex !== 0 && this.table[firstIndex - 1][secondIndex].name.length) {
       return true
     }
 
     // bottom
-    if (firstIndex !== this.tr - 1 && this.table[firstIndex + 1][secondIndex]) {
+    if (firstIndex !== this.tr - 1 && this.table[firstIndex + 1][secondIndex].name.length) {
       return true
     }
 
     // right
-    if (secondIndex !== this.td - 1 && this.table[firstIndex][secondIndex + 1]) {
+    if (secondIndex !== this.td - 1 && this.table[firstIndex][secondIndex + 1].name.length) {
       return true
     }
 
     // left
-    if (secondIndex !== 0 && this.table[firstIndex][secondIndex - 1]) {
+    if (secondIndex !== 0 && this.table[firstIndex][secondIndex - 1].name.length) {
       return true
     }
 

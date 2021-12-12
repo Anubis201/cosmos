@@ -1,4 +1,4 @@
 export interface PlanetModel {
   name: string
-  type: 'Moon' | 'Planet' | 'Station'
+  type: 'Planet' | 'Station' | 'Death' | 'Asteroids'
 }
