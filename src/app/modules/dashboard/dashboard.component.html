@@ -24,20 +24,26 @@
         (onDrop)="drop(trIndex, tdIndex)"
       >
         <div
-          *ngIf="area && !isShipHere(trIndex, tdIndex)"
+          [ngSwitch]="findPlanet(area)?.type"
           class="object"
         >
           <div>{{ area }}</div>
           <img
-            *ngIf="findPlanet(area)?.type === 'Planet'"
+            *ngSwitchCase="'Planet'"
             src="/assets/img/mars.png"
             alt="planet"
             class="planet"
           >
           <img
-            *ngIf="findPlanet(area)?.type === 'Station'"
+            *ngSwitchCase="'Station'"
             src="/assets/img/station1.png"
             alt="space station"
+            class="station"
+          >
+          <img
+            *ngIf="!area && !isShipHere(trIndex, tdIndex) && whereIsShip"
+            src="/assets/img/asteroids.png"
+            alt="asteroid"
             class="station"
           >
         </div>
