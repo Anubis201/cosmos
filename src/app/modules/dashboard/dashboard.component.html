@@ -24,6 +24,7 @@
         (onDrop)="drop(trIndex, tdIndex)"
       >
         <div
+          *ngIf="whereIsShip && !isShipHere(trIndex, tdIndex)"
           [ngSwitch]="area?.type"
           class="object"
         >
@@ -41,7 +42,13 @@
             class="station"
           >
           <img
-            *ngIf="!area && !isShipHere(trIndex, tdIndex) && whereIsShip"
+            *ngSwitchCase="'Asteroids'"
+            src="/assets/img/asteroids.png"
+            alt="asteroid"
+            class="station"
+          >
+          <img
+            *ngSwitchCase="'Death'"
             src="/assets/img/asteroids.png"
             alt="asteroid"
             class="station"
