@@ -59,7 +59,11 @@ export class AppComponent implements OnInit {
   }
 
   get tableMode() {
-    return  this.mapService.tableMode
+    return this.mapService.tableMode
+  }
+
+  get savedMap() {
+    return this.mapService.savedMap
   }
 
   ngOnInit() {
@@ -83,5 +87,9 @@ export class AppComponent implements OnInit {
 
   resetMap() {
     this.mapService.resetMap()
+  }
+
+  ability() {
+    this.mapService.ability()
   }
 }

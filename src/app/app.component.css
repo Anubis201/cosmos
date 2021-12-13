@@ -64,3 +64,15 @@
   font-style: italic;
   font-family: fantasy;
 }
+
+.ability {
+  position: absolute;
+  top: 85px;
+  left: 48vw;
+  border-radius: 0%;
+  opacity: 85%;
+}
+/* TODO */
+::ng-deep html {
+  background-color: red;
+}

@@ -25,6 +25,15 @@
   </div>
 </div>
 
+<button
+  *ngIf="whereIsShip && !tableMode && !savedMap"
+  pButton
+  i18n-label
+  class="ability"
+  label="Second life"
+  (click)="ability()"
+></button>
+
 <img
   *ngIf="!whereIsShip && !tableMode"
   class="ship"
@@ -64,9 +73,10 @@
 <button
   *ngIf="whereIsShip && !tableMode"
   pButton
+  i18n-label
   class="turn"
   icon="pi pi-refresh"
   iconPos="left"
-  label="Reset map"
+  label="Restart"
   (click)="resetMap()"
 ></button>

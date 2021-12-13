@@ -1,4 +1,6 @@
 import { Inject, Injectable } from '@angular/core'
+import { SavedMapModel } from 'src/app/models/map/saved-map.model'
+import { ShipCordModel } from 'src/app/models/map/ship-cord.model'
 import { TableModeType } from 'src/app/models/map/table-mode.type'
 import { PlanetModel } from 'src/app/models/planets/planet.model'
 import { TD_SIZE, TR_SIZE } from '../tokens/map-size.token'
@@ -8,9 +10,10 @@ import { TD_SIZE, TR_SIZE } from '../tokens/map-size.token'
 })
 export class MapService {
   table: PlanetModel[][] = []
-  whereIsShip: { firstIndex: number, secondIndex: number }
+  whereIsShip: ShipCordModel
   spice = 100
   tableMode: TableModeType = 'hello'
+  savedMap: SavedMapModel
 
   private readonly maxRandom = this.tr * this.td - 1
 
@@ -43,6 +46,16 @@ export class MapService {
 
   moveShip(firstIndex: number, secondIndex: number) {
     this.whereIsShip = { firstIndex, secondIndex }
+  }
+
+  ability() {
+    this.savedMap = {
+      ship: this.whereIsShip,
+      table: this.table,
+      spice: this.spice,
+    }
+
+    this.resetMap()
   }
 
   private getRandomInt(min: number, max: number) {
