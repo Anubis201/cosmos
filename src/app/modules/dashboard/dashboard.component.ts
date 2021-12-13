@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from '@angular/animations'
 import { Component } from '@angular/core'
 import { MessageService } from 'primeng/api'
 import { PlanetModel } from 'src/app/models/planets/planet.model'
@@ -7,7 +8,19 @@ import { MapService } from 'src/app/services/global/map.service'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  animations: [
+    trigger('blurAnimation', [
+      transition('false => true', [
+        style({ filter: 'Blur(0)' }),
+        animate('1500ms', style({ filter: 'Blur(4px)' }))
+      ]),
+      transition('true => false', [
+        style({ filter: 'Blur(4px)' }),
+        animate('1000ms', style({ filter: 'Blur(0)' }))
+      ])
+    ]),
+  ]
 })
 export class DashboardComponent {
   isloading = false
@@ -65,18 +78,20 @@ export class DashboardComponent {
         case 'Planet':
           if (!this.savedMap) {
             this.mapService.tableMode = 'win'
+            this.toast.add({ severity: 'success', summary: $localize `You reached Arrakis` })
           } else {
             this.mapService.restoreMap()
+            this.toast.add({ severity: 'info', summary: $localize `Now repeat it in reality` })
           }
-          this.toast.add({ severity: 'success', summary: $localize `You reached Arrakis` })
           break
         case 'Death':
           if (!this.savedMap) {
             this.mapService.tableMode = 'lose'
+            this.toast.add({ severity: 'error', summary: $localize `Next time use spices` })
           } else {
             this.mapService.restoreMap()
+            this.toast.add({ severity: 'info', summary: $localize `Oops, here is death` })
           }
-          this.toast.add({ severity: 'error', summary: $localize `Next time use spices` })
           break
         case 'Asteroids':
         default:

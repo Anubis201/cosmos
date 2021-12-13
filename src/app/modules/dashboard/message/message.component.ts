@@ -9,7 +9,7 @@ import { TableModeType } from 'src/app/models/map/table-mode.type'
   styleUrls: ['./message.component.css'],
   animations: [
     trigger('text', [
-      transition('void => open', [
+      transition(':enter', [
         style({ opacity: 0 }),
         animate('1000ms', style({ opacity: 1 })) // 1500ms
       ]),

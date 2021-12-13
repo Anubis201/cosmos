@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core'
 import { DashboardComponent } from './dashboard.component'
 import { DashboardRoutingModule } from './dashboard-routing.module'
 import { SharedModule } from '../shared/shared.module';
-import { MessageComponent } from './hello/message.component'
+import { MessageComponent } from './message/message.component'
 
 @NgModule({
   declarations: [

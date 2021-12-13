@@ -11,7 +11,7 @@ import { TD_SIZE, TR_SIZE } from '../tokens/map-size.token'
 export class MapService {
   table: PlanetModel[][] = []
   whereIsShip: ShipCordModel
-  spice = 100
+  spice = 300
   tableMode: TableModeType = 'hello'
   savedMap: SavedMapModel | null
 
@@ -40,7 +40,7 @@ export class MapService {
     this.whereIsShip = null as any
     this.table = []
     this.tableMode = null
-    this.spice = 100
+    this.spice = 300
     this.savedMap = null
     this.createEmptyTable()
   }

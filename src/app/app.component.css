@@ -72,7 +72,3 @@
   border-radius: 0%;
   opacity: 85%;
 }
-/* TODO */
-::ng-deep html {
-  background-color: red;
-}

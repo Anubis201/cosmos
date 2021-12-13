@@ -20,6 +20,7 @@
   <table
     *ngIf="!isloading && !tableMode"
     [class.blur-table]="savedMap"
+    [@blurAnimation]="savedMap ? true : false"
   >
     <tr *ngFor="let tr of map; let trIndex = index; let trLast = last">
       <td
