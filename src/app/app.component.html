@@ -43,7 +43,7 @@
 >
 
 <div
-  *ngIf="whereIsShip && !tableMode"
+  *ngIf="whereIsShip && !tableMode && !savedMap"
   class="spice"
   i18n-pTooltip
   pTooltip="Spice"
@@ -80,3 +80,4 @@
   label="Restart"
   (click)="resetMap()"
 ></button>
+<p-toast></p-toast>

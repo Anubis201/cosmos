@@ -61,3 +61,7 @@ table {
   height: 35px;
   cursor: move;
 }
+
+.blur-table {
+  filter: blur(8px)
+}

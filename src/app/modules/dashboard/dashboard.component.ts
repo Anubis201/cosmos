@@ -31,6 +31,10 @@ export class DashboardComponent {
     return  this.mapService.tableMode
   }
 
+  get savedMap() {
+    return this.mapService.savedMap
+  }
+
   canShipMove(trIndex: number, tdIndex: number) {
     return  (trIndex === this.whereIsShip?.firstIndex - 1 && tdIndex === this.whereIsShip?.secondIndex) ||
             (trIndex === this.whereIsShip?.firstIndex + 1 && tdIndex === this.whereIsShip?.secondIndex) ||
@@ -59,11 +63,19 @@ export class DashboardComponent {
           this.station(firstIndex, secondIndex)
           break
         case 'Planet':
-          this.mapService.tableMode = 'win'
+          if (!this.savedMap) {
+            this.mapService.tableMode = 'win'
+          } else {
+            this.mapService.restoreMap()
+          }
           this.toast.add({ severity: 'success', summary: $localize `You reached Arrakis` })
           break
         case 'Death':
-          this.mapService.tableMode = 'lose'
+          if (!this.savedMap) {
+            this.mapService.tableMode = 'lose'
+          } else {
+            this.mapService.restoreMap()
+          }
           this.toast.add({ severity: 'error', summary: $localize `Next time use spices` })
           break
         case 'Asteroids':

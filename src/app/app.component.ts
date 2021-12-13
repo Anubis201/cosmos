@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations'
 import { Component, OnInit } from '@angular/core'
-import { MenuItem } from 'primeng/api'
+import { MenuItem, MessageService } from 'primeng/api'
 import { AuthService } from './services/auth.service'
 import { MapService } from './services/global/map.service'
 
@@ -44,6 +44,7 @@ export class AppComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private mapService: MapService,
+    private toast: MessageService,
   ) {}
 
   get isAuth() {
@@ -91,5 +92,6 @@ export class AppComponent implements OnInit {
 
   ability() {
     this.mapService.ability()
+    this.toast.add({ severity: 'info', summary: $localize `You used 100 spices` })
   }
 }

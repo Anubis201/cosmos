@@ -13,7 +13,7 @@ export class MapService {
   whereIsShip: ShipCordModel
   spice = 100
   tableMode: TableModeType = 'hello'
-  savedMap: SavedMapModel
+  savedMap: SavedMapModel | null
 
   private readonly maxRandom = this.tr * this.td - 1
 
@@ -41,6 +41,7 @@ export class MapService {
     this.table = []
     this.tableMode = null
     this.spice = 100
+    this.savedMap = null
     this.createEmptyTable()
   }
 
@@ -49,13 +50,23 @@ export class MapService {
   }
 
   ability() {
+    this.spice -= 100
+
     this.savedMap = {
       ship: this.whereIsShip,
       table: this.table,
       spice: this.spice,
     }
+  }
 
-    this.resetMap()
+  restoreMap() {
+    if (!this.savedMap) return
+
+    this.table = this.savedMap.table
+    this.whereIsShip = this.savedMap.ship
+    this.spice = this.savedMap.spice
+
+    this.savedMap = null
   }
 
   private getRandomInt(min: number, max: number) {
