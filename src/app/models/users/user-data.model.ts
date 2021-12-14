@@ -1,4 +1,8 @@
+import { ShipCordModel } from '../map/ship-cord.model'
+import { PlanetModel } from '../planets/planet.model'
+
 export interface UserDataModel {
-  work: number
-  lastTimeWorkUpdate: Date
+  map: PlanetModel[][]
+  spice: number
+  shipCord: ShipCordModel
 }

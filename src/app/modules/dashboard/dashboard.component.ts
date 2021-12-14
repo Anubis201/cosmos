@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core'
 import { MessageService } from 'primeng/api'
 import { PlanetModel } from 'src/app/models/planets/planet.model'
 import { PlanetsService } from 'src/app/services/collections/planets.service'
+import { UsersService } from 'src/app/services/collections/users.service'
 import { MapService } from 'src/app/services/global/map.service'
 
 @Component({
@@ -30,6 +31,7 @@ export class DashboardComponent implements OnInit {
     private mapService: MapService,
     private planetsService: PlanetsService,
     private toast: MessageService,
+    private usersService: UsersService,
   ) { }
 
   get map() {
@@ -49,7 +51,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   canShipMove(trIndex: number, tdIndex: number) {
@@ -67,7 +68,7 @@ export class DashboardComponent implements OnInit {
   drop(firstIndex: number, secondIndex: number) {
     // this.mapService.whereIsShip is null when user use reset button
     if (!this.planets.length || this.mapService.whereIsShip === null) {
-      this.getPlanets()
+      this.checkMapFromDatabase()
       this.mapService.moveShip(firstIndex, secondIndex)
       return
     }
@@ -135,6 +136,16 @@ export class DashboardComponent implements OnInit {
   }
 
   private checkMapFromDatabase() {
-
+    this.usersService.getUserData().subscribe({
+      next: user => {
+        if (user) {
+          this.mapService.table = user.map
+          this.mapService.spice = user.spice
+          this.mapService.whereIsShip = user.shipCord
+        } else {
+          this.getPlanets()
+        }
+      }
+    })
   }
 }

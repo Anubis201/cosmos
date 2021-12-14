@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core'
 import { AngularFirestore } from "@angular/fire/compat/firestore"
+import { map } from 'rxjs/operators'
+import { UserDataModel } from 'src/app/models/users/user-data.model'
 import { AuthService } from '../auth.service'
 
 @Injectable({
@@ -24,6 +26,6 @@ export class UsersService {
   }
 
   getUserData() {
-    return this.userCollectionRef.get()
+    return this.userCollectionRef.get().pipe(map(data => (data.data() as UserDataModel | null)))
   }
 }

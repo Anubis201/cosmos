@@ -5,7 +5,7 @@
 <div class="work">
   <p-skeleton *ngIf="isLoadingUserData; else workText"></p-skeleton>
   <ng-template #workText>
-    <span i18n>Diligence: {{ userData?.work }}</span>
+    <!-- <span i18n>Diligence: {{ userData?.work }}</span> -->
     <button
       pButton
       pRipple
