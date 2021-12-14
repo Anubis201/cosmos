@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { AngularFirestore } from "@angular/fire/compat/firestore"
+import { from } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { UserDataModel } from 'src/app/models/users/user-data.model'
 import { AuthService } from '../auth.service'
@@ -22,7 +23,7 @@ export class UsersService {
   }
 
   updateUserData(data: Object) {
-    return this.userCollectionRef.update(data)
+    return from(this.userCollectionRef.update(data))
   }
 
   getUserData() {

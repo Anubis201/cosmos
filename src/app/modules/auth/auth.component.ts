@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms'
 import { MessageService } from 'primeng/api'
 import { Router } from '@angular/router'
 import { AuthService } from 'src/app/services/auth.service'
+import { UsersService } from 'src/app/services/collections/users.service'
 
 @Component({
   selector: 'app-auth',
@@ -37,6 +38,7 @@ export class AuthComponent {
     private toast: MessageService,
     private router: Router,
     private authService: AuthService,
+    private usersService: UsersService,
   ) {}
 
   register() {
@@ -50,6 +52,7 @@ export class AuthComponent {
         this.router.navigateByUrl('dashboard')
         this.isSaving = false
         res.user?.updateProfile({ displayName: this.form.get('displayName')!.value })
+        this.usersService.setUserData({ map: null, spice: null, shipCord: null }, res.user?.uid)
       })
       .catch((err) => {
         this.toast.add({ severity: 'error', summary: err.message })

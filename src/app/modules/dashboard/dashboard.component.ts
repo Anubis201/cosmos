@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations'
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { MessageService } from 'primeng/api'
 import { PlanetModel } from 'src/app/models/planets/planet.model'
 import { PlanetsService } from 'src/app/services/collections/planets.service'
@@ -23,7 +23,7 @@ import { MapService } from 'src/app/services/global/map.service'
     ]),
   ]
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   isloading = false
   planets: PlanetModel[] = []
 
@@ -48,9 +48,6 @@ export class DashboardComponent implements OnInit {
 
   get savedMap() {
     return this.mapService.savedMap
-  }
-
-  ngOnInit() {
   }
 
   canShipMove(trIndex: number, tdIndex: number) {
@@ -85,6 +82,7 @@ export class DashboardComponent implements OnInit {
             this.mapService.tableMode = 'win'
             this.toast.add({ severity: 'success', summary: $localize `You reached Arrakis` })
           } else {
+            // TODO zrobic zapisywanie podczas uzywania umiejetnosci
             this.mapService.restoreMap()
             this.toast.add({ severity: 'info', summary: $localize `Now repeat it in reality` })
           }
@@ -117,6 +115,7 @@ export class DashboardComponent implements OnInit {
     this.mapService.spice += 100
     this.mapService.table[firstIndex][secondIndex] = null as any
     this.toast.add({ severity: 'info', summary: $localize `You finded 100 spices` })
+    this.saveToDatabase()
   }
 
   private getPlanets() {
@@ -126,6 +125,7 @@ export class DashboardComponent implements OnInit {
         next: res => {
           this.planets = res.docs.map(doc => doc.data()) as PlanetModel[]
           this.mapService.createRandomMap(this.planets)
+          this.saveToDatabase()
           this.isloading = false
         },
         error: () => {
@@ -136,15 +136,30 @@ export class DashboardComponent implements OnInit {
   }
 
   private checkMapFromDatabase() {
+    this.isloading = true
     this.usersService.getUserData().subscribe({
       next: user => {
-        if (user) {
+        if (user?.map) {
           this.mapService.table = user.map
           this.mapService.spice = user.spice
           this.mapService.whereIsShip = user.shipCord
+          this.isloading = false
         } else {
           this.getPlanets()
         }
+      },
+      error: () => {
+        this.toast.add({ severity: 'error', summary: $localize `Failed to get map` })
+        this.getPlanets()
+      }
+    })
+  }
+
+  private saveToDatabase() {
+    console.log(this.map)
+    this.usersService.updateUserData({ map: this.map, spice: this.mapService.spice, shipCord: this.whereIsShip }).subscribe({
+      error: () => {
+        this.toast.add({ severity: 'error', summary: $localize `Failed to save game` })
       }
     })
   }
