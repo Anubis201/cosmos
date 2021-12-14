@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations'
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { MessageService } from 'primeng/api'
 import { PlanetModel } from 'src/app/models/planets/planet.model'
 import { PlanetsService } from 'src/app/services/collections/planets.service'
@@ -13,16 +13,16 @@ import { MapService } from 'src/app/services/global/map.service'
     trigger('blurAnimation', [
       transition('false => true', [
         style({ filter: 'Blur(0)' }),
-        animate('1500ms', style({ filter: 'Blur(4px)' }))
+        animate('1000ms', style({ filter: 'Blur(3px)' }))
       ]),
       transition('true => false', [
-        style({ filter: 'Blur(4px)' }),
+        style({ filter: 'Blur(3px)' }),
         animate('1000ms', style({ filter: 'Blur(0)' }))
       ])
     ]),
   ]
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   isloading = false
   planets: PlanetModel[] = []
 
@@ -46,6 +46,10 @@ export class DashboardComponent {
 
   get savedMap() {
     return this.mapService.savedMap
+  }
+
+  ngOnInit() {
+
   }
 
   canShipMove(trIndex: number, tdIndex: number) {
@@ -109,9 +113,9 @@ export class DashboardComponent {
   }
 
   private station(firstIndex: number, secondIndex: number) {
-    this.mapService.spice += 50
+    this.mapService.spice += 100
     this.mapService.table[firstIndex][secondIndex] = null as any
-    this.toast.add({ severity: 'info', summary: $localize `You finded 50 spices` })
+    this.toast.add({ severity: 'info', summary: $localize `You finded 100 spices` })
   }
 
   private getPlanets() {
@@ -128,5 +132,9 @@ export class DashboardComponent {
           this.isloading = false
         }
       })
+  }
+
+  private checkMapFromDatabase() {
+
   }
 }

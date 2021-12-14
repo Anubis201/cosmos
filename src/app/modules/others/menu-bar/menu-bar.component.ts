@@ -17,10 +17,10 @@ export class MenuBarComponent implements OnInit {
         label: $localize `Dashboard`,
         routerLink: '/dashboard'
       },
-      {
-        label: $localize `About`,
-        routerLink: '/about',
-      },
+      // {
+      //   label: $localize `About`,
+      //   routerLink: '/about',
+      // },
     ]
   }
 }

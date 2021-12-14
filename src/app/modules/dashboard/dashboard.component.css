@@ -63,5 +63,5 @@ table {
 }
 
 .blur-table {
-  filter: blur(4px)
+  filter: blur(3px)
 }

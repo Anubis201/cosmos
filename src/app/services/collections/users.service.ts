@@ -6,7 +6,6 @@ import { AuthService } from '../auth.service'
   providedIn: 'root'
 })
 export class UsersService {
-
   constructor(
     private firestore: AngularFirestore,
     private authService: AuthService,

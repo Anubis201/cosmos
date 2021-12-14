@@ -91,7 +91,11 @@ export class AppComponent implements OnInit {
   }
 
   ability() {
-    this.mapService.ability()
-    this.toast.add({ severity: 'info', summary: $localize `You used 100 spices` })
+    if (this.spice < 100) {
+      this.toast.add({ severity: 'error', summary: $localize `You need 100 spices` })
+    } else {
+      this.mapService.ability()
+      this.toast.add({ severity: 'info', summary: $localize `You used 100 spices` })
+    }
   }
 }
