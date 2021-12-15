@@ -51,8 +51,8 @@ export class AuthComponent {
         this.toast.add({ severity: 'success', summary: $localize `Created user` })
         this.router.navigateByUrl('dashboard')
         this.isSaving = false
+        this.usersService.setUserData({ map: [], spice: null, shipCord: null }, res.user?.uid)
         res.user?.updateProfile({ displayName: this.form.get('displayName')!.value })
-        this.usersService.setUserData({ map: null, spice: null, shipCord: null }, res.user?.uid)
       })
       .catch((err) => {
         this.toast.add({ severity: 'error', summary: err.message })

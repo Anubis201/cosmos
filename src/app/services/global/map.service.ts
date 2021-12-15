@@ -1,8 +1,10 @@
 import { Inject, Injectable } from '@angular/core'
+import { MessageService } from 'primeng/api'
 import { SavedMapModel } from 'src/app/models/map/saved-map.model'
 import { ShipCordModel } from 'src/app/models/map/ship-cord.model'
 import { TableModeType } from 'src/app/models/map/table-mode.type'
 import { PlanetModel } from 'src/app/models/planets/planet.model'
+import { UsersService } from '../collections/users.service'
 import { TD_SIZE, TR_SIZE } from '../tokens/map-size.token'
 
 @Injectable({
@@ -20,6 +22,8 @@ export class MapService {
   constructor(
     @Inject(TR_SIZE) private readonly tr: number,
     @Inject(TD_SIZE) private readonly td: number,
+    private toast: MessageService,
+    private usersService: UsersService,
   ) {}
 
   createRandomMap(planets: PlanetModel[]) {
@@ -42,6 +46,7 @@ export class MapService {
     this.tableMode = null
     this.spice = 300
     this.savedMap = null
+    this.saveToDatabase()
     this.createEmptyTable()
   }
 
@@ -51,7 +56,6 @@ export class MapService {
 
   ability() {
     this.spice -= 100
-
     this.savedMap = {
       ship: this.whereIsShip,
       table: this.table,
@@ -65,8 +69,25 @@ export class MapService {
     this.table = this.savedMap.table
     this.whereIsShip = this.savedMap.ship
     this.spice = this.savedMap.spice
-
     this.savedMap = null
+  }
+
+  saveToDatabase() {
+    console.log(this.spice)
+    this.usersService.updateUserData({
+      map: this.convertArrayToObject(this.table),
+      spice: this.spice,
+      shipCord:this.whereIsShip,
+    }).subscribe({
+      error: () => {
+        this.toast.add({ severity: 'error', summary: $localize `Failed to save game` })
+      }
+    })
+  }
+
+  // fuck firebase!
+  private convertArrayToObject(array2d: PlanetModel[][]) {
+    return array2d.map(firstElement => { return {...firstElement.map(secondElement => ({...secondElement}))}})
   }
 
   private getRandomInt(min: number, max: number) {

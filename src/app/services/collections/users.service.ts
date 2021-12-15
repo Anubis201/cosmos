@@ -22,11 +22,21 @@ export class UsersService {
     return this.firestore.collection('users').doc(userId).set(data)
   }
 
-  updateUserData(data: Object) {
+  updateUserData(data: UserDataModel) {
     return from(this.userCollectionRef.update(data))
   }
 
   getUserData() {
-    return this.userCollectionRef.get().pipe(map(data => (data.data() as UserDataModel | null)))
+    return this.userCollectionRef.get().pipe(map(data => (this.prepareData(data.data() as Object))))
+  }
+
+  private prepareData(obj: any) {
+    const convert = (obj: any) => Object.keys(obj).map((key) => obj[key])
+
+    return {
+      spice: obj.spice,
+      shipCord: obj.shipCord,
+      map: Object.keys(obj.map).map((key) => convert(obj.map[key])),
+    }
   }
 }
