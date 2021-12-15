@@ -10,6 +10,7 @@
   >Settings</button>
 
   <button
+    *ngIf="isAuth"
     i18n-pTooltip
     pButton
     pRipple
@@ -19,5 +20,18 @@
     pTooltip="Logout"
     icon="pi pi-power-off"
     (click)="logout.emit()"
+  ></button>
+
+  <button
+    *ngIf="!isAuth"
+    i18n-pTooltip
+    pButton
+    pRipple
+    [routerLink]="['/login']"
+    class="p-button-rounded p-button-text"
+    tooltipPosition="bottom"
+    type="button"
+    pTooltip="Login"
+    icon="pi pi-user"
   ></button>
 </p-menubar>

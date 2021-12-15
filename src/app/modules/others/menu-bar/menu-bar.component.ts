@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { MenuItem } from 'primeng/api'
 
 @Component({
@@ -7,6 +7,8 @@ import { MenuItem } from 'primeng/api'
   styleUrls: ['./menu-bar.component.css']
 })
 export class MenuBarComponent implements OnInit {
+  @Input() isAuth: boolean
+
   @Output() logout = new EventEmitter<void>()
 
   items: MenuItem[]

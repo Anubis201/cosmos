@@ -1,12 +1,12 @@
 <app-menu-bar
-  *ngIf="isAuth"
   @barAnimation
+  [isAuth]="isAuth"
   (logout)="logout()"
 ></app-menu-bar>
 
 <div
   class="apliaction"
-  [class.auth]="!isAuth"
+  [class.auth]="!isAuth && !isDashboard"
 >
   <!-- <div
     *ngIf="isAuth"
@@ -19,7 +19,7 @@
   <div
     @mainAnimation
     class="main"
-    [class.content]="isAuth"
+    [class.content]="isAuth || isDashboard"
   >
     <router-outlet></router-outlet>
   </div>
@@ -43,7 +43,7 @@
 >
 
 <div
-  *ngIf="whereIsShip && !tableMode && !savedMap"
+  *ngIf="whereIsShip && !tableMode && !savedMap && isDashboard"
   class="spice"
   i18n-pTooltip
   pTooltip="Spice"

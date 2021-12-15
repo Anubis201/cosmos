@@ -4,6 +4,7 @@ import { SavedMapModel } from 'src/app/models/map/saved-map.model'
 import { ShipCordModel } from 'src/app/models/map/ship-cord.model'
 import { TableModeType } from 'src/app/models/map/table-mode.type'
 import { PlanetModel } from 'src/app/models/planets/planet.model'
+import { AuthService } from '../auth.service'
 import { UsersService } from '../collections/users.service'
 import { TD_SIZE, TR_SIZE } from '../tokens/map-size.token'
 
@@ -24,6 +25,7 @@ export class MapService {
     @Inject(TD_SIZE) private readonly td: number,
     private toast: MessageService,
     private usersService: UsersService,
+    private authService: AuthService,
   ) {}
 
   createRandomMap(planets: PlanetModel[]) {
@@ -73,7 +75,8 @@ export class MapService {
   }
 
   saveToDatabase() {
-    console.log(this.spice)
+    if (!this.authService.user) return
+
     this.usersService.updateUserData({
       map: this.convertArrayToObject(this.table),
       spice: this.spice,

@@ -2,6 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations'
 import { Component, OnInit } from '@angular/core'
 import { MessageService } from 'primeng/api'
 import { PlanetModel } from 'src/app/models/planets/planet.model'
+import { AuthService } from 'src/app/services/auth.service'
 import { PlanetsService } from 'src/app/services/collections/planets.service'
 import { UsersService } from 'src/app/services/collections/users.service'
 import { MapService } from 'src/app/services/global/map.service'
@@ -32,6 +33,7 @@ export class DashboardComponent implements OnInit {
     private planetsService: PlanetsService,
     private toast: MessageService,
     private usersService: UsersService,
+    private authService: AuthService,
   ) { }
 
   get map() {
@@ -51,7 +53,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.checkMapFromDatabase()
+    if (!!this.authService.user) this.checkMapFromDatabase()
   }
 
   canShipMove(trIndex: number, tdIndex: number) {
@@ -155,6 +157,7 @@ export class DashboardComponent implements OnInit {
       },
       error: () => {
         this.toast.add({ severity: 'error', summary: $localize `Failed to get map` })
+        this.isloading = false
       }
     })
   }
