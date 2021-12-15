@@ -13,6 +13,7 @@ import { LeftAsideComponent } from './modules/left-aside/left-aside.component'
 import { AngularFireStorageModule } from '@angular/fire/compat/storage'
 import { SharedModule } from './modules/shared/shared.module'
 import { mapSizeToken } from './services/tokens/map-size.token'
+import { ServiceWorkerModule } from '@angular/service-worker'
 
 @NgModule({
   declarations: [
@@ -31,6 +32,12 @@ import { mapSizeToken } from './services/tokens/map-size.token'
     AngularFireStorageModule,
     AngularFireModule,
     SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [
     ...mapSizeToken
