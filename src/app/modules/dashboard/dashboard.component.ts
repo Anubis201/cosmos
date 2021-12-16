@@ -1,8 +1,9 @@
 import { animate, style, transition, trigger } from '@angular/animations'
 import { Component, OnInit } from '@angular/core'
+import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { MessageService } from 'primeng/api'
+import { first } from 'rxjs/operators'
 import { PlanetModel } from 'src/app/models/planets/planet.model'
-import { AuthService } from 'src/app/services/auth.service'
 import { PlanetsService } from 'src/app/services/collections/planets.service'
 import { UsersService } from 'src/app/services/collections/users.service'
 import { MapService } from 'src/app/services/global/map.service'
@@ -33,7 +34,7 @@ export class DashboardComponent implements OnInit {
     private planetsService: PlanetsService,
     private toast: MessageService,
     private usersService: UsersService,
-    private authService: AuthService,
+    private fireAuth: AngularFireAuth,
   ) { }
 
   get map() {
@@ -53,7 +54,9 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!!this.authService.user) this.checkMapFromDatabase()
+    this.fireAuth.user.pipe(first()).subscribe(user => {
+      if (user) this.checkMapFromDatabase()
+    })
   }
 
   canShipMove(trIndex: number, tdIndex: number) {
@@ -82,13 +85,13 @@ export class DashboardComponent implements OnInit {
       switch(this.mapService.table[firstIndex][secondIndex]?.type) {
         case 'Station':
           this.station(firstIndex, secondIndex)
+          this.mapService.saveToDatabase()
           break
         case 'Planet':
           if (!this.savedMap) {
             this.mapService.tableMode = 'win'
             this.toast.add({ severity: 'success', summary: $localize `You reached Arrakis` })
           } else {
-            // TODO zrobic zapisywanie podczas uzywania umiejetnosci
             this.mapService.restoreMap()
             this.toast.add({ severity: 'info', summary: $localize `Now repeat it in reality` })
           }
@@ -103,11 +106,12 @@ export class DashboardComponent implements OnInit {
           }
           break
         case 'Asteroids':
-          this.mapService.saveToDatabase()
-          break
         default:
           break
       }
+
+      // if ability active dont save game
+      if (!this.savedMap) this.mapService.saveToDatabase()
     }
   }
 
@@ -120,10 +124,14 @@ export class DashboardComponent implements OnInit {
   }
 
   private station(firstIndex: number, secondIndex: number) {
-    this.mapService.spice += 100
     this.mapService.table[firstIndex][secondIndex] = null as any
-    this.toast.add({ severity: 'info', summary: $localize `You finded 100 spices` })
-    this.mapService.saveToDatabase()
+
+    if (!this.savedMap) {
+      this.mapService.spice += 100
+      this.toast.add({ severity: 'info', summary: $localize `You finded 100 spices` })
+    } else {
+      this.toast.add({ severity: 'info', summary: $localize `WOW you will find a spice!` })
+    }
   }
 
   private getPlanets() {

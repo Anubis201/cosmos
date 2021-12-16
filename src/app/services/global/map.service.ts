@@ -60,8 +60,7 @@ export class MapService {
     this.spice -= 100
     this.savedMap = {
       ship: this.whereIsShip,
-      table: this.table,
-      spice: this.spice,
+      table: JSON.parse(JSON.stringify(this.table)),
     }
   }
 
@@ -70,7 +69,6 @@ export class MapService {
 
     this.table = this.savedMap.table
     this.whereIsShip = this.savedMap.ship
-    this.spice = this.savedMap.spice
     this.savedMap = null
   }
 
