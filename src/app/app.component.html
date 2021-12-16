@@ -49,7 +49,12 @@
 ></button> -->
 <p-toast></p-toast>
 
-<p-dock *ngIf="whereIsShip && !tableMode && !savedMap && isDashboard" [model]="dockItems" position="bottom">
+<p-dock
+  *ngIf="whereIsShip && !tableMode && !savedMap && isDashboard"
+  @bottomBarAnimation
+  position="bottom"
+  [model]="dockItems"
+>
   <ng-template pTemplate="item" let-item>
     <div
       pBadge

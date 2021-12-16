@@ -36,6 +36,15 @@ import { MapService } from './services/global/map.service'
         animate('500ms 600ms', style({ opacity: 0 }))
       ]),
     ]),
+    trigger('bottomBarAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('500ms 500ms', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('500ms', style({ opacity: 0 }))
+      ]),
+    ]),
   ]
 })
 export class AppComponent implements OnInit {
