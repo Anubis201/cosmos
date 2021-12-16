@@ -19,6 +19,8 @@ import { MessageService } from 'primeng/api'
 import { SkeletonModule } from 'primeng/skeleton'
 import { ChipModule } from 'primeng/chip'
 import { DragDropModule } from 'primeng/dragdrop'
+import { DockModule } from 'primeng/dock'
+import { BadgeModule } from 'primeng/badge'
 
 const imports = [
   CommonModule,
@@ -41,6 +43,8 @@ const imports = [
   MenuModule,
   SkeletonModule,
   DragDropModule,
+  DockModule,
+  BadgeModule,
 ]
 
 const providers = [

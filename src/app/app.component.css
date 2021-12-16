@@ -72,3 +72,15 @@
   border-radius: 0%;
   opacity: 85%;
 }
+
+.menu-bottom {
+  width: 100%;
+}
+
+.svg-refresh {
+  filter: invert(70%) sepia(0%) saturate(5487%) hue-rotate(12deg) brightness(111%) contrast(109%);
+}
+
+.menu-img {
+  width: 80%;
+}

@@ -40,6 +40,7 @@ import { MapService } from './services/global/map.service'
 })
 export class AppComponent implements OnInit {
   items: MenuItem[]
+  dockItems: MenuItem[]
 
   constructor(
     private authService: AuthService,
@@ -56,7 +57,7 @@ export class AppComponent implements OnInit {
   }
 
   get spice() {
-    return this.mapService.spice
+    return this.mapService.spice as any
   }
 
   get tableMode() {
@@ -76,15 +77,30 @@ export class AppComponent implements OnInit {
     this.authService.checkAuthState()
 
     this.items = [
-    {
-      label: 'English',
-      routerLink: '/en',
-    },
-    {
-      label: 'Polski',
-      routerLink: '/pl',
-    }
+      {
+        label: 'English',
+        routerLink: '/en',
+      },
+      {
+        label: 'Polski',
+        routerLink: '/pl',
+      }
    ]
+
+   this.dockItems = [
+      {
+        label: 'Refresh game',
+        icon: 'assets/img/refresh.svg',
+        tooltip: 'Refresh game',
+        command: () => this.resetMap(),
+      },
+      {
+        label: 'Spice',
+        icon: 'assets/img/spice.png',
+        tooltip: 'Use spice',
+        command: () => this.ability(),
+      },
+    ]
   }
 
   logout() {

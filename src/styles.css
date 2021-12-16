@@ -29,3 +29,11 @@ html, body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.p-overlay-badge, .p-badge {
+  position: fixed !important;
+}
+
+.hide-badge .p-badge {
+  display: none;
+}

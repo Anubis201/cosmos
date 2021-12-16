@@ -25,15 +25,6 @@
   </div>
 </div>
 
-<button
-  *ngIf="whereIsShip && !tableMode && !savedMap && isDashboard"
-  pButton
-  i18n-label
-  class="ability"
-  label="Second life"
-  (click)="ability()"
-></button>
-
 <img
   *ngIf="!whereIsShip && !tableMode"
   class="ship"
@@ -41,19 +32,6 @@
   pDraggable="shipPlace"
   alt="ship"
 >
-
-<div
-  *ngIf="whereIsShip && !tableMode && !savedMap && isDashboard"
-  class="spice"
-  i18n-pTooltip
-  pTooltip="Spice"
->
-  <div>{{ spice }}</div>
-  <img
-    src="/assets/img/spice.png"
-    alt="spice"
-  >
-</div>
 
 <p-menu
   #selectLang
@@ -69,15 +47,23 @@
   iconPos="left"
   (click)="selectLang.toggle($event)"
 ></button> -->
-
-<button
-  *ngIf="whereIsShip && !tableMode"
-  pButton
-  i18n-label
-  class="turn"
-  icon="pi pi-refresh"
-  iconPos="left"
-  label="Restart"
-  (click)="resetMap()"
-></button>
 <p-toast></p-toast>
+
+<p-dock *ngIf="whereIsShip && !tableMode && !savedMap && isDashboard" [model]="dockItems" position="bottom">
+  <ng-template pTemplate="item" let-item>
+    <div
+      pBadge
+      [value]="this.spice"
+      [class.hide-badge]="item.label === 'Refresh game'"
+      class="menu-bottom"
+    >
+      <img
+        class="menu-img"
+        [class.svg-refresh]="item.label === 'Refresh game'"
+        [src]="item.icon"
+        [alt]="item.label"
+        [pTooltip]="item.tooltip"
+      >
+    </div>
+  </ng-template>
+</p-dock>
