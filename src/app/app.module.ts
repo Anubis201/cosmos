@@ -13,7 +13,8 @@ import { LeftAsideComponent } from './modules/left-aside/left-aside.component'
 import { AngularFireStorageModule } from '@angular/fire/compat/storage'
 import { SharedModule } from './modules/shared/shared.module'
 import { mapSizeToken } from './services/tokens/map-size.token'
-import { ServiceWorkerModule } from '@angular/service-worker'
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { PasswordInputComponent } from './modules/auth/password-input/password-input.component'
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ServiceWorkerModule } from '@angular/service-worker'
     MenuBarComponent,
     AuthComponent,
     LeftAsideComponent,
+    PasswordInputComponent,
   ],
   imports: [
     BrowserModule,

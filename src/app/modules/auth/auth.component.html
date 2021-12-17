@@ -27,16 +27,7 @@
       >
     </span>
 
-    <span class="p-input-icon-left">
-      <i class="pi pi-lock"></i>
-      <input
-        i18n-placeholder
-        pInputText
-        formControlName="password"
-        type="password"
-        placeholder="Password"
-      >
-    </span>
+    <app-password-input [control]="form.get('password')"></app-password-input>
 
     <button
       i18n
