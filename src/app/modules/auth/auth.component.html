@@ -2,8 +2,7 @@
   <form [formGroup]="form">
     <i class="pi pi-user first"></i>
 
-    <span class="p-input-icon-left">
-      <i class="pi pi-user"></i>
+    <span>
       <input
         i18n-placeholder
         pInputText
@@ -13,11 +12,7 @@
       >
     </span>
 
-    <span
-      *ngIf="!isLoginPage"
-      class="p-input-icon-left"
-    >
-      <i class="pi pi-user"></i>
+    <span *ngIf="!isLoginPage">
       <input
         i18n-placeholder
         pInputText
@@ -27,7 +22,10 @@
       >
     </span>
 
-    <app-password-input [control]="form.get('password')"></app-password-input>
+    <app-password-input
+      class="password"
+      [control]="form.get('password')"
+    ></app-password-input>
 
     <button
       i18n

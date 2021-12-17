@@ -8,4 +8,6 @@ import { FormControl } from '@angular/forms'
 })
 export class PasswordInputComponent {
   @Input() control: FormControl | any
+
+  showPassword = false
 }

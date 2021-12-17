@@ -17,7 +17,7 @@ export class MenuBarComponent implements OnInit {
     this.items = [
       {
         label: $localize `Dashboard`,
-        routerLink: '/dashboard'
+        routerLink: '/dashboard',
       },
       // {
       //   label: $localize `About`,
