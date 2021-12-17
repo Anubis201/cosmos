@@ -120,6 +120,8 @@ export class AppComponent implements OnInit {
   }
 
   backAbility() {
+    this.mapService.restoreMap()
+    this.dockItems[1].tooltip = 'Use spice'
     this.toast.add({ severity: 'info', summary: $localize `You are back` })
   }
 
@@ -128,6 +130,7 @@ export class AppComponent implements OnInit {
       this.toast.add({ severity: 'error', summary: $localize `You need 100 spices` })
     } else {
       this.mapService.ability()
+      this.dockItems[1].tooltip = 'Back to reality'
       this.toast.add({ severity: 'info', summary: $localize `You used 100 spices` })
     }
   }
