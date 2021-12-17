@@ -35,7 +35,9 @@ export class MapService {
   createEmptyTable() {
     this.table = new Array(this.tr).fill(null).map(() =>
       (new Array(this.td).fill(null).map(() =>
-      (this.getRandomInt(0, 1) ? { name: '', type: 'Death' } : { name: '', type: 'Asteroids' }))))
+      (this.getRandomInt(0, 1)
+        ? { name: '', type: 'Death', image: `/assets/img/asteroids/asteroids${this.getRandomInt(1, 4)}.png` }
+        : { name: '', type: 'Asteroids', image: `/assets/img/asteroids/asteroids${this.getRandomInt(1, 4)}.png` }))))
   }
 
   isShipHere(trIndex: number, tdIndex: number) {
@@ -47,6 +49,7 @@ export class MapService {
     this.table = []
     this.tableMode = null
     this.spice = 300
+    this.savedMap = null
     this.savedMap = null
     this.saveToDatabase()
     this.createEmptyTable()

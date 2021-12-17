@@ -81,7 +81,6 @@ export class AppComponent implements OnInit {
     return location.pathname === '/dashboard'
   }
 
-
   ngOnInit() {
     this.authService.checkAuthState()
 
@@ -106,8 +105,8 @@ export class AppComponent implements OnInit {
       {
         label: 'Spice',
         icon: 'assets/img/spice.png',
-        tooltip: 'Use spice',
-        command: () => this.ability(),
+        tooltip: this.savedMap ? 'Back to reality' : 'Use spice',
+        command: () => this.savedMap ? this.backAbility() : this.ability(),
       },
     ]
   }
@@ -118,6 +117,10 @@ export class AppComponent implements OnInit {
 
   resetMap() {
     this.mapService.resetMap()
+  }
+
+  backAbility() {
+    this.toast.add({ severity: 'info', summary: $localize `You are back` })
   }
 
   ability() {

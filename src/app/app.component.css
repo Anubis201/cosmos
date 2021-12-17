@@ -4,10 +4,11 @@
 
 .content {
   margin-top: 100px;
-  height: 80vh;
+  height: 75vh;
   display: flex;
   justify-content: center;
-  flex: 1
+  flex: 1;
+  overflow: auto;
 }
 
 .apliaction {

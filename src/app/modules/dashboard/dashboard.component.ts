@@ -124,10 +124,6 @@ export class DashboardComponent implements OnInit {
     this.mapService.resetMap()
   }
 
-  randomAsteroids() {
-    return this.mapService.getRandomInt(1, 4)
-  }
-
   private station(firstIndex: number, secondIndex: number) {
     this.mapService.table[firstIndex][secondIndex] = null as any
 

@@ -26,7 +26,7 @@
 </div>
 
 <img
-  *ngIf="!whereIsShip && !tableMode"
+  *ngIf="!whereIsShip && !tableMode && isDashboard"
   @bottomBarAnimation
   class="ship"
   src="/assets/img/transporter.png"
@@ -51,12 +51,15 @@
 <p-toast></p-toast>
 
 <p-dock
-  *ngIf="whereIsShip && !tableMode && !savedMap && isDashboard"
+  *ngIf="whereIsShip && !tableMode && isDashboard"
   @bottomBarAnimation
   position="bottom"
   [model]="dockItems"
 >
-  <ng-template pTemplate="item" let-item>
+  <ng-template
+    let-item
+    pTemplate="item"
+  >
     <div
       pBadge
       [value]="this.spice"
