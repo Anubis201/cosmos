@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations'
-import { Component, OnInit } from '@angular/core'
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { MessageService } from 'primeng/api'
 import { first } from 'rxjs/operators'
@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit {
     private toast: MessageService,
     private usersService: UsersService,
     private fireAuth: AngularFireAuth,
+    private cdr: ChangeDetectorRef,
   ) { }
 
   get map() {
@@ -121,6 +122,10 @@ export class DashboardComponent implements OnInit {
 
   handleTryAgain() {
     this.mapService.resetMap()
+  }
+
+  randomAsteroids() {
+    return this.mapService.getRandomInt(1, 4)
   }
 
   private station(firstIndex: number, secondIndex: number) {

@@ -86,14 +86,14 @@ export class MapService {
     })
   }
 
+  getRandomInt(min: number, max: number) {
+    min = Math.ceil(min)
+    return Math.floor(Math.random() * (Math.floor(max) - min + 1)) + min
+  }
+
   // fuck firebase!
   private convertArrayToObject(array2d: PlanetModel[][]) {
     return array2d.map(firstElement => { return {...firstElement.map(secondElement => ({...secondElement}))}})
-  }
-
-  private getRandomInt(min: number, max: number) {
-    min = Math.ceil(min)
-    return Math.floor(Math.random() * (Math.floor(max) - min + 1)) + min
   }
 
   private assingElement(planet: PlanetModel) {

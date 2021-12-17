@@ -49,13 +49,13 @@
           >
           <img
             *ngSwitchCase="'Asteroids'"
-            src="/assets/img/asteroids.png"
+            [src]="'/assets/img/asteroids/asteroids' + randomAsteroids() + '.png'"
             alt="asteroid"
             class="station"
           >
           <img
             *ngSwitchCase="'Death'"
-            src="/assets/img/asteroids.png"
+            [src]="'/assets/img/asteroids/asteroids' + randomAsteroids() + '.png'"
             alt="asteroid"
             class="station"
           >
