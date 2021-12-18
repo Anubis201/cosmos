@@ -40,7 +40,8 @@ export class UsersService {
       savedMap: obj.savedMap ? {
         ...obj.savedMap,
         table:  Object.keys(obj.savedMap.table).map((key) => convert(obj.savedMap.table[key]))
-      } : null
+      } : null,
+      tableMode: obj.tableMode,
     }
   }
 }

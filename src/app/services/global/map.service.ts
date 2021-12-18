@@ -88,6 +88,7 @@ export class MapService {
         ...this.savedMap,
         table: this.convertArrayToObject(this.savedMap.table),
       } : null,
+      tableMode: this.tableMode,
     }).subscribe({
       error: () => {
         this.toast.add({ severity: 'error', summary: $localize `Failed to save game` })
