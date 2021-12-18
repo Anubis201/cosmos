@@ -37,6 +37,10 @@ export class UsersService {
       spice: obj.spice,
       shipCord: obj.shipCord,
       map: Object.keys(obj.map).map((key) => convert(obj.map[key])),
+      savedMap: obj.savedMap ? {
+        ...obj.savedMap,
+        table:  Object.keys(obj.savedMap.table).map((key) => convert(obj.savedMap.table[key]))
+      } : null
     }
   }
 }

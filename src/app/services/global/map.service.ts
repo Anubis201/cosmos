@@ -65,6 +65,7 @@ export class MapService {
       ship: this.whereIsShip,
       table: JSON.parse(JSON.stringify(this.table)),
     }
+    this.saveToDatabase()
   }
 
   restoreMap() {
@@ -73,6 +74,7 @@ export class MapService {
     this.table = this.savedMap.table
     this.whereIsShip = this.savedMap.ship
     this.savedMap = null
+    this.saveToDatabase()
   }
 
   saveToDatabase() {
@@ -81,7 +83,11 @@ export class MapService {
     this.usersService.updateUserData({
       map: this.convertArrayToObject(this.table),
       spice: this.spice,
-      shipCord:this.whereIsShip,
+      shipCord: this.whereIsShip,
+      savedMap: this.savedMap ? {
+        ...this.savedMap,
+        table: this.convertArrayToObject(this.savedMap.table),
+      } : null,
     }).subscribe({
       error: () => {
         this.toast.add({ severity: 'error', summary: $localize `Failed to save game` })

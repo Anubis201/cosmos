@@ -111,8 +111,7 @@ export class DashboardComponent implements OnInit {
           break
       }
 
-      // if ability active dont save game
-      if (!this.savedMap) this.mapService.saveToDatabase()
+      this.mapService.saveToDatabase()
     }
   }
 
@@ -161,6 +160,7 @@ export class DashboardComponent implements OnInit {
           this.mapService.spice = user.spice
           this.mapService.whereIsShip = user.shipCord
           this.mapService.tableMode = null
+          this.mapService.savedMap = user.savedMap
         }
         this.isloading = false
       },
