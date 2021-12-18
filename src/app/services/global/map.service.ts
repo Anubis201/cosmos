@@ -17,6 +17,7 @@ export class MapService {
   spice = 300
   tableMode: TableModeType = 'hello'
   savedMap: SavedMapModel | null
+  lvl = 1
 
   private readonly maxRandom = this.tr * this.td - 1
 
@@ -89,6 +90,7 @@ export class MapService {
         table: this.convertArrayToObject(this.savedMap.table),
       } : null,
       tableMode: this.tableMode,
+      lvl: this.lvl,
     }).subscribe({
       error: () => {
         this.toast.add({ severity: 'error', summary: $localize `Failed to save game` })

@@ -81,6 +81,10 @@ export class AppComponent implements OnInit {
     return location.pathname === '/dashboard'
   }
 
+  get lvl() {
+    return this.mapService.lvl
+  }
+
   ngOnInit() {
     this.authService.checkAuthState()
 

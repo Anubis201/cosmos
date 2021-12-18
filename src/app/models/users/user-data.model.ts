@@ -9,4 +9,5 @@ export interface UserDataModel {
   shipCord: ShipCordModel
   savedMap: SavedMapModel | null
   tableMode: TableModeType
+  lvl: number
 }

@@ -160,6 +160,7 @@ export class DashboardComponent implements OnInit {
           this.mapService.whereIsShip = user.shipCord
           this.mapService.savedMap = user.savedMap
           this.mapService.tableMode = user.tableMode
+          this.mapService.lvl = user.lvl
         }
         this.isloading = false
       },

@@ -29,6 +29,15 @@
   height: 100%;
 }
 
+.lvl {
+  text-align: center;
+  width: 60px;
+  background-color: #CE93D8;
+  position: absolute;
+  bottom: 0;
+  border-top-right-radius: 3px;
+}
+
 .turn {
   position: absolute;
   bottom: 10px;
