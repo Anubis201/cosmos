@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@angular/core'
 import { MessageService } from 'primeng/api'
+import { BehaviorSubject } from 'rxjs'
 import { SavedMapModel } from 'src/app/models/map/saved-map.model'
 import { ShipCordModel } from 'src/app/models/map/ship-cord.model'
 import { TableModeType } from 'src/app/models/map/table-mode.type'
@@ -17,17 +18,19 @@ export class MapService {
   spice = 300
   tableMode: TableModeType = 'hello'
   savedMap: SavedMapModel | null
-  lvl = 1
+  lvl = new BehaviorSubject<number>(1)
 
   private readonly maxRandom = this.tr * this.td - 1
 
   constructor(
-    @Inject(TR_SIZE) private readonly tr: number,
-    @Inject(TD_SIZE) private readonly td: number,
+    @Inject(TR_SIZE) private tr: number,
+    @Inject(TD_SIZE) private td: number,
     private toast: MessageService,
     private usersService: UsersService,
     private authService: AuthService,
-  ) {}
+  ) {
+    this.setTrAndTd()
+  }
 
   createRandomMap(planets: PlanetModel[]) {
     planets.forEach(planet => this.assingElement(planet))
@@ -57,9 +60,8 @@ export class MapService {
   }
 
   nextLevel() {
-    this.lvl += 1
-    // this.resetMap()
-    // TODO CHECK
+    this.lvl.next(this.lvl.value + 1)
+    this.resetMap()
     this.saveToDatabase()
   }
 
@@ -97,7 +99,7 @@ export class MapService {
         table: this.convertArrayToObject(this.savedMap.table),
       } : null,
       tableMode: this.tableMode,
-      lvl: this.lvl,
+      lvl: this.lvl.value,
     }).subscribe({
       error: () => {
         this.toast.add({ severity: 'error', summary: $localize `Failed to save game` })
@@ -108,6 +110,15 @@ export class MapService {
   getRandomInt(min: number, max: number) {
     min = Math.ceil(min)
     return Math.floor(Math.random() * (Math.floor(max) - min + 1)) + min
+  }
+
+  // :D
+  setTrAndTd() {
+    this.lvl.subscribe(value => {
+      console.log(value)
+      this.td += value - 1
+      this.tr += value - 1
+    })
   }
 
   // fuck firebase!
