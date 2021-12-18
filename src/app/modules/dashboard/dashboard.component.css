@@ -35,10 +35,14 @@ table {
   align-items: center;
 }
 
+.asteroid {
+  height: 45px;
+  width: 60px;
+}
+
 .station {
   height: 40px;
   width: 90px;
-  margin-top: 3px;
 }
 
 .loading {
