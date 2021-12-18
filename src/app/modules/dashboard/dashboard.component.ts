@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations'
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { MessageService } from 'primeng/api'
 import { first } from 'rxjs/operators'
@@ -35,7 +35,6 @@ export class DashboardComponent implements OnInit {
     private toast: MessageService,
     private usersService: UsersService,
     private fireAuth: AngularFireAuth,
-    private cdr: ChangeDetectorRef,
   ) { }
 
   get map() {
@@ -159,8 +158,8 @@ export class DashboardComponent implements OnInit {
           this.mapService.table = user.map
           this.mapService.spice = user.spice
           this.mapService.whereIsShip = user.shipCord
-          this.mapService.tableMode = null
           this.mapService.savedMap = user.savedMap
+          this.mapService.tableMode = user.tableMode
         }
         this.isloading = false
       },
