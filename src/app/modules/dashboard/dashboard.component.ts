@@ -122,6 +122,10 @@ export class DashboardComponent implements OnInit {
     this.mapService.resetMap()
   }
 
+  handleNextLevel() {
+    this.mapService.nextLevel()
+  }
+
   private station(firstIndex: number, secondIndex: number) {
     this.mapService.table[firstIndex][secondIndex] = null as any
 
@@ -160,7 +164,7 @@ export class DashboardComponent implements OnInit {
           this.mapService.whereIsShip = user.shipCord
           this.mapService.savedMap = user.savedMap
           this.mapService.tableMode = user.tableMode
-          this.mapService.lvl = user.lvl
+          this.mapService.lvl = user.lvl ?? 1
         }
         this.isloading = false
       },

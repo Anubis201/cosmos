@@ -56,6 +56,13 @@ export class MapService {
     this.createEmptyTable()
   }
 
+  nextLevel() {
+    this.lvl += 1
+    // this.resetMap()
+    // TODO CHECK
+    this.saveToDatabase()
+  }
+
   moveShip(firstIndex: number, secondIndex: number) {
     this.whereIsShip = { firstIndex, secondIndex }
   }

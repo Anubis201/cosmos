@@ -24,6 +24,7 @@ export class MessageComponent {
 
   @Output() hideHello = new EventEmitter<void>()
   @Output() tryAgain = new EventEmitter<void>()
+  @Output() nextLevel = new EventEmitter<void>()
 
   isOpen = true
 
