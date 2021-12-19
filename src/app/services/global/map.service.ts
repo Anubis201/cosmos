@@ -18,7 +18,7 @@ export class MapService {
   spice = 300
   tableMode: TableModeType = 'hello'
   savedMap: SavedMapModel | null
-  lvl = new BehaviorSubject<number>(1)
+  lvl = new BehaviorSubject<number | null>(null)
 
   private readonly maxRandom = this.tr * this.td - 1
 
@@ -60,7 +60,8 @@ export class MapService {
   }
 
   nextLevel() {
-    this.lvl.next(this.lvl.value + 1)
+    console.log(this.lvl.value)
+    this.lvl.next((this.lvl.value ?? 1) + 1)
     this.resetMap()
     this.saveToDatabase()
   }
@@ -99,7 +100,7 @@ export class MapService {
         table: this.convertArrayToObject(this.savedMap.table),
       } : null,
       tableMode: this.tableMode,
-      lvl: this.lvl.value,
+      lvl: this.lvl.value ?? 1,
     }).subscribe({
       error: () => {
         this.toast.add({ severity: 'error', summary: $localize `Failed to save game` })
@@ -115,7 +116,8 @@ export class MapService {
   // :D
   setTrAndTd() {
     this.lvl.subscribe(value => {
-      console.log(value)
+      if (!value) return
+
       this.td += value - 1
       this.tr += value - 1
     })

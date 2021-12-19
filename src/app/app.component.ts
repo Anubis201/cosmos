@@ -82,7 +82,7 @@ export class AppComponent implements OnInit {
   }
 
   get lvl() {
-    return this.mapService.lvl
+    return this.mapService.lvl.value
   }
 
   ngOnInit() {

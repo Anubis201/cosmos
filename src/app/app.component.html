@@ -77,6 +77,9 @@
   </ng-template>
 </p-dock>
 
-<div class="lvl">
+<div
+  *ngIf="lvl"
+  class="lvl"
+>
   {{ lvl }} LVL
 </div>

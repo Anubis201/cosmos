@@ -158,17 +158,15 @@ export class DashboardComponent implements OnInit {
     this.isloading = true
     this.usersService.getUserData().subscribe({
       next: user => {
-        console.log(user)
-        // TODO check this shit
         if (user.map?.length) {
           this.mapService.table = user.map
           this.mapService.spice = user.spice
           this.mapService.whereIsShip = user.shipCord
           this.mapService.savedMap = user.savedMap
           this.mapService.tableMode = user.tableMode
-          this.mapService.lvl.next(user.lvl ?? 1)
-          console.log(this.mapService.lvl.value)
         }
+
+        this.mapService.lvl.next(user.lvl ?? 1)
         this.isloading = false
       },
       error: () => {
