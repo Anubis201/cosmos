@@ -53,6 +53,10 @@ export class DashboardComponent implements OnInit {
     return this.mapService.savedMap
   }
 
+  get lvl() {
+    return this.mapService.lvl.value
+  }
+
   ngOnInit() {
     this.fireAuth.user.pipe(first()).subscribe(user => {
       if (user) this.checkMapFromDatabase()
@@ -124,6 +128,10 @@ export class DashboardComponent implements OnInit {
 
   handleNextLevel() {
     this.mapService.nextLevel()
+  }
+
+  handleBackLevel() {
+    this.mapService.backLevel()
   }
 
   private station(firstIndex: number, secondIndex: number) {

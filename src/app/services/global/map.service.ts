@@ -60,8 +60,15 @@ export class MapService {
   }
 
   nextLevel() {
-    console.log(this.lvl.value)
     this.lvl.next((this.lvl.value ?? 1) + 1)
+    this.resetMap()
+    this.saveToDatabase()
+  }
+
+  backLevel() {
+    if (this.lvl.value === 1) return
+
+    this.lvl.next((this.lvl.value ?? 1) - 1)
     this.resetMap()
     this.saveToDatabase()
   }
@@ -117,9 +124,10 @@ export class MapService {
   setTrAndTd() {
     this.lvl.subscribe(value => {
       if (!value) return
-
-      this.td += value - 1
-      this.tr += value - 1
+      this.td = this.td - ((this.td + (value - 1)) - this.td)
+      this.tr = this.tr - ((this.tr + (value - 1)) - this.tr)
+      console.log(this.tr)
+      console.log(this.td)
     })
   }
 

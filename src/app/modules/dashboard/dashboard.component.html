@@ -5,9 +5,11 @@
   >
     <app-message
       [mode]="tableMode"
+      [lvl]="lvl"
       (hideHello)="handleHideHello()"
       (tryAgain)="handleTryAgain()"
       (nextLevel)="handleNextLevel()"
+      (backLevel)="handleBackLevel()"
     ></app-message>
   </div>
 

@@ -19,8 +19,8 @@
       class="p-button-outlined p-button-danger"
       icon="pi pi-refresh"
       iconPos="left"
-      label="Try again"
-      (click)="tryAgain.emit()"
+      [label]="lvl === 1 ? 'Try again' : 'You go back one level'"
+      (click)="lvl === 1 ? tryAgain.emit() : backLevel.emit()"
     ></button>
   </div>
   <div
