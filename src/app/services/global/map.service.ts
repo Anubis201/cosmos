@@ -20,11 +20,13 @@ export class MapService {
   savedMap: SavedMapModel | null
   lvl = new BehaviorSubject<number | null>(null)
 
-  private readonly maxRandom = this.tr * this.td - 1
+  private tr = this.defaultTr
+  private td = this.defaultTd
+  private maxRandom = this.defaultTr * this.defaultTd - 1
 
   constructor(
-    @Inject(TR_SIZE) private tr: number,
-    @Inject(TD_SIZE) private td: number,
+    @Inject(TR_SIZE) private defaultTr: number,
+    @Inject(TD_SIZE) private defaultTd: number,
     private toast: MessageService,
     private usersService: UsersService,
     private authService: AuthService,
@@ -124,10 +126,10 @@ export class MapService {
   setTrAndTd() {
     this.lvl.subscribe(value => {
       if (!value) return
-      this.td = this.td - ((this.td + (value - 1)) - this.td)
-      this.tr = this.tr - ((this.tr + (value - 1)) - this.tr)
-      console.log(this.tr)
-      console.log(this.td)
+
+      this.td = this.defaultTd + value - 1
+      this.tr = this.defaultTr + value - 1
+      this.maxRandom = this.tr * this.td - 1
     })
   }
 
