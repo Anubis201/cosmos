@@ -62,6 +62,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.fireAuth.user.pipe(first()).subscribe(user => {
       if (user) this.checkMapFromDatabase()
+      else this.mapService.lvl.next(1)
     })
   }
 
