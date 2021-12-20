@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { MessageService } from 'primeng/api'
 import { first } from 'rxjs/operators'
+import { StationPrizesData } from 'src/app/models/data/station-prizes.data'
+import { StationPrizesEnum } from 'src/app/models/map/enums/station-prizes.enum'
 import { PlanetModel } from 'src/app/models/planets/planet.model'
 import { PlanetsService } from 'src/app/services/collections/planets.service'
 import { UsersService } from 'src/app/services/collections/users.service'
@@ -103,7 +105,7 @@ export class DashboardComponent implements OnInit {
         case 'Death':
           if (!this.savedMap) {
             this.mapService.tableMode = 'lose'
-            this.toast.add({ severity: 'error', summary: $localize `Next time use spices` })
+            this.toast.add({ severity: 'error', summary: $localize `DEATH` })
           } else {
             this.mapService.restoreMap()
             this.toast.add({ severity: 'info', summary: $localize `Oops, here is death` })
@@ -137,9 +139,22 @@ export class DashboardComponent implements OnInit {
   private station(firstIndex: number, secondIndex: number) {
     this.mapService.table[firstIndex][secondIndex] = null as any
 
-    if (!this.savedMap) {
-      this.mapService.spice += 100
-      this.toast.add({ severity: 'info', summary: $localize `You finded 100 spices` })
+    if (!this.savedMap ) {
+      const prize = StationPrizesData[this.mapService.getRandomInt(0, 8)]
+
+      switch(prize.type) {
+        case StationPrizesEnum.spice:
+          this.mapService.spice += prize.value as number
+          this.toast.add({ severity: 'info', summary: $localize `You finded ${prize.value} spices` })
+          break
+        case StationPrizesEnum.nothing:
+          this.toast.add({ severity: 'info', summary: $localize `There are nothing` })
+          break
+        case StationPrizesEnum.death:
+          this.mapService.tableMode = 'lose'
+          this.toast.add({ severity: 'error', summary: $localize `DEATH` })
+          break
+      }
     } else {
       this.toast.add({ severity: 'info', summary: $localize `WOW you will find a spice!` })
     }

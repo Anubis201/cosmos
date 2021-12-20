@@ -80,7 +80,7 @@ export class MapService {
   }
 
   ability() {
-    this.spice -= 100
+    this.spice -= 50
     this.savedMap = {
       ship: this.whereIsShip,
       table: JSON.parse(JSON.stringify(this.table)),
