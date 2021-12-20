@@ -21,6 +21,7 @@ import { ChipModule } from 'primeng/chip'
 import { DragDropModule } from 'primeng/dragdrop'
 import { DockModule } from 'primeng/dock'
 import { BadgeModule } from 'primeng/badge'
+import { AvatarModule } from 'primeng/avatar'
 
 const imports = [
   CommonModule,
@@ -45,6 +46,7 @@ const imports = [
   DragDropModule,
   DockModule,
   BadgeModule,
+  AvatarModule,
 ]
 
 const providers = [

@@ -7,3 +7,8 @@
 .nick {
   margin-right: 10px;
 }
+
+p-avatar {
+  margin-right: 11px;
+  cursor: pointer;
+}

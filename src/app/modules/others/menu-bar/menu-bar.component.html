@@ -1,14 +1,12 @@
 <p-menubar [model]="items">
-  <button
-    *ngIf="isAuth"
+  <p-avatar
+    *ngIf="isAuth && !isLoading"
     i18n-pTooltip
-    pButton
-    class="nick p-button-text"
-    type="button"
-    pTooltip="Info"
-    tooltipPosition="bottom"
+    pTooltip="Account settings"
+    shape="circle"
+    [image]="avatar"
     [routerLink]="['/account']"
-  >Settings</button>
+  ></p-avatar>
 
   <button
     *ngIf="isAuth"

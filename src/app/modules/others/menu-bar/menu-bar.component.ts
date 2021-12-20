@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { MenuItem } from 'primeng/api'
+import { first } from 'rxjs/operators'
+import { UploadService } from 'src/app/services/upload.service'
 
 @Component({
   selector: 'app-menu-bar',
@@ -11,7 +14,14 @@ export class MenuBarComponent implements OnInit {
 
   @Output() logout = new EventEmitter<void>()
 
+  constructor(
+    private uploadService: UploadService,
+    private fireAuth: AngularFireAuth,
+  ) {}
+
   items: MenuItem[]
+  avatar: string
+  isLoading = false
 
   ngOnInit() {
     this.items = [
@@ -24,5 +34,23 @@ export class MenuBarComponent implements OnInit {
       //   routerLink: '/about',
       // },
     ]
+    this.fireAuth.user.pipe(first()).subscribe(() => {
+      this.getAvatar()
+    })
+  }
+
+  // TODO jesli zmienie avatar to tez powinno sie zmienic
+  getAvatar() {
+    this.isLoading = true
+    this.uploadService.getAvatar().subscribe({
+      next: url => {
+        this.avatar = url
+        this.isLoading = false
+      },
+      error: () => {
+        this.avatar = '/assets/img/defualt.png'
+        this.isLoading = false
+      }
+    })
   }
 }
