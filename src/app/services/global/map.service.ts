@@ -50,11 +50,11 @@ export class MapService {
     return trIndex === this.whereIsShip?.firstIndex && tdIndex === this.whereIsShip?.secondIndex
   }
 
-  resetMap() {
+  resetMap(isNextLvl = false) {
     this.whereIsShip = null as any
     this.table = []
     this.tableMode = null
-    this.spice = 300
+    if (!isNextLvl) this.spice = 300
     this.savedMap = null
     this.savedMap = null
     this.saveToDatabase()
@@ -63,7 +63,8 @@ export class MapService {
 
   nextLevel() {
     this.lvl.next((this.lvl.value ?? 1) + 1)
-    this.resetMap()
+    this.resetMap(true)
+
     this.saveToDatabase()
   }
 
