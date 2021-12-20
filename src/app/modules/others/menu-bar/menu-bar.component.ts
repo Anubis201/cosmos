@@ -37,9 +37,12 @@ export class MenuBarComponent implements OnInit {
     this.fireAuth.user.pipe(first()).subscribe(() => {
       this.getAvatar()
     })
+
+    this.uploadService.percantage.subscribe(value => {
+      if (value === 100) this.getAvatar()
+    })
   }
 
-  // TODO jesli zmienie avatar to tez powinno sie zmienic
   getAvatar() {
     this.isLoading = true
     this.uploadService.getAvatar().subscribe({

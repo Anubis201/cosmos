@@ -37,3 +37,7 @@ html, body {
 .hide-badge .p-badge {
   display: none;
 }
+
+.p-image img {
+  border-radius: 50%;
+}
