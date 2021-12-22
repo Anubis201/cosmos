@@ -27,8 +27,8 @@ export class UploadService {
     return uploadTask.percentageChanges()
   }
 
-  getAvatar() {
-    const ref = this.storage.ref('/avatars').child(this.authService.user?.uid as string)
+  getAvatar(uid = this.authService.user?.uid) {
+    const ref = this.storage.ref('/avatars').child(uid as string)
     return ref.getDownloadURL()
   }
 }
