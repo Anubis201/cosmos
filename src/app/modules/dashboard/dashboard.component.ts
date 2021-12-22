@@ -1,4 +1,4 @@
-import { animate, style, transition, trigger } from '@angular/animations'
+import { transition, trigger, useAnimation } from '@angular/animations'
 import { Component, OnInit } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { MessageService } from 'primeng/api'
@@ -6,6 +6,7 @@ import { first } from 'rxjs/operators'
 import { StationPrizesData } from 'src/app/models/data/station-prizes.data'
 import { StationPrizesEnum } from 'src/app/models/map/enums/station-prizes.enum'
 import { PlanetModel } from 'src/app/models/planets/planet.model'
+import { blurAnimation } from 'src/app/services/animations/animations'
 import { PlanetsService } from 'src/app/services/collections/planets.service'
 import { UsersService } from 'src/app/services/collections/users.service'
 import { MapService } from 'src/app/services/global/map.service'
@@ -17,12 +18,22 @@ import { MapService } from 'src/app/services/global/map.service'
   animations: [
     trigger('blurAnimation', [
       transition('false => true', [
-        style({ filter: 'Blur(0)' }),
-        animate('1000ms', style({ filter: 'Blur(3px)' }))
+        useAnimation(blurAnimation, {
+          params: {
+            blurStart: 'Blur(0)',
+            blurClose: 'Blur(3px)',
+            time: '1000ms',
+          }
+        })
       ]),
       transition('true => false', [
-        style({ filter: 'Blur(3px)' }),
-        animate('1000ms', style({ filter: 'Blur(0)' }))
+        useAnimation(blurAnimation, {
+          params: {
+            blurStart: 'Blur(3px)',
+            blurClose: 'Blur(0)',
+            time: '1000ms',
+          }
+        })
       ])
     ]),
   ]

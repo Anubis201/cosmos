@@ -1,7 +1,8 @@
-import { animate, style, transition, trigger } from '@angular/animations'
+import { transition, trigger, useAnimation } from '@angular/animations'
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { AnimationEvent } from "@angular/animations"
 import { TableModeType } from 'src/app/models/map/table-mode.type'
+import { opacityAnimation } from 'src/app/services/animations/animations'
 
 @Component({
   selector: 'app-message',
@@ -10,11 +11,24 @@ import { TableModeType } from 'src/app/models/map/table-mode.type'
   animations: [
     trigger('text', [
       transition(':enter', [
-        style({ opacity: 0 }),
-        animate('1000ms', style({ opacity: 1 })) // 1500ms
+        useAnimation(opacityAnimation, {
+          params: {
+            opacityStart: '0',
+            opacityClose: '1',
+            time: '1000ms',
+            delay: '0ms'
+          }
+        })
       ]),
       transition(':leave', [
-        animate('1000ms', style({ opacity: 0 })) // 1500ms
+        useAnimation(opacityAnimation, {
+          params: {
+            opacityStart: '1',
+            opacityClose: '0',
+            time: '1000ms',
+            delay: '0ms'
+          }
+        })
       ]),
     ]),
   ]

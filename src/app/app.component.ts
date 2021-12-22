@@ -1,6 +1,7 @@
-import { animate, style, transition, trigger } from '@angular/animations'
+import { transition, trigger, useAnimation } from '@angular/animations'
 import { Component, OnInit } from '@angular/core'
 import { MenuItem, MessageService } from 'primeng/api'
+import { opacityAnimation, transformAnimation } from './services/animations/animations'
 import { AuthService } from './services/auth.service'
 import { MapService } from './services/global/map.service'
 
@@ -11,29 +12,66 @@ import { MapService } from './services/global/map.service'
   animations: [
     trigger('barAnimation', [
       transition(':enter', [
-        style({ transform: 'translateY(-80px)' }),
-        animate('400ms', style({ transform: 'translateY(0px)' }))
+        useAnimation(transformAnimation, {
+          params: {
+            transformStart: 'translateY(-80px)',
+            transformClose: 'translateY(0)',
+            time: '400ms',
+          }
+        })
       ]),
       transition(':leave', [
-        animate('400ms', style({ transform: 'translateY(-80px)' }))
+        useAnimation(transformAnimation, {
+          params: {
+            transformStart: 'translateY(0)',
+            transformClose: 'translateY(-80px)',
+            time: '400ms',
+          }
+        })
       ])
     ]),
     trigger('mainAnimation', [
       transition(':enter', [
-        style({ opacity: 0 }),
-        animate('500ms 600ms', style({ opacity: 1 }))
+        useAnimation(opacityAnimation, {
+          params: {
+            opacityStart: '0',
+            opacityClose: '1',
+            time: '500ms',
+            delay: '600ms'
+          }
+        })
       ]),
       transition(':leave', [
-        animate('500ms 600ms', style({ opacity: 0 }))
+        useAnimation(opacityAnimation, {
+          params: {
+            opacityStart: '1',
+            opacityClose: '0',
+            time: '500ms',
+            delay: '600ms'
+          }
+        })
       ]),
     ]),
     trigger('bottomBarAnimation', [
       transition(':enter', [
-        style({ opacity: 0 }),
-        animate('500ms 500ms', style({ opacity: 1 }))
+        useAnimation(opacityAnimation, {
+          params: {
+            opacityStart: '0',
+            opacityClose: '1',
+            time: '500ms',
+            delay: '500ms'
+          }
+        })
       ]),
       transition(':leave', [
-        animate('500ms', style({ opacity: 0 }))
+        useAnimation(opacityAnimation, {
+          params: {
+            opacityStart: '1',
+            opacityClose: '0',
+            time: '500ms',
+            delay: '0ms'
+          }
+        })
       ]),
     ]),
   ]
