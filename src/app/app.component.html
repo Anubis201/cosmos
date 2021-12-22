@@ -12,6 +12,7 @@
     @mainAnimation
     class="main"
     [class.content]="isAuth || isDashboard"
+    [class.settings]="isAuth"
   >
     <router-outlet></router-outlet>
   </div>
