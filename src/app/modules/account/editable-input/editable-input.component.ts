@@ -3,12 +3,11 @@ import { FormControl } from '@angular/forms'
 import { BehaviorSubject } from 'rxjs'
 
 @Component({
-  selector: 'app-editable-item',
-  templateUrl: './editable-item.component.html',
-  styleUrls: ['./editable-item.component.css'],
+  selector: 'app-editable-input',
+  templateUrl: './editable-input.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditableItemComponent {
+export class EditableInputComponent {
   @Input('labelText') label: string
   @Input('savedValue') saved: string | undefined | null
   @Input() control: any

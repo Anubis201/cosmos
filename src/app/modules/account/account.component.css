@@ -50,30 +50,11 @@ h4 {
   }
 }
 
-p-image {
-  cursor: pointer;
-}
-
-.icon {
-  margin-left: 10px;
-  position: absolute;
-}
-
 .loading {
   height: 51vh;
 }
 
-.center {
+.image {
   position: relative;
-}
-
-.times-icon {
-  position: absolute;
-  right: 0;
-  cursor: pointer;
-  top: 16px;
-}
-
-.times-icon:hover {
-  color: red;
+  align-self: center;
 }

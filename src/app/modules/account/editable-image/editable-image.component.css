@@ -1,0 +1,19 @@
+p-image {
+  cursor: pointer;
+}
+
+.times-icon {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  top: 16px;
+}
+
+.times-icon:hover {
+  color: red;
+}
+
+.icon {
+  margin-left: 10px;
+  position: absolute;
+}

@@ -8,71 +8,44 @@
       class="items"
       [formGroup]="form"
     >
-      <div class="center">
-        <i
-          *ngIf="showEditInput"
-          class="pi pi-times times-icon"
-          (click)="showEditInput = false"
-        ></i>
-        <h4>Profile picture</h4>
-        <p-image
-          *ngIf="!showEditInput"
-          i18n-alt
-          alt="Image"
-          width="100"
-          height="90"
-          [src]="avatar"
-          (mouseenter)="editImage = true"
-          (mouseleave)="editImage = false"
-          (click)="showEditInput = true"
-        ></p-image>
-        <i
-          *ngIf="editImage && !showEditInput"
-          class="pi pi-pencil icon"
-        ></i>
-        <p-fileUpload
-          *ngIf="showEditInput"
-          accept="image/*"
-          [customUpload]="true"
-          [maxFileSize]="5000000"
-          (uploadHandler)="upload($event)"
-        ></p-fileUpload>
-        <p-progressBar
-          *ngIf="showEditInput"
-          [value]="percentage"
-          [showValue]="false"
-        ></p-progressBar>
+      <div class="image">
+        <app-editable-image
+          [isEdit]="showEditInput"
+          [avatar]="avatar"
+          [percentage]="percentage"
+          (upload)="upload($event)"
+        ></app-editable-image>
       </div>
 
       <div class="item">
-        <app-editable-item
+        <app-editable-input
           i18n-labelText
           labelText="Name"
           [savedValue]="user?.displayName"
           [control]="form.get('displayName')"
           (onEnter)="changeName()"
-        ></app-editable-item>
+        ></app-editable-input>
       </div>
 
       <div class="item">
-        <app-editable-item
+        <app-editable-input
           i18n-labelText
           labelText="Email"
           [savedValue]="user?.email"
           [control]="form.get('email')"
           (onEnter)="changeEmail()"
-        ></app-editable-item>
+        ></app-editable-input>
       </div>
 
       <div class="item">
-        <app-editable-item
+        <app-editable-input
           i18n-labelText
           labelText="Password"
           [savedValue]="'*******'"
           [control]="form.get('password')"
           [isPasswordInput]="true"
           (onEnter)="changePassword()"
-        ></app-editable-item>
+        ></app-editable-input>
       </div>
     </div>
 

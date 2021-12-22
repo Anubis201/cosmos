@@ -19,7 +19,6 @@ import User = firebase.User
 export class AccountComponent implements OnInit {
   isLoading = new BehaviorSubject<boolean>(false)
 
-  editImage = false
   showEditInput = false
   percentage: number | undefined = 0
 
