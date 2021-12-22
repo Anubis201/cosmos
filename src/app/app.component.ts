@@ -110,6 +110,10 @@ export class AppComponent implements OnInit {
     return location.pathname === '/dashboard'
   }
 
+  get isAccount() {
+    return location.pathname === '/account'
+  }
+
   get lvl() {
     return this.mapService.lvl.value
   }
