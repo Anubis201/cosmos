@@ -1,0 +1,28 @@
+.menu-img {
+  width: 80%;
+}
+
+.svg-refresh {
+  filter: invert(70%) sepia(0%) saturate(5487%) hue-rotate(12deg) brightness(111%) contrast(109%);
+}
+
+.menu-bottom {
+  width: 100%;
+}
+
+.lvl {
+  font-family: fantasy;
+  text-align: center;
+  width: 60px;
+  background-color: #CE93D8;
+  position: absolute;
+  bottom: 0;
+  border-top-right-radius: 3px;
+}
+
+.ship {
+  position: absolute;
+  height: 75px;
+  margin-left: 45vw;
+  cursor: move;
+}

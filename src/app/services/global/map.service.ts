@@ -14,9 +14,9 @@ import { TD_SIZE, TR_SIZE } from '../tokens/map-size.token'
 })
 export class MapService {
   table: PlanetModel[][] = []
-  whereIsShip: ShipCordModel
+  whereIsShip = new BehaviorSubject<ShipCordModel | null>(null)
   spice = 300
-  tableMode: TableModeType = 'hello'
+  tableMode = new BehaviorSubject<TableModeType>('hello')
   savedMap: SavedMapModel | null
   lvl = new BehaviorSubject<number | null>(null)
 
@@ -47,13 +47,13 @@ export class MapService {
   }
 
   isShipHere(trIndex: number, tdIndex: number) {
-    return trIndex === this.whereIsShip?.firstIndex && tdIndex === this.whereIsShip?.secondIndex
+    return trIndex === this.whereIsShip.value?.firstIndex && tdIndex === this.whereIsShip.value?.secondIndex
   }
 
   resetMap(isNextLvl = false) {
-    this.whereIsShip = null as any
+    this.whereIsShip.next(null as any)
     this.table = []
-    this.tableMode = null
+    this.tableMode.next(null)
     if (!isNextLvl) this.spice = 300
     this.savedMap = null
     this.savedMap = null
@@ -77,13 +77,13 @@ export class MapService {
   }
 
   moveShip(firstIndex: number, secondIndex: number) {
-    this.whereIsShip = { firstIndex, secondIndex }
+    this.whereIsShip.next({ firstIndex, secondIndex })
   }
 
   ability() {
     this.spice -= 50
     this.savedMap = {
-      ship: this.whereIsShip,
+      ship: this.whereIsShip.value as ShipCordModel,
       table: JSON.parse(JSON.stringify(this.table)),
     }
     this.saveToDatabase()
@@ -93,7 +93,7 @@ export class MapService {
     if (!this.savedMap) return
 
     this.table = this.savedMap.table
-    this.whereIsShip = this.savedMap.ship
+    this.whereIsShip.next(this.savedMap.ship)
     this.savedMap = null
     this.saveToDatabase()
   }
@@ -104,12 +104,12 @@ export class MapService {
     this.usersService.updateUserData({
       map: this.convertArrayToObject(this.table),
       spice: this.spice,
-      shipCord: this.whereIsShip,
+      shipCord: this.whereIsShip.value as ShipCordModel,
       savedMap: this.savedMap ? {
         ...this.savedMap,
         table: this.convertArrayToObject(this.savedMap.table),
       } : null,
-      tableMode: this.tableMode,
+      tableMode: this.tableMode.value,
       lvl: this.lvl.value ?? 1,
     }).subscribe({
       error: () => {

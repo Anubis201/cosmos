@@ -1,0 +1,42 @@
+<img
+  *ngIf="!(whereIsShip | async) && !(tableMode | async) && isDashboard"
+  @bottomBarAnimation
+  class="ship"
+  src="/assets/img/transporter.png"
+  pDraggable="shipPlace"
+  alt="ship"
+>
+
+<p-dock
+  *ngIf="(whereIsShip | async) && !(tableMode | async) && isDashboard"
+  @bottomBarAnimation
+  position="bottom"
+  [model]="dockItems"
+>
+  <ng-template
+    let-item
+    pTemplate="item"
+  >
+    <div
+      pBadge
+      [value]="this.spice"
+      [class.hide-badge]="item.label === 'Refresh game'"
+      class="menu-bottom"
+    >
+      <img
+        class="menu-img"
+        [class.svg-refresh]="item.label === 'Refresh game'"
+        [src]="item.icon"
+        [alt]="item.label"
+        [pTooltip]="item.tooltip"
+      >
+    </div>
+  </ng-template>
+</p-dock>
+
+<div
+  *ngIf="lvl | async"
+  class="lvl"
+>{{ lvl | async }} LVL</div>
+
+<p-toast></p-toast>

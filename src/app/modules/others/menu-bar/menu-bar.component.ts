@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { MenuItem } from 'primeng/api'
 import { BehaviorSubject } from 'rxjs'
+import { AuthService } from 'src/app/services/auth.service'
 import { UploadService } from 'src/app/services/upload.service'
 
 @Component({
@@ -13,13 +14,12 @@ import { UploadService } from 'src/app/services/upload.service'
 export class MenuBarComponent implements OnInit {
   @Input() isAuth: boolean
 
-  @Output() logout = new EventEmitter<void>()
-
   isLoading = new BehaviorSubject<boolean>(false)
 
   constructor(
     private uploadService: UploadService,
     private fireAuth: AngularFireAuth,
+    private authService: AuthService,
   ) {}
 
   items: MenuItem[]
@@ -56,5 +56,9 @@ export class MenuBarComponent implements OnInit {
         this.isLoading.next(false)
       }
     })
+  }
+
+  logout() {
+    this.authService.logout()
   }
 }

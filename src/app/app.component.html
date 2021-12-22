@@ -1,7 +1,6 @@
 <app-menu-bar
   @barAnimation
   [isAuth]="isAuth"
-  (logout)="logout()"
 ></app-menu-bar>
 
 <div
@@ -17,54 +16,7 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-
-<img
-  *ngIf="!whereIsShip && !tableMode && isDashboard"
-  @bottomBarAnimation
-  class="ship"
-  src="/assets/img/transporter.png"
-  pDraggable="shipPlace"
-  alt="ship"
->
-
-<p-menu
-  #selectLang
-  [popup]="true"
-  [model]="items"
-></p-menu>
-
-<p-toast></p-toast>
-
-<p-dock
-  *ngIf="whereIsShip && !tableMode && isDashboard"
-  @bottomBarAnimation
-  position="bottom"
-  [model]="dockItems"
->
-  <ng-template
-    let-item
-    pTemplate="item"
-  >
-    <div
-      pBadge
-      [value]="this.spice"
-      [class.hide-badge]="item.label === 'Refresh game'"
-      class="menu-bottom"
-    >
-      <img
-        class="menu-img"
-        [class.svg-refresh]="item.label === 'Refresh game'"
-        [src]="item.icon"
-        [alt]="item.label"
-        [pTooltip]="item.tooltip"
-      >
-    </div>
-  </ng-template>
-</p-dock>
-
-<div
-  *ngIf="lvl"
-  class="lvl"
->
-  {{ lvl }} LVL
-</div>
+<app-bottom-view
+  [spice]="spice"
+  [isDashboard]="isDashboard"
+></app-bottom-view>

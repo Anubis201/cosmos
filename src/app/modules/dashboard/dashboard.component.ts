@@ -55,11 +55,11 @@ export class DashboardComponent implements OnInit {
   }
 
   get whereIsShip() {
-    return this.mapService.whereIsShip
+    return this.mapService.whereIsShip.value
   }
 
   get tableMode() {
-    return  this.mapService.tableMode
+    return  this.mapService.tableMode.value
   }
 
   get savedMap() {
@@ -78,6 +78,8 @@ export class DashboardComponent implements OnInit {
   }
 
   canShipMove(trIndex: number, tdIndex: number) {
+    if (!this.whereIsShip) return
+
     return  (trIndex === this.whereIsShip?.firstIndex - 1 && tdIndex === this.whereIsShip?.secondIndex) ||
             (trIndex === this.whereIsShip?.firstIndex + 1 && tdIndex === this.whereIsShip?.secondIndex) ||
             (trIndex === this.whereIsShip?.firstIndex && tdIndex === this.whereIsShip?.secondIndex - 1) ||
@@ -86,12 +88,12 @@ export class DashboardComponent implements OnInit {
 
   handleHideHello() {
     this.mapService.createEmptyTable()
-    this.mapService.tableMode = null
+    this.mapService.tableMode.next(null)
   }
 
   drop(firstIndex: number, secondIndex: number) {
     // this.mapService.whereIsShip is null when user use reset button
-    if (!this.mapService.whereIsShip) {
+    if (!this.whereIsShip) {
       this.getPlanets()
       this.mapService.moveShip(firstIndex, secondIndex)
       return
@@ -107,7 +109,7 @@ export class DashboardComponent implements OnInit {
           break
         case 'Planet':
           if (!this.savedMap) {
-            this.mapService.tableMode = 'win'
+            this.mapService.tableMode.next('win')
             this.toast.add({ severity: 'success', summary: $localize `You reached Arrakis` })
           } else {
             this.mapService.restoreMap()
@@ -116,7 +118,7 @@ export class DashboardComponent implements OnInit {
           break
         case 'Death':
           if (!this.savedMap) {
-            this.mapService.tableMode = 'lose'
+            this.mapService.tableMode.next('lose')
             this.toast.add({ severity: 'error', summary: $localize `DEATH` })
           } else {
             this.mapService.restoreMap()
@@ -163,7 +165,7 @@ export class DashboardComponent implements OnInit {
           this.toast.add({ severity: 'info', summary: $localize `There are nothing` })
           break
         case StationPrizesEnum.death:
-          this.mapService.tableMode = 'lose'
+          this.mapService.tableMode.next('lose')
           this.toast.add({ severity: 'error', summary: $localize `DEATH` })
           break
       }
@@ -196,9 +198,9 @@ export class DashboardComponent implements OnInit {
         if (user.map?.length) {
           this.mapService.table = user.map
           this.mapService.spice = user.spice
-          this.mapService.whereIsShip = user.shipCord
+          this.mapService.whereIsShip.next(user.shipCord)
           this.mapService.savedMap = user.savedMap
-          this.mapService.tableMode = user.tableMode
+          this.mapService.tableMode.next(user.tableMode)
         }
 
         this.mapService.lvl.next(user.lvl ?? 1)
