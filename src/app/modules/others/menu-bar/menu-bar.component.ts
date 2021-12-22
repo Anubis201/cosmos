@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { MenuItem } from 'primeng/api'
 import { BehaviorSubject } from 'rxjs'
-import { first } from 'rxjs/operators'
 import { UploadService } from 'src/app/services/upload.service'
 
 @Component({
