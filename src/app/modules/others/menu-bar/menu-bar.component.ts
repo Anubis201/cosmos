@@ -1,18 +1,22 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { MenuItem } from 'primeng/api'
+import { BehaviorSubject } from 'rxjs'
 import { first } from 'rxjs/operators'
 import { UploadService } from 'src/app/services/upload.service'
 
 @Component({
   selector: 'app-menu-bar',
   templateUrl: './menu-bar.component.html',
-  styleUrls: ['./menu-bar.component.css']
+  styleUrls: ['./menu-bar.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuBarComponent implements OnInit {
   @Input() isAuth: boolean
 
   @Output() logout = new EventEmitter<void>()
+
+  isLoading = new BehaviorSubject<boolean>(false)
 
   constructor(
     private uploadService: UploadService,
@@ -21,7 +25,6 @@ export class MenuBarComponent implements OnInit {
 
   items: MenuItem[]
   avatar: string
-  isLoading = false
 
   ngOnInit() {
     this.items = [
@@ -29,13 +32,12 @@ export class MenuBarComponent implements OnInit {
         label: $localize `Dashboard`,
         routerLink: '/dashboard',
       },
-      // {
-      //   label: $localize `About`,
-      //   routerLink: '/about',
-      // },
     ]
-    this.fireAuth.user.pipe(first()).subscribe(() => {
-      this.getAvatar()
+
+    this.fireAuth.user.pipe().subscribe(user => {
+      if (user?.uid) {
+        this.getAvatar(user.uid)
+      }
     })
 
     this.uploadService.percantage.subscribe(value => {
@@ -43,16 +45,16 @@ export class MenuBarComponent implements OnInit {
     })
   }
 
-  getAvatar() {
-    this.isLoading = true
-    this.uploadService.getAvatar().subscribe({
+  getAvatar(uid: undefined | string = undefined) {
+    this.isLoading.next(true)
+    this.uploadService.getAvatar(uid as string).subscribe({
       next: url => {
         this.avatar = url
-        this.isLoading = false
+        this.isLoading.next(false)
       },
       error: () => {
         this.avatar = '/assets/img/defualt.png'
-        this.isLoading = false
+        this.isLoading.next(false)
       }
     })
   }

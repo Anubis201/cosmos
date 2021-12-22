@@ -4,7 +4,7 @@
     [toggleable]="true"
   >
     <div
-      *ngIf="!isLoading"
+      *ngIf="!(isLoading | async)"
       class="items"
       [formGroup]="form"
     >
@@ -77,7 +77,7 @@
     </div>
 
     <div
-      *ngIf="isLoading"
+      *ngIf="isLoading | async"
       class="loading"
     >
       <p-progressSpinner></p-progressSpinner>

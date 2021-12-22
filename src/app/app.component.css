@@ -15,15 +15,6 @@
   display: flex;
 }
 
-.aside {
-  height: 70vh;
-  background-color: #1e1e1e;
-  margin-top: 20vh;
-  width: 200px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-
 .auth {
   justify-content: center;
   height: 100%;

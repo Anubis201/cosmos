@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { FormBuilder, Validators } from '@angular/forms'
 import firebase from 'firebase/compat'
 import { MessageService } from 'primeng/api'
+import { BehaviorSubject } from 'rxjs'
+import { first } from 'rxjs/operators'
 import { FileUpload } from 'src/app/models/classes/file-upload.class'
 import { AuthService } from 'src/app/services/auth.service'
 import { UploadService } from 'src/app/services/upload.service'
@@ -12,8 +14,11 @@ import User = firebase.User
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountComponent implements OnInit {
+  isLoading = new BehaviorSubject<boolean>(false)
+
   editImage = false
   showEditInput = false
   percentage: number | undefined = 0
@@ -22,7 +27,6 @@ export class AccountComponent implements OnInit {
   selectedFiles: FileList
   currentFileUpload: FileUpload
   avatar: string
-  isLoading: boolean
 
   form = this.fb.group({
     email: [null, [Validators.email]],
@@ -57,24 +61,19 @@ export class AccountComponent implements OnInit {
           this.getAvatar()
         }
       },
-      error => {
-        this.showEditInput = false
-        this.toast.add({ severity: 'error', summary: $localize `Failed to change picture` })
-      }
     )
   }
 
   changeName() {
-    this.fireAuth.user.subscribe(user => {
+    this.fireAuth.user.pipe(first()).subscribe(user => {
       user?.updateProfile({ displayName: this.form.get('displayName')?.value }).then(() => {
-        this.form.get('displayName')?.patchValue(null)
         this.toast.add({ severity: 'success', summary: $localize `Name changed` })
       })
     })
   }
 
   changeEmail() {
-    this.fireAuth.user.subscribe(user => {
+    this.fireAuth.user.pipe(first()).subscribe(user => {
       user?.updateEmail(this.form.get('email')?.value)
         .then(() => {
           this.form.get('email')?.patchValue(null)
@@ -87,7 +86,7 @@ export class AccountComponent implements OnInit {
   }
 
   changePassword() {
-    this.fireAuth.user.subscribe(user => {
+    this.fireAuth.user.pipe(first()).subscribe(user => {
       user?.updatePassword(this.form.get('password')?.value)
         .then(() => {
           this.form.get('password')?.patchValue(null)
@@ -100,15 +99,15 @@ export class AccountComponent implements OnInit {
   }
 
   getAvatar() {
-    this.isLoading = true
+    this.isLoading.next(true)
     this.uploadService.getAvatar().subscribe({
       next: url => {
         this.avatar = url
-        this.isLoading = false
+        this.isLoading.next(false)
       },
       error: () => {
-        this.isLoading = false
         this.avatar = '/assets/img/defualt.png'
+        this.isLoading.next(false)
       }
     })
   }

@@ -1,6 +1,6 @@
 <p-menubar [model]="items">
   <p-avatar
-    *ngIf="isAuth && !isLoading"
+    *ngIf="isAuth && !(isLoading | async)"
     i18n-pTooltip
     pTooltip="Account settings"
     shape="circle"

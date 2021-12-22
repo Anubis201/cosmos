@@ -18,15 +18,6 @@ import { MapService } from './services/global/map.service'
         animate('400ms', style({ transform: 'translateY(-80px)' }))
       ])
     ]),
-    trigger('asideAnimation', [
-      transition(':enter', [
-        style({ transform: 'translateX(-400px)' }),
-        animate('400ms', style({ transform: 'translateX(0px)' }))
-      ]),
-      transition(':leave', [
-        animate('400ms', style({ transform: 'translateX(-400px)' }))
-      ])
-    ]),
     trigger('mainAnimation', [
       transition(':enter', [
         style({ opacity: 0 }),

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { FormBuilder, Validators } from '@angular/forms'
 import { MessageService } from 'primeng/api'
@@ -10,6 +10,7 @@ import { UsersService } from 'src/app/services/collections/users.service'
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthComponent {
   form = this.fb.group({
