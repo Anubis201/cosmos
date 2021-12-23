@@ -1,5 +1,5 @@
 import { transition, trigger, useAnimation } from '@angular/animations'
-import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core'
 import { AnimationEvent } from "@angular/animations"
 import { TableModeType } from 'src/app/models/map/table-mode.type'
 import { opacityAnimation } from 'src/app/services/animations/animations'
@@ -8,6 +8,7 @@ import { opacityAnimation } from 'src/app/services/animations/animations'
   selector: 'app-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('text', [
       transition(':enter', [

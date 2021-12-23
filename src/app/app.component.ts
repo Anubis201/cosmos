@@ -59,15 +59,10 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private mapService: MapService,
   ) {}
 
   get isAuth() {
     return !!this.authService.user
-  }
-
-  get spice() {
-    return this.mapService.spice as any
   }
 
   get isDashboard() {

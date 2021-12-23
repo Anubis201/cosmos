@@ -28,8 +28,8 @@ export const StationPrizesData: StationPrizesModel[] = [
     value: 100,
   },
   {
-    type: StationPrizesEnum.nothing,
-    value: null,
+    type: StationPrizesEnum.spice,
+    value: 25,
   },
   {
     type: StationPrizesEnum.nothing,

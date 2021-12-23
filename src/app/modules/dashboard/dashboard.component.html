@@ -1,11 +1,11 @@
 <div class="planets">
   <div
-    *ngIf="tableMode && !isloading"
+    *ngIf="(tableMode | async) && !(isloading | async)"
     class="hello"
   >
     <app-message
-      [mode]="tableMode"
-      [lvl]="lvl"
+      [mode]="tableMode | async"
+      [lvl]="lvl | async"
       (hideHello)="handleHideHello()"
       (tryAgain)="handleTryAgain()"
       (nextLevel)="handleNextLevel()"
@@ -14,26 +14,26 @@
   </div>
 
   <div
-    *ngIf="isloading && !tableMode"
+    *ngIf="(isloading | async) && !(tableMode | async)"
     class="loading"
   >
     <p-progressSpinner></p-progressSpinner>
   </div>
 
   <table
-    *ngIf="!isloading && !tableMode"
+    *ngIf="!(isloading | async) && !(tableMode | async)"
     [class.blur-table]="savedMap"
     [@blurAnimation]="savedMap ? true : false"
   >
     <tr *ngFor="let tr of map; let trIndex = index; let trLast = last">
       <td
         *ngFor="let area of tr; let tdIndex = index; let tdLast = last"
-        [class.green-place]="!whereIsShip || canShipMove(trIndex, tdIndex)"
+        [class.green-place]="!(whereIsShip | async) || canShipMove(trIndex, tdIndex)"
         pDroppable="shipPlace"
         (onDrop)="drop(trIndex, tdIndex)"
       >
         <div
-          *ngIf="whereIsShip && !isShipHere(trIndex, tdIndex)"
+          *ngIf="(whereIsShip | async) && !isShipHere(trIndex, tdIndex)"
           [ngSwitch]="area?.type"
           class="object"
         >

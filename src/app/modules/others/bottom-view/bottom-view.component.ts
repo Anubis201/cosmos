@@ -35,7 +35,6 @@ import { MapService } from 'src/app/services/global/map.service'
   ]
 })
 export class BottomViewComponent implements OnInit {
-  @Input() spice: any
   @Input() isDashboard: boolean
 
   dockItems: MenuItem[]
@@ -59,6 +58,10 @@ export class BottomViewComponent implements OnInit {
 
   get lvl() {
     return this.mapService.lvl
+  }
+
+  get spice() {
+    return this.mapService.spice as any
   }
 
   ngOnInit() {
@@ -89,12 +92,12 @@ export class BottomViewComponent implements OnInit {
   }
 
   ability() {
-    if (this.spice < 100) {
-      this.toast.add({ severity: 'error', summary: $localize `You need 100 spices` })
+    if (this.spice < 50) {
+      this.toast.add({ severity: 'error', summary: $localize `You need 50 spices` })
     } else {
       this.mapService.ability()
       this.dockItems[1].tooltip = 'Back to reality'
-      this.toast.add({ severity: 'info', summary: $localize `You used 100 spices` })
+      this.toast.add({ severity: 'info', summary: $localize `You used 50 spices` })
     }
   }
 }

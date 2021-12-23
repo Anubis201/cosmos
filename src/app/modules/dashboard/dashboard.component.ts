@@ -1,7 +1,8 @@
 import { transition, trigger, useAnimation } from '@angular/animations'
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { MessageService } from 'primeng/api'
+import { BehaviorSubject } from 'rxjs'
 import { first } from 'rxjs/operators'
 import { StationPrizesData } from 'src/app/models/data/station-prizes.data'
 import { StationPrizesEnum } from 'src/app/models/map/enums/station-prizes.enum'
@@ -15,6 +16,7 @@ import { MapService } from 'src/app/services/global/map.service'
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('blurAnimation', [
       transition('false => true', [
@@ -39,7 +41,8 @@ import { MapService } from 'src/app/services/global/map.service'
   ]
 })
 export class DashboardComponent implements OnInit {
-  isloading = false
+  isloading = new BehaviorSubject<boolean>(false)
+
   planets: PlanetModel[] = []
 
   constructor(
@@ -55,11 +58,11 @@ export class DashboardComponent implements OnInit {
   }
 
   get whereIsShip() {
-    return this.mapService.whereIsShip.value
+    return this.mapService.whereIsShip
   }
 
   get tableMode() {
-    return  this.mapService.tableMode.value
+    return this.mapService.tableMode
   }
 
   get savedMap() {
@@ -67,7 +70,7 @@ export class DashboardComponent implements OnInit {
   }
 
   get lvl() {
-    return this.mapService.lvl.value
+    return this.mapService.lvl
   }
 
   ngOnInit() {
@@ -78,12 +81,12 @@ export class DashboardComponent implements OnInit {
   }
 
   canShipMove(trIndex: number, tdIndex: number) {
-    if (!this.whereIsShip) return
+    if (!this.whereIsShip.value) return
 
-    return  (trIndex === this.whereIsShip?.firstIndex - 1 && tdIndex === this.whereIsShip?.secondIndex) ||
-            (trIndex === this.whereIsShip?.firstIndex + 1 && tdIndex === this.whereIsShip?.secondIndex) ||
-            (trIndex === this.whereIsShip?.firstIndex && tdIndex === this.whereIsShip?.secondIndex - 1) ||
-            (trIndex === this.whereIsShip?.firstIndex && tdIndex === this.whereIsShip?.secondIndex + 1)
+    return  (trIndex === this.whereIsShip.value?.firstIndex - 1 && tdIndex === this.whereIsShip.value?.secondIndex) ||
+            (trIndex === this.whereIsShip.value?.firstIndex + 1 && tdIndex === this.whereIsShip.value?.secondIndex) ||
+            (trIndex === this.whereIsShip.value?.firstIndex && tdIndex === this.whereIsShip.value?.secondIndex - 1) ||
+            (trIndex === this.whereIsShip.value?.firstIndex && tdIndex === this.whereIsShip.value?.secondIndex + 1)
   }
 
   handleHideHello() {
@@ -93,7 +96,7 @@ export class DashboardComponent implements OnInit {
 
   drop(firstIndex: number, secondIndex: number) {
     // this.mapService.whereIsShip is null when user use reset button
-    if (!this.whereIsShip) {
+    if (!this.whereIsShip.value) {
       this.getPlanets()
       this.mapService.moveShip(firstIndex, secondIndex)
       return
@@ -175,24 +178,24 @@ export class DashboardComponent implements OnInit {
   }
 
   private getPlanets() {
-    this.isloading = true
+    this.isloading.next(true)
     this.planetsService.getPlanets()
       .subscribe({
         next: res => {
           this.planets = res.docs.map(doc => doc.data()) as PlanetModel[]
           this.mapService.createRandomMap(this.planets)
           this.mapService.saveToDatabase()
-          this.isloading = false
+          this.isloading.next(false)
         },
         error: () => {
           this.toast.add({ severity: 'error', summary: $localize `Failed to get planets` })
-          this.isloading = false
+          this.isloading.next(false)
         }
       })
   }
 
   private checkMapFromDatabase() {
-    this.isloading = true
+    this.isloading.next(true)
     this.usersService.getUserData().subscribe({
       next: user => {
         if (user.map?.length) {
@@ -204,11 +207,11 @@ export class DashboardComponent implements OnInit {
         }
 
         this.mapService.lvl.next(user.lvl ?? 1)
-        this.isloading = false
+        this.isloading.next(false)
       },
       error: () => {
         this.toast.add({ severity: 'error', summary: $localize `Failed to get map` })
-        this.isloading = false
+        this.isloading.next(false)
       }
     })
   }
