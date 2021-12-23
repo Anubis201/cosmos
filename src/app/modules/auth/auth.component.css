@@ -18,7 +18,7 @@ input {
 }
 
 .show {
- margin: 0;
+  margin: 0;
 }
 
 .password {
@@ -66,5 +66,14 @@ input, button {
 }
 
 .left:hover, .right:hover {
-  color: red
+  color: red;
+}
+
+.remind {
+  color: #CE93D8;
+  cursor: pointer;
+}
+
+.remind:hover {
+  color: #93659b;
 }

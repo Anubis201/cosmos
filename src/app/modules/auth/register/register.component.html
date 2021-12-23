@@ -1,0 +1,45 @@
+<form [formGroup]="form">
+  <i class="pi pi-user first"></i>
+
+  <span>
+    <input
+      i18n-placeholder
+      pInputText
+      formControlName="email"
+      type="email"
+      placeholder="Email"
+    >
+  </span>
+
+  <span>
+    <input
+      i18n-placeholder
+      pInputText
+      formControlName="displayName"
+      type="text"
+      placeholder="Display name"
+    >
+  </span>
+
+  <app-password-input
+    class="password"
+    [control]="form.get('password')"
+  ></app-password-input>
+
+  <button
+    i18n
+    pButton
+    type="submit"
+    class="p-button-rounded"
+    [loading]="isSaving"
+    [disabled]="form.invalid"
+    (click)="handleCreateAccount()"
+  >{{ 'Register' }}</button>
+
+  <i
+    i18n-pTooltip
+    class="pi pi-chevron-circle-left left"
+    pTooltip="Login"
+    (click)="toLogin.emit()"
+  ></i>
+</form>

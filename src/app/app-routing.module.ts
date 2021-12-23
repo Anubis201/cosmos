@@ -17,6 +17,12 @@ const routes: Routes = [
     data: { authComponents: true }
   },
   {
+    path: 'remind',
+    component: AuthComponent,
+    canActivate: [CheckAuthGuard],
+    data: { authComponents: true }
+  },
+  {
     path: 'dashboard',
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
   },

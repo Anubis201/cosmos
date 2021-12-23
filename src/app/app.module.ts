@@ -14,7 +14,10 @@ import { SharedModule } from './modules/shared/shared.module'
 import { mapSizeToken } from './services/tokens/map-size.token'
 import { ServiceWorkerModule } from '@angular/service-worker'
 import { PasswordInputComponent } from './modules/auth/password-input/password-input.component'
-import { BottomViewComponent } from './modules/others/bottom-view/bottom-view.component'
+import { BottomViewComponent } from './modules/others/bottom-view/bottom-view.component';
+import { LoginComponent } from './modules/auth/login/login.component';
+import { RegisterComponent } from './modules/auth/register/register.component';
+import { RemindPasswordComponent } from './modules/auth/remind-password/remind-password.component'
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { BottomViewComponent } from './modules/others/bottom-view/bottom-view.co
     AuthComponent,
     PasswordInputComponent,
     BottomViewComponent,
+    LoginComponent,
+    RegisterComponent,
+    RemindPasswordComponent,
   ],
   imports: [
     BrowserModule,

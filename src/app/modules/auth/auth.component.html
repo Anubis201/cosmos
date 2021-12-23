@@ -1,57 +1,23 @@
 <div class="box">
-  <form [formGroup]="form">
-    <i class="pi pi-user first"></i>
+    <app-register
+      *ngIf="pathName === '/register'"
+      [isSaving]="isSaving"
+      (createAccount)="register($event)"
+      (toLogin)="toLogin()"
+    ></app-register>
 
-    <span>
-      <input
-        i18n-placeholder
-        pInputText
-        formControlName="email"
-        type="email"
-        placeholder="Email"
-      >
-    </span>
+    <app-login
+      *ngIf="pathName === '/login'"
+      [isSaving]="isSaving"
+      (loginToAccount)="login($event)"
+      (toRegister)="toRegister()"
+    ></app-login>
 
-    <span *ngIf="!isLoginPage">
-      <input
-        i18n-placeholder
-        pInputText
-        formControlName="displayName"
-        type="text"
-        placeholder="Display name"
-      >
-    </span>
-
-    <app-password-input
-      class="password"
-      [control]="form.get('password')"
-    ></app-password-input>
-
-    <button
-      i18n
-      pButton
-      type="submit"
-      class="p-button-rounded"
-      [loading]="isSaving"
-      [disabled]="form.invalid"
-      (click)="isLoginPage ? login() : register()"
-    >{{ isLoginPage ? 'Login' : 'Register' }}</button>
-
-    <i
-      *ngIf="!isLoginPage"
-      i18n-pTooltip
-      class="pi pi-chevron-circle-left left"
-      pTooltip="Login"
-      (click)="toLogin()"
-    ></i>
-
-    <i
-      *ngIf="isLoginPage"
-      i18n-pTooltip
-      class="pi pi-chevron-circle-right right"
-      pTooltip="Register"
-      (click)="toRegister()"
-    ></i>
-  </form>
+    <app-remind-password
+      *ngIf="pathName === '/remind'"
+      [isSaving]="isSaving"
+      (remindPassword)="resetPassword($event)"
+      (toLogin)="toLogin()"
+    ></app-remind-password>
   <p-toast></p-toast>
 </div>
