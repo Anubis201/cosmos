@@ -1,19 +1,20 @@
 <app-menu-bar
   @barAnimation
-  [isAuth]="isAuth"
+  [isAuth]="!!(isAuth | async)"
 ></app-menu-bar>
 
 <div
   class="apliaction"
-  [class.auth]="!isAuth && !isDashboard"
+  [class.auth]="!(isAuth | async) && !isDashboard"
 >
   <div
     @mainAnimation
     class="main"
-    [class.content]="isAuth || isDashboard"
+    [class.content]="!!(isAuth | async) || isDashboard"
     [class.settings]="isAccount"
   >
     <router-outlet></router-outlet>
   </div>
 </div>
+
 <app-bottom-view [isDashboard]="isDashboard"></app-bottom-view>

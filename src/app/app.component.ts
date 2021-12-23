@@ -1,8 +1,8 @@
 import { transition, trigger, useAnimation } from '@angular/animations'
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { opacityAnimation, transformAnimation } from './services/animations/animations'
 import { AuthService } from './services/auth.service'
-import { MapService } from './services/global/map.service'
 
 @Component({
   selector: 'app-root',
@@ -59,17 +59,18 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private fireAuth: AngularFireAuth,
   ) {}
 
   get isAuth() {
-    return !!this.authService.user
+    return this.fireAuth.user
   }
 
   get isDashboard() {
     return location.pathname === '/dashboard'
   }
 
-  get isAccount() {
+  get isAccount() {''
     return location.pathname === '/account'
   }
 
