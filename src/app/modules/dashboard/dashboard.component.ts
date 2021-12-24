@@ -111,7 +111,7 @@ export class DashboardComponent implements OnInit {
           this.mapService.saveToDatabase()
           break
         case 'Planet':
-          if (!this.savedMap) {
+          if (!this.savedMap.value) {
             this.mapService.tableMode.next('win')
             this.toast.add({ severity: 'success', summary: $localize `You reached Arrakis` })
           } else {
@@ -120,7 +120,7 @@ export class DashboardComponent implements OnInit {
           }
           break
         case 'Death':
-          if (!this.savedMap) {
+          if (!this.savedMap.value) {
             this.mapService.tableMode.next('lose')
             this.toast.add({ severity: 'error', summary: $localize `DEATH` })
           } else {
@@ -156,7 +156,7 @@ export class DashboardComponent implements OnInit {
   private station(firstIndex: number, secondIndex: number) {
     this.mapService.table[firstIndex][secondIndex] = null as any
 
-    if (!this.savedMap ) {
+    if (!this.savedMap.value) {
       const prize = StationPrizesData[this.mapService.getRandomInt(0, 8)]
 
       switch(prize.type) {
@@ -202,7 +202,7 @@ export class DashboardComponent implements OnInit {
           this.mapService.table = user.map
           this.mapService.spice = user.spice
           this.mapService.whereIsShip.next(user.shipCord)
-          this.mapService.savedMap = user.savedMap
+          this.mapService.savedMap.next(user.savedMap)
           this.mapService.tableMode.next(user.tableMode)
         }
 

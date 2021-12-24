@@ -22,8 +22,8 @@
 
   <table
     *ngIf="!(isloading | async) && !(tableMode | async)"
-    [class.blur-table]="savedMap"
-    [@blurAnimation]="savedMap ? true : false"
+    [class.blur-table]="savedMap | async"
+    [@blurAnimation]="(savedMap | async) ? true : false"
   >
     <tr *ngFor="let tr of map; let trIndex = index; let trLast = last">
       <td

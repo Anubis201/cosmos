@@ -17,7 +17,7 @@ export class MapService {
   whereIsShip = new BehaviorSubject<ShipCordModel | null>(null)
   spice = 300
   tableMode = new BehaviorSubject<TableModeType>('hello')
-  savedMap: SavedMapModel | null
+  savedMap = new BehaviorSubject<SavedMapModel | null>(null)
   lvl = new BehaviorSubject<number | null>(null)
 
   private tr = this.defaultTr
@@ -55,8 +55,8 @@ export class MapService {
     this.table = []
     this.tableMode.next(null)
     if (!isNextLvl) this.spice = 300
-    this.savedMap = null
-    this.savedMap = null
+    this.savedMap.next(null)
+    this.savedMap.next(null)
     this.saveToDatabase()
     this.createEmptyTable()
   }
@@ -82,19 +82,19 @@ export class MapService {
 
   ability() {
     this.spice -= 50
-    this.savedMap = {
+    this.savedMap.next({
       ship: this.whereIsShip.value as ShipCordModel,
       table: JSON.parse(JSON.stringify(this.table)),
-    }
+    })
     this.saveToDatabase()
   }
 
   restoreMap() {
-    if (!this.savedMap) return
+    if (!this.savedMap.value) return
 
-    this.table = this.savedMap.table
-    this.whereIsShip.next(this.savedMap.ship)
-    this.savedMap = null
+    this.table = this.savedMap.value.table
+    this.whereIsShip.next(this.savedMap.value.ship)
+    this.savedMap.next(null)
     this.saveToDatabase()
   }
 
@@ -105,9 +105,9 @@ export class MapService {
       map: this.convertArrayToObject(this.table),
       spice: this.spice,
       shipCord: this.whereIsShip.value as ShipCordModel,
-      savedMap: this.savedMap ? {
-        ...this.savedMap,
-        table: this.convertArrayToObject(this.savedMap.table),
+      savedMap: this.savedMap.value ? {
+        ...this.savedMap.value,
+        table: this.convertArrayToObject(this.savedMap.value.table),
       } : null,
       tableMode: this.tableMode.value,
       lvl: this.lvl.value ?? 1,

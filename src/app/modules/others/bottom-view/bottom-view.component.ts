@@ -75,8 +75,8 @@ export class BottomViewComponent implements OnInit {
       {
         label: 'Spice',
         icon: 'assets/img/spice.png',
-        tooltip: this.savedMap ? 'Back to reality' : 'Use spice',
-        command: () => this.savedMap ? this.backAbility() : this.ability(),
+        tooltip: this.savedMap.value ? 'Back to reality' : 'Use spice',
+        command: () => this.savedMap.value ? this.backAbility() : this.ability(),
       },
     ]
   }
