@@ -71,16 +71,13 @@ export class AuthComponent {
   }
 
   googleAuth() {
-    this.isSaving = true
     this.fireAuth.signInWithPopup(new GoogleAuthProvider())
       .then(() => {
         this.toast.add({ severity: 'success', summary: $localize `Success` })
         this.router.navigateByUrl('dashboard')
-        this.isSaving = false
       })
       .catch(err => {
         this.toast.add({ severity: 'error', summary: err.message })
-        this.isSaving = false
       })
   }
 
