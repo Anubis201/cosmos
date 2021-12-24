@@ -77,3 +77,11 @@ input, button {
 .remind:hover {
   color: #93659b;
 }
+
+.google {
+  margin-top: 5px;
+}
+
+.google i {
+  font-weight: 600;
+}

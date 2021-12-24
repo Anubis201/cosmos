@@ -11,6 +11,7 @@ export class LoginComponent {
 
   @Output() loginToAccount = new EventEmitter<{ email: string, password: string }>()
   @Output() toRegister = new EventEmitter<void>()
+  @Output() googleAuth = new EventEmitter<void>()
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],

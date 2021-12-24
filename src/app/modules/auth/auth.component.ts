@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api'
 import { Router } from '@angular/router'
 import { AuthService } from 'src/app/services/auth.service'
 import { UsersService } from 'src/app/services/collections/users.service'
+import { GoogleAuthProvider } from 'firebase/auth';
 
 @Component({
   selector: 'app-auth',
@@ -64,6 +65,20 @@ export class AuthComponent {
         this.isSaving = false
       })
       .catch((err) => {
+        this.toast.add({ severity: 'error', summary: err.message })
+        this.isSaving = false
+      })
+  }
+
+  googleAuth() {
+    this.isSaving = true
+    this.fireAuth.signInWithPopup(new GoogleAuthProvider())
+      .then(() => {
+        this.toast.add({ severity: 'success', summary: $localize `Success` })
+        this.router.navigateByUrl('dashboard')
+        this.isSaving = false
+      })
+      .catch(err => {
         this.toast.add({ severity: 'error', summary: err.message })
         this.isSaving = false
       })

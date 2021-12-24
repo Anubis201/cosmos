@@ -28,6 +28,17 @@
     {{ 'Login' }}
   </button>
 
+  <button
+    pButton
+    type="submit"
+    class="p-button-rounded google"
+    pTooltip="Google"
+    [loading]="isSaving"
+    (click)="googleAuth.emit()"
+  >
+    <i class="pi pi-google"></i>
+  </button>
+
   <i
     i18n-pTooltip
     class="pi pi-chevron-circle-right right"
