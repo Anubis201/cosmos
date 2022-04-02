@@ -147,10 +147,10 @@ export class MapService {
     if ((this.checkNeigh(firstIndex, secondIndex) || this.table[firstIndex][secondIndex].name.length || this.isShipHere(firstIndex, secondIndex))) {
       // When in this cell is element will draw the number again
       this.assingElement(planet)
-    } else {
-      // Assign element
-      this.table[firstIndex][secondIndex] = planet
+      return
     }
+
+    this.table[firstIndex][secondIndex] = planet
   }
 
   private checkNeigh(firstIndex: number, secondIndex: number) {
