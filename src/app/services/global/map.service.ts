@@ -35,6 +35,7 @@ export class MapService {
   }
 
   createRandomMap(planets: PlanetModel[]) {
+    console.log(planets)
     planets.forEach(planet => this.assingElement(planet))
   }
 
@@ -144,7 +145,11 @@ export class MapService {
     const firstIndex = Math.floor(randomIndex / this.td)
     const secondIndex = randomIndex % this.td
 
-    if ((this.checkNeigh(firstIndex, secondIndex) || this.table[firstIndex][secondIndex].name.length || this.isShipHere(firstIndex, secondIndex))) {
+    if (
+      this.isNeighborhoodsNotFree(firstIndex, secondIndex)
+      || this.table[firstIndex][secondIndex].name.length
+      || this.isShipHere(firstIndex, secondIndex)
+    ) {
       // When in this cell is element will draw the number again
       this.assingElement(planet)
     } else {
@@ -153,27 +158,10 @@ export class MapService {
     }
   }
 
-  private checkNeigh(firstIndex: number, secondIndex: number) {
-    // upper
-    if (firstIndex !== 0 && this.table[firstIndex - 1][secondIndex].name.length) {
-      return true
-    }
-
-    // bottom
-    if (firstIndex !== this.tr - 1 && this.table[firstIndex + 1][secondIndex].name.length) {
-      return true
-    }
-
-    // right
-    if (secondIndex !== this.td - 1 && this.table[firstIndex][secondIndex + 1].name.length) {
-      return true
-    }
-
-    // left
-    if (secondIndex !== 0 && this.table[firstIndex][secondIndex - 1].name.length) {
-      return true
-    }
-
-    return false
+  private isNeighborhoodsNotFree(firstIndex: number, secondIndex: number) {
+    return !!(firstIndex !== 0 && this.table[firstIndex - 1][secondIndex].name.length
+      || firstIndex !== this.tr - 1 && this.table[firstIndex + 1][secondIndex].name.length
+      || secondIndex !== this.td - 1 && this.table[firstIndex][secondIndex + 1].name.length
+      || secondIndex !== 0 && this.table[firstIndex][secondIndex - 1].name.length)
   }
 }
